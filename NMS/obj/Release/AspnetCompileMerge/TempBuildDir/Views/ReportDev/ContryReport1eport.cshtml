@@ -1,0 +1,13 @@
+﻿
+ @using DevExpress.Web.Mvc.UI;
+@{
+    ViewBag.Title = "ContryReport1eport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+}
+
+
+@Html.DevExpress().WebDocumentViewer(settings =>
+{
+    settings.Name = "WebDocumentViewer";
+}).Bind(new DevExpress.XtraReports.Web.CachedReportSourceWeb(new NMS.Reports.XtraReport1())).GetHtml()

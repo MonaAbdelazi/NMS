@@ -1,0 +1,91 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Company_Type
+
+@{
+    ViewBag.Title = CommonRes.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Delete</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+        @Html.HiddenFor(Model => Model.Comp_Type_ID)
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Comp_Type</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name)
+
+                                @Html.TextBoxFor(m => m.Name, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Name_AR)
+
+                                @Html.TextBoxFor(m => m.Name_AR, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Name_AR, "", new { @class = "text-danger" })
+                                @*@id = "Name_AR",*@
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Status)
+                                @*@Html.DropDownListFor(model => model.Status, ViewBag.Status as SelectList,string.Empty, new { @class = "form-control" })*@
+                                @Html.TextBoxFor(model=>model.Status, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Status)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                              
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+ 
+

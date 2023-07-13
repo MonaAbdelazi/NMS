@@ -1,0 +1,49 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.WareHoustTran>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+}
+
+<h2>@CommonRes.Index</h2>
+
+<div style="text-align: right;">
+    <form action="~/WareHoustTrans/Create">
+        <button type="submit" class="btn btn-default alignPreview">
+            <span class="glyphicon glyphicon-new-window"></span>
+            @CommonRes.Button_CreateNew
+        </button>
+    </form>
+</div>
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		columns.Add(model => model.ID).Sortable(true).SetWidth(50).Titled(NMSRes.ID);
+	
+    	columns.Add(model => model.From_B_ID).Sortable(true).SetWidth(50).Titled(NMSRes.From_B_ID);
+	
+    	columns.Add(model => model.Item_ID).Sortable(true).SetWidth(50).Titled(NMSRes.ItemId);
+	
+    	columns.Add(model => model.Quantity).Sortable(true).SetWidth(50).Titled(NMSRes.Qunt);
+	
+    	columns.Add(model => model.To_B_ID).Sortable(true).SetWidth(50).Titled(NMSRes.To_B_ID);
+	
+    	columns.Add(model => model.Entered_By).Sortable(true).SetWidth(50).Titled(NMSRes.Entered_By);
+	
+    	columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+	
+    	columns.Add(model => model.LastUpdate).Sortable(true).SetWidth(50).Titled(NMSRes.LastUpdate);
+	
+
+	
+    
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

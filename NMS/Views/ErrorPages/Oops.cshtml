@@ -1,0 +1,29 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.GL
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div >
+            <h1>Something went wrong , kindly contact your Adminstrator!  </h1>
+
+            <spaguetti>
+                <fork></fork>
+                <meat></meat>
+                <pasta></pasta>
+                <plate></plate>
+            </spaguetti>
+        </div>
+
+    </form>
+}
+

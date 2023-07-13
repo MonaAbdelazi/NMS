@@ -1,0 +1,291 @@
+﻿@using NMS.Core.Resources
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Solidarity">
+    <meta name="author" content="Solidarity">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Viewport metatags -->
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        .chzn-container .chzn-results {
+            clear: both;
+        }
+    </style>
+<script src="~/Scripts/jquery-1.7.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.custom.min.js"></script>
+    <link href="~/Content/themes/base/jquery.ui.tabs.css" rel="stylesheet" />
+    @*
+        <script src="~/Assets/js/jquery.datetimepicker.js"></script>*@
+
+    @*
+        <script src="~/Scripts/jquery-1.9.1.min.js"></script>*@
+    <link href="~/Content/token-input.css" rel="stylesheet" />
+    @*
+        <link href="~/Content/chosen.css" rel="stylesheet" />*@
+    <script src="~/Scripts/jquery.tokeninput.js"></script>
+    @*
+        <script type="text/javascript" src="~/Scripts/chosen.jquery.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jtable/jquery.jtable.min.js"></script>
+    @*
+        <script src="~/Scripts/jquery.signalR-1.0.1.min.js"></script>*@
+    <script src="~/Assets/js/jquery-ui.js"></script>
+    <link href="~/Assets/css/jquery-ui.css" rel="stylesheet" />
+
+    <script src="~/Scripts/chosen_v1.8.3/chosen.jquery.js"></script>
+    <link href="~/Scripts/chosen_v1.8.3/chosen.css" rel="stylesheet" />
+
+    <!-- Chosen Select-->
+    @*  <link href="~/Content/chosen.css" rel="stylesheet" />*@
+
+    <script src="~/Scripts/jquery.BlockUI.js"></script>
+    <!-- Dynamic List-->
+    <script src="~/Scripts/DynamicList/jquery.dynamiclist.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".button").button();
+            $(".buttonset").buttonset();
+
+            $('#btnSaveExtra').button({ icons: { primary: "ui-icon-plusthick" } });
+            $('#btnSaveExtraOptions li').addClass('ui-corner-all ui-widget');
+            $('#btnSaveExtraOptions li').hover(
+                function () { $(this).addClass('ui-state-default'); },
+                function () { $(this).removeClass('ui-state-default'); }
+            );
+            $('#btnSaveExtraOptions li').mousedown(function () { $(this).addClass('ui-state-active'); });
+            $('#btnSaveExtraOptions li').mouseup(function () { $(this).removeClass('ui-state-active'); });
+        });
+    </script>
+
+    <!-- iOS webapp metatags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- iOS webapp icons -->
+    <link rel="apple-touch-icon-precomposed" href="~/assets/images/ios/fickle-logo-72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/assets/images/ios/fickle-logo-72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/assets/images/ios/fickle-logo-114.png" />
+
+    <!-- TODO: Add a favicon -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <title>@CommonRes.SystemName - @ViewBag.Title</title>
+
+
+
+    <!--Page loading plugin Start -->
+    <link rel="stylesheet" href="~/assets/css/plugins/pace.css">
+    <script src="~/assets/js/pace.min.js"></script>
+    <!--Page loading plugin End -->
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="~/assets/css/font-awesome/css/font-awesome.min.css">
+    <!-- Plugin Css Put Here -->
+    <link rel="stylesheet" href="~/assets/css/plugins/nanoscroller.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/switchery.min.css">
+    <link rel="stylesheet" href="~/assets/css/plugins/bootstrap-switch.css">
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <script src="~/Scripts/Grid/gridmvc.js"></script>
+    <script src="~/Scripts/Grid/gridmvc.lang.ar.js"></script>
+    <!-- Plugin Css End -->
+   
+        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/assets/css/style.css" rel="stylesheet">
+        <link href="~/assets/css/responsive.css" rel="stylesheet">
+    
+
+    <link href="~/Assets/css/custom.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <!-- Custom styles for this template -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body class="deep-blue-color">
+ 
+
+    <section id="main-container">
+
+
+
+    
+
+
+        <!--Page main section start-->
+        <section id="min-wrapper">
+            <div id="main-content">
+                @Html.Partial("Partial/_Alerts")
+
+                @RenderBody()
+
+            </div>
+            <section id="footer" class="">RTEC</section>  <!--add class(right) to  Place text right  -->
+        </section>
+
+
+
+        <!--Right hidden  section start-->
+        <section id="right-wrapper">
+            <!--Right hidden  section close icon start-->
+            <div class="close-right-wrapper">
+                <a href="javascript:void(0)"><i class="fa fa-times"></i></a>
+            </div>
+            <!--Right hidden  section close icon end-->
+            <!--Tab navigation start-->
+            <ul class="nav nav-tabs" id="setting-tab">
+                <li class="active"><a href="#chatTab" data-toggle="tab"><i class="fa fa-comment-o"></i> Chat</a></li>
+                <li><a href="#settingTab" data-toggle="tab"><i class="fa fa-cogs"></i> Setting</a></li>
+            </ul>
+
+            <!--Tab content -->
+        </section>
+        <!--Right hidden  section end -->
+        <div id="change-color">
+            <div id="change-color-control">
+                <a href="javascript:void(0)"><i class="fa fa-magic"></i></a>
+            </div>
+            <div class="change-color-box">
+                <ul>
+                    <li class="default active"></li>
+                    <li class="red-color"></li>
+                    <li class="blue-color"></li>
+                    <li class="light-green-color"></li>
+                    <li class="black-color"></li>
+                    <li class="deep-blue-color"></li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <!--Page main section end -->
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+
+    <!--Layout Script start -->
+    <script type="text/javascript" src="~/assets/js/color.js"></script>
+    @*
+        <script type="text/javascript" src="~/assets/js/lib/jquery-1.11.min.js"></script>*@
+    <script type="text/javascript" src="~/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/multipleAccordion.js"></script>
+
+    <!--easing Library Script Start -->
+    <script src="~/assets/js/lib/jquery.easing.js"></script>
+    <!--easing Library Script End -->
+    <!--Nano Scroll Script Start -->
+    <script src="~/assets/js/jquery.nanoscroller.min.js"></script>
+    <!--Nano Scroll Script End -->
+    <!--switchery Script Start -->
+    <script src="~/assets/js/switchery.min.js"></script>
+    <!--switchery Script End -->
+    <!--bootstrap switch Button Script Start-->
+    <script src="~/assets/js/bootstrap-switch.js"></script>
+    <!--bootstrap switch Button Script End-->
+    <!--easypie Library Script Start -->
+    <script src="~/assets/js/jquery.easypiechart.min.js"></script>
+    <!--easypie Library Script Start -->
+    <!--bootstrap-progressbar Library script Start-->
+    <script src="~/assets/js/bootstrap-progressbar.min.js"></script>
+    <!--bootstrap-progressbar Library script End-->
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/Common/Common.js"></script>
+    <link href="~/Content/plugins/morris.css" rel="stylesheet">
+
+    <script src="~/Scripts/plugins/morris/raphael.min.js"></script>
+    <script src="~/Scripts/plugins/morris/morris.min.js"></script>
+    <script src="~/Scripts/plugins/morris/morris-data.js"></script>
+
+    @*@if (Session["CurrentCulture"].ToString() == "ar-SA")
+        {*@
+    <script type="text/javascript" src="~/assets/js/pages/layout-rtl.js"></script>
+    @*}
+        else
+        {*@
+    @*
+        <script type="text/javascript" src="~/assets/js/pages/layout.js"></script>*@
+    @*}*@
+
+    <!--toastr -->
+    <link href="~/assets/css/toastr.css" rel="stylesheet" />
+    <script src="~/assets/js/toastr.js"></script>
+    <script type="text/javascript">
+
+        $("[Date='DatePicker']").datepicker({
+            // dateFormat: "dd/mm/yy",
+            format: 'dd/mm/yyyy',
+            inline: true,
+            showOtherMonths: true,
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            changeMonth: true,
+            changeYear: true,
+            showStatus: true,
+            showWeeks: true,
+            currentText: 'Now',
+            autoSize: true,
+            gotoCurrent: true,
+            showAnim: 'blind',
+            highlightWeek: true,
+            onClose: function () {
+                return true;
+            }
+        });
+        $.datepicker.setDefaults({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("[Chosen = 'Chosen']").chosen({ rtl: true });
+        $("[Chosen = 'Chosen']").val();
+        $("[Chosen = 'Chosen']").chosen({ allow_single_deselect: true });
+
+    </script>
+    <script language="javascript" type="text/javascript">
+        function AjaxStart() { $.blockUI({ message: '<h2><img src="@Url.Content("~/Images/loading.gif")" width="16" height="16"/>Retrieving data, please wait...</h2>' }); }
+
+        function AjaxStop() { $.unblockUI(); }
+    </script>
+    <script language="javascript" type="text/javascript">
+        //Used to display and close the system notifications
+        $(document).ready(function () {
+            $("#NotificationBox").fadeIn(1000);
+
+            if ($("#NotificationAutoHide").val() == "true") {
+                //$("#NotificationBox").delay(3000).fadeOut(2000);
+                $("#NotificationBox").delay(5000).slideUp(1000);
+            }
+        });
+    </script>
+    <script type='text/javascript'>
+        // When your page loads, trigger this jQuery code
+        //$(function () {
+        //    // Disables caching for your data
+        //    $.ajaxSetup({ cache: false });
+
+        //    // Create a function that will refresh your data every 10 seconds (or 10000ms)
+        //    setInterval(function () {
+        //        // Define your AJAX call to load data from a specific location into a particular area
+        //        $('#notificationFeed').load('/Home/GetNotifications', function (data) {
+        //            if (data !== '') {
+        //                $('#notificationFeed').html(data);
+        //                $('.dropdown-toggle').html(' <span class="fa fa-bell-o"></span><span class="badge badge-red">1</span>');
+        //            }
+        //        });
+        //    }, 10000);
+
+        //});
+    </script>
+    @Scripts.Render("~/bundles/jqueryui")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

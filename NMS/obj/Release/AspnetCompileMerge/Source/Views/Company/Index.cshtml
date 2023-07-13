@@ -1,0 +1,187 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.Company>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Index</h2>
+
+<div style="text-align: right;">
+     <form action="~/Company/Create">
+          <button type="submit" class="btn btn-default alignPreview">
+               <span class="glyphicon glyphicon-new-window"></span>
+               @CommonRes.Button_CreateNew
+          </button>
+     </form>
+</div>
+
+
+
+
+<br />
+@*@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		 
+	
+    	columns.Add(model => model.Comp_Type_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Comp_Type_ID);
+	
+    	columns.Add(model => model.City_ID).Sortable(true).SetWidth(50).Titled(NMSRes.City_ID);
+	
+    	columns.Add(model => model.Country_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Country_ID);
+	
+    	columns.Add(model => model.Comp_Name).Sortable(true).SetWidth(50).Titled(NMSRes.Comp_Name);
+	
+    	columns.Add(model => model.Comp_Name_AR).Sortable(true).SetWidth(50).Titled(NMSRes.Comp_Name_AR);
+	
+    	columns.Add(model => model.Logo).Sortable(true).SetWidth(50).Titled(NMSRes.Logo);
+	
+    	columns.Add(model => model.Activity_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Activity_ID);
+	
+    	columns.Add(model => model.Commercial_No).Sortable(true).SetWidth(50).Titled(NMSRes.Commercial_No);
+	
+    	columns.Add(model => model.IssueDate).Sortable(true).SetWidth(50).Titled(NMSRes.CommIssueDate);
+	
+    	columns.Add(model => model.EndDate).Sortable(true).SetWidth(50).Titled(NMSRes.CommEndDate);
+	
+    	columns.Add(model => model.Curr_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Curr_ID);
+	
+    	columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+	
+    	columns.Add(model => model.LastUpdate).Sortable(true).SetWidth(50).Titled(NMSRes.LastUpdate);
+	
+    	columns.Add(model => model.Entered_By).Sortable(true).SetWidth(50).Titled(NMSRes.Entered_By);
+	
+    	columns.Add(model => model.Activity.Activity_Name).Sortable(true).SetWidth(50).Titled(NMSRes.Activity_ID);
+	
+    	columns.Add(model => model.City.Name).Sortable(true).SetWidth(50).Titled(NMSRes.City_ID);
+	
+    	columns.Add(model => model.Company_Type.Name).Sortable(true).SetWidth(50).Titled(NMSRes.Comp_Name_AR);
+	
+    	 
+	
+    	columns.Add(model => model.Currency.Curr_Name).Sortable(true).SetWidth(50).Titled(NMSRes.Curr_ID);
+	
+          columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Edit, "Edit", new { id = o.Comp_ID })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Detail, "Details", new { id = o.Comp_ID })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Delete, "Delete", new { id = o.Comp_ID })).SetWidth(50);
+    
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)*@
+
+
+@*@model IEnumerable<NMS.Data.Company>
+@using NMS.Core.Resources
+@using NMS*@
+
+
+<style type="text/css">
+    .paging-nav {
+        text-align: right;
+        padding-top: 2px;
+    }
+
+        .paging-nav a {
+            margin: auto 1px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 1px 7px;
+            background: #91b9e6;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .paging-nav .selected-page {
+            background: #187ed5;
+            font-weight: bold;
+        }
+
+    .paging-nav,
+    #tableData {
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+</style>
+<div id="outputTable">
+
+
+
+    <table id="tableData" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Comp_Name_AR)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Country_ID)
+                </th>
+                @*<th>
+                    @Html.DisplayName(NMSRes.Comp_Type_ID)
+                </th>*@
+                <th>
+                    @Html.DisplayName(NMSRes.Entered_By)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Logo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.ToArray().Length; i++)
+            {
+                var items = Model.ToArray();
+                <tr>
+                    <td>
+                        @Html.Raw(i + 1)
+                    </td>
+                    <td>
+                        <input id="items[@i].Comp_Name_AR" class="form-control" value="@items[i].Comp_Name_AR" width="250" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Country_ID" class="form-control" value="@items[i].Country.Name_AR" type="text" disabled="disabled">
+
+
+                    </td>
+                    @*<td>
+                        <input id="items[@i].Comp_Type_ID" class="form-control" value="@items[i].Company_Type.Name_AR" type="text" disabled="disabled">
+
+                    </td>*@
+                    <td>
+                        <input id="items[@i].Entered_By" class="form-control" value="@items[i].Entered_By" type="text" disabled="disabled">
+
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Logo" class="form-control" value="@items[i].Logo" type="text" disabled="disabled">
+                        <img src="~/images/profile/@items[i].Logo" width="200" height="200">
+
+                    </td>
+                    <td>
+                       @Html.ActionLink(CommonRes.Link_Edit, "Edit", new { id= @items[@i].Comp_ID })
+                    </td>
+                    <td>
+                        @Html.ActionLink(CommonRes.Link_Delete, "Delete", new { id = @items[@i].Comp_ID })
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<script type="text/javascript">
+
+
+
+
+</script>
+
+

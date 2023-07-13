@@ -1,0 +1,39 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.DailyActivity>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Index</h2>
+
+<div style="text-align: right;">
+    <form action="~/DailyActivities/Create">
+        <button type="submit" class="btn btn-default alignPreview">
+            <span class="glyphicon glyphicon-new-window"></span>
+            @CommonRes.Button_CreateNew
+        </button>
+    </form>
+</div>
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		columns.Add(model => model.ID).Sortable(true).SetWidth(50).Titled(NMSRes.ID);
+	
+    	columns.Add(model => model.OpenningBal).Sortable(true).SetWidth(50).Titled(NMSRes.OpeningBalance);
+	
+	
+    	columns.Add(model => model.cashierID).Sortable(true).SetWidth(50).Titled(NMSRes.UserName);
+	
+         
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

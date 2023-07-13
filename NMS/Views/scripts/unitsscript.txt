@@ -1,0 +1,31 @@
+USE [Managmentv]
+GO
+
+/****** Object:  Table [dbo].[Units]    Script Date: 03/09/2021 5:38:29 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Units](
+	[Unit_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Unit_Name] [nchar](10) NULL,
+	[Unit_Name_AR] [nchar](10) NOT NULL,
+	[Comment] [nchar](10) NULL,
+	[Status] [nchar](10) NOT NULL,
+	[LastUpdate] [date] NOT NULL,
+	[Entered_By] [nvarchar](50) NOT NULL,
+	[size] [nchar](10) NULL,
+ CONSTRAINT [PK_Units] PRIMARY KEY CLUSTERED 
+(
+	[Unit_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Units] ADD  CONSTRAINT [DF_Units_Status]  DEFAULT (N'Active,Closed,Entered,Pending,Deleted,Approved') FOR [Status]
+GO
+
+

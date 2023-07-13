@@ -1,0 +1,287 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Payment
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+     <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@MenuRes.Payment</h3>
+                </div>
+
+                <div class="panel-body">
+   
+        @Html.ValidationSummary(true)
+
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Cus_Name_AR)
+
+                        @Html.DropDownList("Cus_ID", null, CommonRes.SelectDropDown, new { @Chosen = "Chosen", @class = "form-control",@onchange="return getinst();" })
+                        @Html.ValidationMessageFor(model => model.Cus_ID)
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Inst_ID)
+
+                        @Html.TextBox("Inst_ID", null, string.Empty, new {  @class = "form-control" ,@onchange= " return data();" })
+                        @Html.ValidationMessageFor(model => model.Inst_ID)
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Amount)
+
+                        @Html.TextBoxFor(model => model.currntamount, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.currntamount)
+                    </div>
+        
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.CurrNoIns)
+
+                        @Html.TextBoxFor(model => model.currntinst, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.currntinst)
+                    </div>
+            
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Comment)
+
+                        @Html.TextAreaFor(model => model.comment, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.comment)
+                    </div>
+
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Paid)
+
+                        @Html.TextBox("Paid",string.Empty, new { @class = "form-control",@disabled=true })
+                        @Html.ValidationMessageFor(model => model.currntamount)
+                    </div>  
+
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.TotalAmount)
+
+                        @Html.TextBox("Total", string.Empty, new { @class = "form-control", @disabled = true })
+                        @Html.ValidationMessageFor(model => model.currntamount)
+                    </div>  
+
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.RemainingAmt)
+
+                        @Html.TextBox("ResidualAmt", string.Empty, new { @class = "form-control", @disabled = true })
+                        @Html.ValidationMessageFor(model => model.currntamount)
+                    </div> 
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.PaidIns)
+
+                        @Html.TextBox("PaidIns", string.Empty, new { @class = "form-control", @disabled = true })
+                        @Html.ValidationMessageFor(model => model.currntamount)
+                    </div>   
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.RemainingIns)
+
+                        @Html.TextBox("ReminIns", string.Empty, new { @class = "form-control", @disabled = true })
+                        @Html.ValidationMessageFor(model => model.currntamount)
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.TotNo_Of_Inst)
+
+                        @Html.TextBox("TotalIns", string.Empty, new { @class = "form-control", @disabled = true })
+                        @Html.ValidationMessageFor(model => model.currntamount)
+                    </div>
+
+        
+    </div>
+ </div>
+    </div>
+ </div>
+ <center>
+        <input class="btn btn-primary btn active" type="submit" value="@CommonRes.Button_Save">
+        <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+    </center>
+}
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+<script src="~/Scripts/Common/Common.js"></script>
+@section Scripts {
+    <script type="text/javascript">
+    
+        function getinst() {
+            var val = $('#Cus_ID').val();
+
+            var input = { id: val };
+            GetChosenDropDownData({ Cus_ID: val }, "/Payments/getinst", "Inst_ID", " ", false)
+           
+            data();
+        }
+       function data() {
+
+              var Cus_ID = $('#Cus_ID').val();
+
+              var Inst_ID = $('#Inst_ID').val();
+              var input = { Cus_ID: $('#Cus_ID').val() ,Inst_ID:  $('#Inst_ID').val() };
+                $.ajax({
+                    url: '/Payments/getPaiddata',
+                    type: "POST",
+                    data: JSON.stringify(input),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data) {
+                        //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                        $('#Paid').val(data);
+
+                        getAmountermin();
+                        getAmounttotal();
+                        getPaidins();
+                        getreminins();
+                        gettotalins();
+
+                    },
+                    error: function() {
+                    }
+                });
+
+
+
+
+
+        };
+
+
+        function  getAmountermin()
+        {
+
+            var Cus_ID = $('#Cus_ID').val();
+
+            var Inst_ID = $('#Inst_ID').val();
+            var input = { Cus_ID: $('#Cus_ID').val(), Inst_ID: $('#Inst_ID').val() };
+            $.ajax({
+                url: '/Payments/getAmountermin',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                    $('#ResidualAmt').val(data);
+                     
+                },
+                error: function () {
+                }
+            });
+              
+
+        };
+
+
+        function getAmounttotal() {
+
+            var Cus_ID = $('#Cus_ID').val();
+
+            var Inst_ID = $('#Inst_ID').val();
+            var input = { Cus_ID: $('#Cus_ID').val(), Inst_ID: $('#Inst_ID').val() };
+            $.ajax({
+                url: '/Payments/getAmounttotal',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                    $('#Total').val(data);
+
+                     
+                },
+                error: function () {
+                }
+            });
+
+
+        };
+
+
+
+        function getPaidins() {
+
+            var Cus_ID = $('#Cus_ID').val();
+
+            var Inst_ID = $('#Inst_ID').val();
+            var input = { Cus_ID: $('#Cus_ID').val(), Inst_ID: $('#Inst_ID').val() };
+            $.ajax({
+                url: '/Payments/getPaidins',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                    $('#PaidIns').val(data);
+
+
+                },
+                error: function () {
+                }
+            });
+
+
+        };
+
+
+        function   getreminins() {
+
+            var Cus_ID = $('#Cus_ID').val();
+
+            var Inst_ID = $('#Inst_ID').val();
+            var input = { Cus_ID: $('#Cus_ID').val(), Inst_ID: $('#Inst_ID').val() };
+            $.ajax({
+                url: '/Payments/getreminins',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                    $('#ReminIns').val(data);
+
+
+                },
+                error: function () {
+                }
+            });
+
+
+        };
+
+
+        function gettotalins() {
+
+            var Cus_ID = $('#Cus_ID').val();
+
+            var Inst_ID = $('#Inst_ID').val();
+            var input = { Cus_ID: $('#Cus_ID').val(), Inst_ID: $('#Inst_ID').val() };
+            $.ajax({
+                url: '/Payments/gettotalins',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                    $('#TotalIns').val(data);
+
+
+                },
+                error: function () {
+                }
+            });
+
+
+        };
+    </script>
+}

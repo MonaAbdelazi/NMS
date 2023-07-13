@@ -1,0 +1,32 @@
+﻿@using System.Threading
+@using System.Threading.Tasks
+
+@{
+
+    <div id="notification">
+    
+        @if (Session["Message"] != null && Session["Type"] != null)
+        {
+            <div class="alert alert-@Session["MessageStyle"].ToString().ToLower()">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>@Session["Type"]!</strong> @Session["Message"].
+            </div>
+        }
+
+        @{
+            Thread.Sleep(3000);
+            Task.Run(() =>
+            {
+                if (Session["Message"] != null) { Session["Message"] = null;   }
+                if (Session["Type"] != null) { Session["Type"] = null; }
+                if (Session["MessageStyle"] != null) { Session["MessageStyle"] = null; }
+            });
+
+            @*<script>
+                $("#notification").html("");
+            </script>*@
+        }
+
+    </div>
+    
+}

@@ -1,0 +1,107 @@
+﻿@model NMS.Data.DailyActivity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DailyActivity</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OpenningBal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenningBal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paymentAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paymentAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Expenses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Expenses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoldAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoldAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RemainedAmt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RemainedAmt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entered_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entered_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DayDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpenStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cashierID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cashierID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

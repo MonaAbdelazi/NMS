@@ -1,0 +1,45 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.AspNetUser>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+}
+
+<h2>@CommonRes.Index</h2>
+
+@*<div style="text-align: right;">
+    <form action="~/Items/Create">
+        <button type="submit" class="btn btn-default alignPreview">
+            <span class="glyphicon glyphicon-new-window"></span>
+            @CommonRes.Button_CreateNew
+        </button>
+    </form>
+</div>*@
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+    columns.Add(model => model.UserName).Sortable(true).SetWidth(50).Titled(NMSRes.ID);
+
+
+
+
+
+    columns.Add(model => model.WareHouse_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Warehouse_ID);
+
+
+
+
+    columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Edit, "Edit", new { id = o.Id })).SetWidth(50);
+
+    //columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Delete, "Delete", new { id = o.Id })).SetWidth(50);
+
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

@@ -1,0 +1,113 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Installment
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+    string lang = CommonRes.Lang;
+    string reportName = "Inst";
+    
+            };
+}
+
+<h2>تقرير الاقساط</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@MenuRes.Installment</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    @Html.ValidationSummary(true)
+                    <div class="row">
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.cusid, "Cus_ID")
+
+                            @Html.DropDownList("CusName", null, CommonRes.SelectDropDown, new { @class = "form-control", @Chosen = "Chosen" })
+                          
+                        </div>
+                       
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.Inst_ID)
+
+                            @Html.TextBoxFor(model => model.Inst_ID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.EndDate)
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.StartDate)
+
+                            @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", type = "date" })
+
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.EndDate)
+
+                            @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control", type = "date" })
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="col-lg-10">
+
+        <div class="box-body">
+            <button type="submit" onclick="return GenerateReport();" class="btn btn-app">
+                <i class="fa fa-save"></i> @CommonRes.Button_Print
+            </button>
+
+            <button type="button" class="btn btn-app" onclick="window.location.href = '/CustomerSays';">
+                <i class="fa fa-remove"></i> @CommonRes.Button_Cancel
+            </button>
+        </div>
+
+    </div>
+
+                            }
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+   
+    <script type="text/javascript">
+        
+      
+        function GenerateReport() {
+
+            ShowReport(
+                {
+ 
+                    CusName: $('#CusName').val(),
+                    Inst_ID: $("#Inst_ID").val()
+
+                }, "/Installments/GetInstReport/", "@reportName", "@CommonRes.Lang");
+
+
+        }
+       
+    </script>
+   
+}
+
+
+
+
+
+ 

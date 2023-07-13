@@ -1,0 +1,97 @@
+﻿@model IEnumerable<NMS.Data.WareHoustTran>
+@using NMS.Core.Resources
+@using NMS
+
+
+<style type="text/css">
+    .paging-nav {
+        text-align: right;
+        padding-top: 2px;
+    }
+
+        .paging-nav a {
+            margin: auto 1px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 1px 7px;
+            background: #91b9e6;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .paging-nav .selected-page {
+            background: #187ed5;
+            font-weight: bold;
+        }
+
+    .paging-nav,
+    #tableData {
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+</style>
+<div id="outputTable">
+
+
+
+    <table id="tableData" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.From_B_ID)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.ItemId)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Qunt)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.To_B_ID)
+                </th>
+               <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.ToArray().Length; i++)
+            {
+                var items = Model.ToArray();
+                <tr>
+                    <td>
+                        @Html.Raw(i + 1)
+                    </td>
+                    <td>
+                        <input id="items[@i].From_B_ID" class="form-control" value="@items[i].From_B_ID" type="text" disabled="disabled">
+                       
+                    </td>
+                    <td>
+                        <input id="items[@i].Item_ID" class="form-control" value="@items[i].Item_ID" type="text" disabled="disabled">
+                        @Html.Hidden("items[" + @i + "].MAXSAL", items[i].Item_ID)
+                    
+                    </td>
+                    <td>
+                        <input id="items[@i].Quantity" class="form-control" value="@items[i].Quantity" type="text" disabled="disabled">
+                        @Html.Hidden("items[" + @i + "].MAXSAL", items[i].Quantity)
+
+                    </td>
+                    <td>
+                        <input id="items[@i].To_B_ID" class="form-control" value="@items[i].To_B_ID" type="text" disabled="disabled">
+                        @Html.Hidden("items[" + @i + "].MAXSAL", items[i].To_B_ID)
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<script type="text/javascript">
+   
+
+
+    
+</script>
+

@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Inventory_ManagementXModelStoreContainer" CdmEntityContainer="Inventory_ManagementXEntities">
+    <EntitySetMapping Name="Activities">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Activity">
+        <MappingFragment StoreEntitySet="Activities">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Activity_AR" ColumnName="Activity_AR" />
+          <ScalarProperty Name="Activity_Name" ColumnName="Activity_Name" />
+          <ScalarProperty Name="Activity_ID" ColumnName="Activity_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Auxiliaries">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Auxiliary">
+        <MappingFragment StoreEntitySet="Auxiliary">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="Aux_Name_AR" ColumnName="Aux_Name_AR" />
+          <ScalarProperty Name="Aux_Name" ColumnName="Aux_Name" />
+          <ScalarProperty Name="GL_ID" ColumnName="GL_ID" />
+          <ScalarProperty Name="Aux_ID" ColumnName="Aux_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Branch">
+        <MappingFragment StoreEntitySet="Branches">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Opening_Date" ColumnName="Opening_Date" />
+          <ScalarProperty Name="Branch_Name_AR" ColumnName="Branch_Name_AR" />
+          <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.City">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="Name_AR" ColumnName="Name_AR" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Company">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Curr_ID" ColumnName="Curr_ID" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="Commercial_No" ColumnName="Commercial_No" />
+          <ScalarProperty Name="Activity_ID" ColumnName="Activity_ID" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Comp_Name_AR" ColumnName="Comp_Name_AR" />
+          <ScalarProperty Name="Comp_Name" ColumnName="Comp_Name" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Comp_Type_ID" ColumnName="Comp_Type_ID" />
+          <ScalarProperty Name="Comp_ID" ColumnName="Comp_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company_Type">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Company_Type">
+        <MappingFragment StoreEntitySet="Company_Type">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name_AR" ColumnName="Name_AR" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Comp_Type_ID" ColumnName="Comp_Type_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Country">
+        <MappingFragment StoreEntitySet="Countries">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CountryKey" ColumnName="CountryKey" />
+          <ScalarProperty Name="Name_AR" ColumnName="Name_AR" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Currency">
+        <MappingFragment StoreEntitySet="Currencies">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Last_Ex_Rare_Date" ColumnName="Last_Ex_Rare_Date" />
+          <ScalarProperty Name="EX_Rate" ColumnName="EX_Rate" />
+          <ScalarProperty Name="CurrentCost" ColumnName="CurrentCost" />
+          <ScalarProperty Name="Curr_Name_AR" ColumnName="Curr_Name_AR" />
+          <ScalarProperty Name="Curr_Name" ColumnName="Curr_Name" />
+          <ScalarProperty Name="Curr_ID" ColumnName="Curr_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="Web_Site" ColumnName="Web_Site" />
+          <ScalarProperty Name="E_Mail" ColumnName="E_Mail" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Cus_Name_AR" ColumnName="Cus_Name_AR" />
+          <ScalarProperty Name="Cus_Name" ColumnName="Cus_Name" />
+          <ScalarProperty Name="Cus_ID" ColumnName="Cus_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employesses">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Employess">
+        <MappingFragment StoreEntitySet="Employess">
+          <ScalarProperty Name="IQAMA" ColumnName="IQAMA" />
+          <ScalarProperty Name="Passport_Id" ColumnName="Passport_Id" />
+          <ScalarProperty Name="Expdate_Pass" ColumnName="Expdate_Pass" />
+          <ScalarProperty Name="Expdate_IQAMA" ColumnName="Expdate_IQAMA" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Job_Tittle" ColumnName="Job_Tittle" />
+          <ScalarProperty Name="Name_AR" ColumnName="Name_AR" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GLs">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.GL">
+        <MappingFragment StoreEntitySet="GL">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Genreal_Name_AR" ColumnName="Genreal_Name_AR" />
+          <ScalarProperty Name="Genreal_Name" ColumnName="Genreal_Name" />
+          <ScalarProperty Name="GL_ID" ColumnName="GL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InItemsInvoices">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.InItemsInvoice">
+        <MappingFragment StoreEntitySet="InItemsInvoice">
+          <ScalarProperty Name="TotalAmt" ColumnName="TotalAmt" />
+          <ScalarProperty Name="totalQun" ColumnName="totalQun" />
+          <ScalarProperty Name="InSirkNo" ColumnName="InSirkNo" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="lastUpdated" ColumnName="lastUpdated" />
+          <ScalarProperty Name="Approved_By" ColumnName="Approved_By" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Installments">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Installment">
+        <MappingFragment StoreEntitySet="Installment">
+          <ScalarProperty Name="currntinst" ColumnName="currntinst" />
+          <ScalarProperty Name="paiddate" ColumnName="paiddate" />
+          <ScalarProperty Name="currntamount" ColumnName="currntamount" />
+          <ScalarProperty Name="numPaidinst" ColumnName="numPaidinst" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Warehouse_ID" ColumnName="Warehouse_ID" />
+          <ScalarProperty Name="ResidualIns" ColumnName="ResidualIns" />
+          <ScalarProperty Name="ResidualAmt" ColumnName="ResidualAmt" />
+          <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
+          <ScalarProperty Name="Enterd_By" ColumnName="Enterd_By" />
+          <ScalarProperty Name="Last_Update" ColumnName="Last_Update" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="No_Of_Inst" ColumnName="No_Of_Inst" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Cus_ID" ColumnName="Cus_ID" />
+          <ScalarProperty Name="Inst_ID" ColumnName="Inst_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+          <ScalarProperty Name="Approved_By" ColumnName="Approved_By" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="WareHouse_ID" ColumnName="WareHouse_ID" />
+          <ScalarProperty Name="Curr_ID" ColumnName="Curr_ID" />
+          <ScalarProperty Name="Payment_Method" ColumnName="Payment_Method" />
+          <ScalarProperty Name="Tax_NoFor_Comp" ColumnName="Tax_NoFor_Comp" />
+          <ScalarProperty Name="Tax_No" ColumnName="Tax_No" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="DisCount" ColumnName="DisCount" />
+          <ScalarProperty Name="Price_Unit" ColumnName="Price_Unit" />
+          <ScalarProperty Name="Qunt" ColumnName="Qunt" />
+          <ScalarProperty Name="Unit_ID" ColumnName="Unit_ID" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="Comp_ID" ColumnName="Comp_ID" />
+          <ScalarProperty Name="Supp_ID" ColumnName="Supp_ID" />
+          <ScalarProperty Name="Cus_ID" ColumnName="Cus_ID" />
+          <ScalarProperty Name="Isuue_Date" ColumnName="Isuue_Date" />
+          <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Item">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="InItemsInvId" ColumnName="InItemsInvId" />
+          <ScalarProperty Name="Ware_Name" ColumnName="Ware_Name" />
+          <ScalarProperty Name="Item_name" ColumnName="Item_name" />
+          <ScalarProperty Name="AvailableQ" ColumnName="AvailableQ" />
+          <ScalarProperty Name="SoldQ" ColumnName="SoldQ" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+          <ScalarProperty Name="Warehouse_ID" ColumnName="Warehouse_ID" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="Comp_ID" ColumnName="Comp_ID" />
+          <ScalarProperty Name="Exp_Date" ColumnName="Exp_Date" />
+          <ScalarProperty Name="Max_Limit" ColumnName="Max_Limit" />
+          <ScalarProperty Name="Min_Limit" ColumnName="Min_Limit" />
+          <ScalarProperty Name="Price_dozen" ColumnName="Price_dozen" />
+          <ScalarProperty Name="PriceForOnce" ColumnName="PriceForOnce" />
+          <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+          <ScalarProperty Name="Qunt" ColumnName="Qunt" />
+          <ScalarProperty Name="Unit_ID" ColumnName="Unit_ID" />
+          <ScalarProperty Name="Item_Grp_ID" ColumnName="Item_Grp_ID" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items_Group">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Items_Group">
+        <MappingFragment StoreEntitySet="Items_Group">
+          <ScalarProperty Name="Expenses_Acc" ColumnName="Expenses_Acc" />
+          <ScalarProperty Name="Income_Acc" ColumnName="Income_Acc" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Item_GrpName_AR" ColumnName="Item_GrpName_AR" />
+          <ScalarProperty Name="Item_Grp_Name" ColumnName="Item_Grp_Name" />
+          <ScalarProperty Name="Item_Grp_ID" ColumnName="Item_Grp_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Item_Grp_ID" ColumnName="Item_Grp_ID" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="BAR_CODE" ColumnName="BAR_CODE" />
+          <ScalarProperty Name="Name_AR" ColumnName="Name_AR" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Expenses_Acc" ColumnName="Expenses_Acc" />
+          <ScalarProperty Name="Income_Acc" ColumnName="Income_Acc" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+          <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Unit">
+        <MappingFragment StoreEntitySet="Units">
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Unit_Name_AR" ColumnName="Unit_Name_AR" />
+          <ScalarProperty Name="Unit_Name" ColumnName="Unit_Name" />
+          <ScalarProperty Name="Unit_ID" ColumnName="Unit_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WareHouses">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.WareHouse">
+        <MappingFragment StoreEntitySet="WareHouse">
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Keeper_Phone" ColumnName="Keeper_Phone" />
+          <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+          <ScalarProperty Name="Name_AR" ColumnName="Name_AR" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Warehouse_ID" ColumnName="Warehouse_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WareHoustTrans">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.WareHoustTran">
+        <MappingFragment StoreEntitySet="WareHoustTrans">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="To_B_ID" ColumnName="To_B_ID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="From_B_ID" ColumnName="From_B_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DailyActivities">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.DailyActivity">
+        <MappingFragment StoreEntitySet="DailyActivities">
+          <ScalarProperty Name="Warehouse_ID" ColumnName="Warehouse_ID" />
+          <ScalarProperty Name="Branch_ID" ColumnName="Branch_ID" />
+          <ScalarProperty Name="ExpensesDesc" ColumnName="ExpensesDesc" />
+          <ScalarProperty Name="cashierID" ColumnName="cashierID" />
+          <ScalarProperty Name="OpenStatus" ColumnName="OpenStatus" />
+          <ScalarProperty Name="DayDate" ColumnName="DayDate" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="RemainedAmt" ColumnName="RemainedAmt" />
+          <ScalarProperty Name="SoldAmount" ColumnName="SoldAmount" />
+          <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+          <ScalarProperty Name="paymentAmount" ColumnName="paymentAmount" />
+          <ScalarProperty Name="OpenningBal" ColumnName="OpenningBal" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exps">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Exp">
+        <MappingFragment StoreEntitySet="Exp">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="dailyID" ColumnName="dailyID" />
+          <ScalarProperty Name="Warehouse_ID" ColumnName="Warehouse_ID" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="Naration" ColumnName="Naration" />
+          <ScalarProperty Name="Expid" ColumnName="Expid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountManagments">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.AccountManagment">
+        <MappingFragment StoreEntitySet="AccountManagment">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TranAmt" ColumnName="TranAmt" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="AccType" ColumnName="AccType" />
+          <ScalarProperty Name="TreeID" ColumnName="TreeID" />
+          <ScalarProperty Name="currencyId" ColumnName="currencyId" />
+          <ScalarProperty Name="branchId" ColumnName="branchId" />
+          <ScalarProperty Name="Acc_Name" ColumnName="Acc_Name" />
+          <ScalarProperty Name="Acc_No" ColumnName="Acc_No" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoice_Items">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Invoice_Items">
+        <MappingFragment StoreEntitySet="Invoice_Items">
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="WareHouse_ID" ColumnName="WareHouse_ID" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="Item_NameAr" ColumnName="Item_NameAr" />
+          <ScalarProperty Name="Issue_Date" ColumnName="Issue_Date" />
+          <ScalarProperty Name="Approved_By" ColumnName="Approved_By" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="last_Updated" ColumnName="last_Updated" />
+          <ScalarProperty Name="total_Price" ColumnName="total_Price" />
+          <ScalarProperty Name="unit_Price" ColumnName="unit_Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Item_ID" ColumnName="Item_ID" />
+          <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
+          <ScalarProperty Name="In_Item_ID" ColumnName="In_Item_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trees">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Tree">
+        <MappingFragment StoreEntitySet="Tree">
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Acc_Nature" ColumnName="Acc_Nature" />
+          <ScalarProperty Name="currencyId" ColumnName="currencyId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Leave" ColumnName="Leave" />
+          <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+          <ScalarProperty Name="Acc_Name_AR" ColumnName="Acc_Name_AR" />
+          <ScalarProperty Name="Acc_Name" ColumnName="Acc_Name" />
+          <ScalarProperty Name="Acc_No" ColumnName="Acc_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+          <ScalarProperty Name="Warehouse_ID" ColumnName="Warehouse_ID" />
+          <ScalarProperty Name="Enterd_By" ColumnName="Enterd_By" />
+          <ScalarProperty Name="Last_Update" ColumnName="Last_Update" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="Inst_ID" ColumnName="Inst_ID" />
+          <ScalarProperty Name="Cus_ID" ColumnName="Cus_ID" />
+          <ScalarProperty Name="currntinst" ColumnName="currntinst" />
+          <ScalarProperty Name="paiddate" ColumnName="paiddate" />
+          <ScalarProperty Name="currntamount" ColumnName="currntamount" />
+          <ScalarProperty Name="PayID" ColumnName="PayID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emp_Loans">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Emp_Loans">
+        <MappingFragment StoreEntitySet="Emp_Loans">
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="acc_no" ColumnName="acc_no" />
+          <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="loan_id" ColumnName="loan_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ride">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Ride">
+        <MappingFragment StoreEntitySet="Ride">
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Warehouse_ID" ColumnName="Warehouse_ID" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="EnterdBy" ColumnName="EnterdBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="SirkID" ColumnName="SirkID" />
+          <ScalarProperty Name="Invoice_ID" ColumnName="Invoice_ID" />
+          <ScalarProperty Name="Emp_ID" ColumnName="Emp_ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="Ride_Id" ColumnName="Ride_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Suppliers">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="acc_no" ColumnName="acc_no" />
+          <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Representative_Phone" ColumnName="Representative_Phone" />
+          <ScalarProperty Name="Representative_Name" ColumnName="Representative_Name" />
+          <ScalarProperty Name="Web_Site" ColumnName="Web_Site" />
+          <ScalarProperty Name="E_Mail" ColumnName="E_Mail" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Supp_Name_AR" ColumnName="Supp_Name_AR" />
+          <ScalarProperty Name="Supp_Name" ColumnName="Supp_Name" />
+          <ScalarProperty Name="Supp_ID" ColumnName="Supp_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="Inventory_ManagementXModel.Transactions">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="TranReference" ColumnName="TranReference" />
+          <ScalarProperty Name="transactionDate" ColumnName="transactionDate" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="Cr_Amt" ColumnName="Cr_Amt" />
+          <ScalarProperty Name="Dr_Amt" ColumnName="Dr_Amt" />
+          <ScalarProperty Name="Cr_Acc" ColumnName="Cr_Acc" />
+          <ScalarProperty Name="Dr_Acc" ColumnName="Dr_Acc" />
+          <ScalarProperty Name="Entered_By" ColumnName="Entered_By" />
+          <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

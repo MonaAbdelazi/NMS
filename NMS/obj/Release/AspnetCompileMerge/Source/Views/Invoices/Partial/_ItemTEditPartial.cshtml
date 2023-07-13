@@ -1,0 +1,103 @@
+﻿@model IEnumerable<NMS.Data.Invoice_Items>
+@using NMS.Core.Resources
+@using NMS
+@using NMS.Data;
+
+@{ 
+    var db = new Inventory_ManagementXEntities();
+
+}
+
+<style type="text/css">
+    .paging-nav {
+        text-align: right;
+        padding-top: 2px;
+    }
+
+        .paging-nav a {
+            margin: auto 1px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 1px 7px;
+            background: #91b9e6;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .paging-nav .selected-page {
+            background: #187ed5;
+            font-weight: bold;
+        }
+
+    .paging-nav,
+    #tableData {
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+</style>
+<div id="outputTable">
+
+
+
+    <table id="tableData" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.ItemId)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Qunt)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.PriceForOnce)
+                </th>
+              
+               <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.ToArray().Length; i++)
+            {
+                var items = Model.ToArray();
+                <tr>
+                    <td>
+                        @Html.Raw(i + 1)
+                    </td>
+                    <td>
+                        @*<input id="items[@i].Item_ID" class="form-control" value="@items[i].Item_ID" type="text" >*@
+                        @*@Html.DropDownList("items[@i].Item_ID", null, @items[i].Item_ID.ToString(), new { @class = "form-control", @onchange = "getPrice();" })*@
+                        @Html.DropDownList("items[" + @i + "].Item_ID", new SelectList(db.Items, "Item_ID", "Item_Name", items[@i].Item_ID), string.Empty, new { @class = "form-control", @name = "items[" + @i + "].Item_ID", @value = items[@i].Item_ID, @onchange = "getPrice();" })  @*, @disabled = "disabled"*@
+
+
+
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Qunt" class="form-control" value="@items[i].Quantity" onchange = "calc(this);" type="text" >
+                        @Html.Label("Not Availble Quantity", new { @class = "label-danger", @hidden = "hidden", @id = "items[" + @i + "].Qunt" })
+
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Price_Unit" class="form-control" value="@items[i].unit_Price" type="text" >
+
+                    </td>
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+@section Scripts {
+
+<script type="text/javascript">
+  
+
+    
+</script>
+
+}

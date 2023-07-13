@@ -1,0 +1,142 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.City
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.City</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name)
+
+                                @Html.TextBoxFor(m => m.Name, null, htmlAttributes: new { @class = "form-control" })
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Name_AR)
+
+                                @Html.TextBoxFor(m => m.Name_AR, null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name_AR)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Country_ID)
+
+                                @Html.DropDownList("Country_ID", null, CommonRes.SelectDropDown, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.Country_ID)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+                        </div>
+                        
+
+
+
+                        <div>
+
+                            <center>
+                                <p>
+                                    <input type="button" value="@CommonRes.add" id="Add" class="btn btn-success hvr-bounce-in" onclick="add(this.id);" />
+                                </p>
+                            </center>
+
+
+                        </div>
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+            var input = { name: $('#Name_AR').val(), namear: $('#Name').val(), Country_ID: $('#Country_ID').val() };
+            $.ajax({
+                url: '/Cities/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Name_AR').val("");
+            $('#Name').val("");
+            $('#Country_ID').val("");
+
+        }
+    </script>
+}

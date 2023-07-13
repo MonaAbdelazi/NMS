@@ -1,0 +1,51 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.Installment>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Index</h2>
+
+<div style="text-align: right;">
+     <form action="~/Installments/Create">
+          <button type="submit" class="btn btn-default alignPreview">
+               <span class="glyphicon glyphicon-new-window"></span>
+               @CommonRes.Button_CreateNew
+          </button>
+     </form>
+</div>
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		columns.Add(model => model.Inst_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Inst_ID);
+	
+    	//columns.Add(model => model.Cus_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Cus_ID);
+	
+    	columns.Add(model => model.StartDate).Sortable(true).SetWidth(50).Titled(NMSRes.StartDate);
+	
+    	columns.Add(model => model.EndDate).Sortable(true).SetWidth(50).Titled(NMSRes.EndDate);
+	
+    	columns.Add(model => model.No_Of_Inst).Sortable(true).SetWidth(50).Titled(NMSRes.No_Of_Inst);
+	
+    	columns.Add(model => model.Amount).Sortable(true).SetWidth(50).Titled(NMSRes.Amount);
+	
+    	columns.Add(model => model.Comment).Sortable(true).SetWidth(50).Titled(NMSRes.Comment);
+	
+    	columns.Add(model => model.Customer.Cus_Name_AR).Sortable(true).SetWidth(50).Titled(NMSRes.Cus_Name_AR);
+	
+          columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Edit, "Edit", new { id = o.Inst_ID })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Detail, "Details", new { id = o.Inst_ID })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Delete, "Delete", new { id = o.Inst_ID })).SetWidth(50);
+    
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

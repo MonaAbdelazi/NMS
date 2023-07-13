@@ -1,0 +1,91 @@
+﻿@model NMS.Data.Tree
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tree</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Acc_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acc_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Acc_Name_AR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Acc_Name_AR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entered_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entered_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Auxiliary.Aux_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Auxiliary.Aux_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GL.Genreal_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GL.Genreal_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Acc_No }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,330 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Ride
+
+@{
+    ViewBag.Title = CommonRes.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Delete</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Ride</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Count)
+
+                                @Html.TextBoxFor(m => m.count, null, htmlAttributes: new { @class = "form-control" ,@readonly="readonly" })
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Amount)
+
+                                @Html.TextBoxFor(m => m.Amount, null, htmlAttributes: new { @class = "form-control" ,@readonly="readonly" })
+                                @Html.ValidationMessageFor(model => model.Amount)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Type)
+                                @Html.DropDownListFor(model => model.Type, null, htmlAttributes: new { @class = "form-control" })
+
+
+                                @Html.ValidationMessageFor(model => model.Type)
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Driver)
+
+                                @Html.DropDownList("Emp_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly" })
+                                @Html.ValidationMessageFor(model => model.Emp_ID)
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Invoice_ID)
+
+                                @Html.DropDownList("Invoice_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly" })
+
+
+
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.InSirkNo)
+
+                                @Html.DropDownList("SirkID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly" })
+
+
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.date)
+
+                                @Html.TextBoxFor(m => m.date, null, htmlAttributes: new { @class = "form-control" ,@readonly="readonly", @Date = "DatePicker" })
+                                @Html.ValidationMessageFor(model => model.date)
+
+                            </div>
+
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Comment)
+
+                                @Html.TextAreaFor(m => m.comment, htmlAttributes: new { @class = "form-control" ,@readonly="readonly" })
+                                @Html.ValidationMessageFor(model => model.comment)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+
+                        </div>
+
+                        <div>
+
+                           
+
+                        </div>
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function TypeSelected() {
+            var x = $('#Type').val();
+            if (x == "IN") {
+                $('#Invoice_ID').prop("disabled", true);
+                $('#SirkID').prop("disabled", false);
+
+            }
+            else {
+                $('#SirkID').prop("disabled", true);
+                $('#Invoice_ID').prop("disabled", false);
+
+
+            }
+
+            // GetDropDownData({ Country_ID: $('#Country_ID').val() }, "/Branches/CountrySelected", "City_ID", " ", true);
+
+        }
+
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+
+            var input = { count: $('#count').val(), Amount: $('#Amount').val(), Type: $('#Type').val(), Emp_ID: $('#Emp_ID').val(), Invoice_ID: $('#Invoice_ID').val(), SirkID: $('#SirkID').val(), date: $('#date').val(), comment: $('#comment').val() };
+            $.ajax({
+                url: '/Ride/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#count').val("");
+            $('#Amount').val("");
+            $('#Type').val("");
+            $('#Emp_ID').val("");
+
+            $('#Invoice_ID').val("");
+            $('#SirkID').val("");
+            $('#date').val("");
+            $('#comment').val("");
+
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+@*@using NMS.Core.Resources
+    @model NMS.Data.Ride
+
+    @{
+        ViewBag.Title = CommonRes.Create;
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>@CommonRes.Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+         <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Ride</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @Html.Label(NMSRes.Ride_Id)
+
+      @Html.TextBoxFor(model => model.Ride_Id, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Ride_Id)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.count)
+
+      @Html.TextBoxFor(model => model.count, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.count)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Amount)
+
+      @Html.TextBoxFor(model => model.Amount, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Amount)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Type)
+
+      @Html.TextBoxFor(model => model.Type, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Type)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Emp_ID, "Emp_ID")
+
+                    @Html.DropDownList("Emp_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Emp_ID)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Invoice_ID, "Invoice_ID")
+
+                    @Html.DropDownList("Invoice_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Invoice_ID)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.SirkID, "SirkID")
+
+                    @Html.DropDownList("SirkID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.SirkID)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.date)
+
+      @Html.TextBoxFor(model => model.date, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.date)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Status)
+
+      @Html.TextBoxFor(model => model.Status, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Status)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.EnterdBy)
+
+      @Html.TextBoxFor(model => model.EnterdBy, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.EnterdBy)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.ApprovedBy)
+
+      @Html.TextBoxFor(model => model.ApprovedBy, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.ApprovedBy)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Warehouse_ID, "Warehouse_ID")
+
+                    @Html.DropDownList("Warehouse_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Warehouse_ID)
+            </div>
+
+        </div>
+     </div>
+        </div>
+     </div>
+     <center>
+            <input class="btn btn-primary btn active" type="submit" value="@CommonRes.Button_Save">
+            <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+        </center>
+    }
+
+    <div>
+        @Html.ActionLink(CommonRes.BackToList, "Index")
+    </div>*@

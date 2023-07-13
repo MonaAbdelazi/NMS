@@ -1,0 +1,62 @@
+USE [Managmentv]
+GO
+
+/****** Object:  Table [dbo].[Ride]    Script Date: 03/09/2021 5:34:50 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Ride](
+	[Ride_Id] [int] NOT NULL,
+	[count] [int] NULL,
+	[Amount] [float] NULL,
+	[Type] [nchar](10) NULL,
+	[Emp_ID] [int] NULL,
+	[Invoice_ID] [int] NULL,
+	[SirkID] [int] NULL,
+	[date] [datetime] NULL,
+	[Status] [nchar](10) NULL,
+	[EnterdBy] [nvarchar](50) NULL,
+	[ApprovedBy] [nvarchar](50) NULL,
+	[Warehouse_ID] [int] NULL,
+	[LastUpdate] [datetime] NULL,
+	[comment] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Ride] PRIMARY KEY CLUSTERED 
+(
+	[Ride_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Ride]  WITH CHECK ADD  CONSTRAINT [FK_Ride_emp] FOREIGN KEY([Emp_ID])
+REFERENCES [dbo].[Employess] ([Emp_ID])
+GO
+
+ALTER TABLE [dbo].[Ride] CHECK CONSTRAINT [FK_Ride_emp]
+GO
+
+ALTER TABLE [dbo].[Ride]  WITH CHECK ADD  CONSTRAINT [FK_Ride_InItemsInvoice] FOREIGN KEY([SirkID])
+REFERENCES [dbo].[InItemsInvoice] ([ID])
+GO
+
+ALTER TABLE [dbo].[Ride] CHECK CONSTRAINT [FK_Ride_InItemsInvoice]
+GO
+
+ALTER TABLE [dbo].[Ride]  WITH CHECK ADD  CONSTRAINT [FK_Ride_invoice] FOREIGN KEY([Invoice_ID])
+REFERENCES [dbo].[Invoice] ([Invoice_ID])
+GO
+
+ALTER TABLE [dbo].[Ride] CHECK CONSTRAINT [FK_Ride_invoice]
+GO
+
+ALTER TABLE [dbo].[Ride]  WITH CHECK ADD  CONSTRAINT [FK_Ride_WareHouse] FOREIGN KEY([Warehouse_ID])
+REFERENCES [dbo].[WareHouse] ([Warehouse_ID])
+GO
+
+ALTER TABLE [dbo].[Ride] CHECK CONSTRAINT [FK_Ride_WareHouse]
+GO
+
+

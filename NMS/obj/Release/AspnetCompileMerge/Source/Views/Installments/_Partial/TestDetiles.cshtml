@@ -1,0 +1,213 @@
+﻿
+@model List<NMS.Data.Invoice_Items >
+
+@using NMS.Core.Resources
+ 
+ 
+
+@{
+    var TestDetiles = Model.ToArray();
+}
+
+ 
+
+<div id="list_item">
+    <div class="control-group">
+        <div id="TestDetiles" class="controls">
+            <div class="list-item form-inline">
+                <div class="row">
+                    <div class="col-md-2">
+                        @Html.Label("Item_ID")
+                       
+                       @* @Html.DropDownList("TestDetiles[0].Item_ID", ViewBag.Item_ID as SelectList, CommonRes.SelectDropDown, new { @class = "form-control", @onchange = "getPrice(this);" })*@
+                        @Html.DropDownListFor(model => TestDetiles[0].Item_ID, ViewBag.Item_ID as SelectList, CommonRes.SelectDropDown, new { @class = "form-control", @id = "TestDetiles[0].Item_ID", @onchange = "getPrice(this);" })
+                        
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Label("unit_Price")
+                        <input id="TestDetiles[0].unit_Price" name="TestDetiles[0].unit_Price" class="form-control" type="text" style="border-radius: 40px;width:142px;">
+                    </div>
+                    <div class="col-md-2">
+                        @Html.Label("Quantity")
+                        <input id="TestDetiles[0].Quantity" name="TestDetiles[0].Quantity" type="text" class="form-control"  onchange = calc(this); style="border-radius: 40px;width:142px;">
+
+                        
+                        @Html.Label("Not Availble Quantity", new { @class = "label-danger", @hidden = "hidden", @id = "err" })
+                    </div>
+                    <div class="col-lg-2">
+                        @Html.Label(NMSRes.TotalAmount)
+                        <input id="TestDetiles[0].total_Price" name="TestDetiles[0].total_Price" type="text" class="form-control" style="border-radius: 40px;width:142px;">
+                     
+                    </div>
+                    @*<div class="col-lg-2">
+                        @Html.Label(NMSRes.TotalInvoiceAmount)
+                        <input id="TestDetiles[0].Total_Price" name="TestDetiles[0].Total_Price" disabled="disabled" type="text" class="form-control" style="border-radius: 40px;width:142px;">
+ 
+                    </div>*@
+                    
+                </div>
+
+
+
+                @*<div class="col-md-2">
+                        @Html.Label(ViewsRes.Weeks)
+                        @Html.DropDownList("TEACHINGPLANDETAILS[" + i + "].WEEK", ViewBag.Weeks as SelectList, string.Empty, new { @class = "form-control", @placeholder = CommonRes.SelectDropDown })
+                    </div>*@
+                <a href="#" class="list-remove btn btn-small" id="remove"><i class="icon-minus"></i><input type="button" value="Remove" class="btn btn-danger" /> </a>
+            </div>
+            <hr />
+
+            @for (int i = 2; i <= Model.ToArray().Length; i++)
+            {
+
+                <div class="list-item form-inline">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.Label("Item_ID")
+                          
+                            @Html.DropDownList("TestDetiles["+@i+"].Item_ID", ViewBag.Item_ID as SelectList, CommonRes.SelectDropDown, new { @class = "form-control"})
+                            @Html.DropDownListFor(model => TestDetiles[i].Item_ID, ViewBag.Item_ID as SelectList, new { @id= "TestDetiles[i].Item_ID", @class = "form-control", @onchange = "getPrice(this);" })
+
+
+
+
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label("unit_Price")
+                            <input id="TestDetiles[@i].unit_Price" name="TestDetiles[@i].unit_Price" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            @Html.Label("Quantity")
+                            <input id="TestDetiles[@i].Quantity" name="TestDetiles[@i].Quantity" type="text" class="form-control">
+                            @Html.Label("Not Availble Quantity", new { @class = "label-danger", @hidden = "hidden", @id = "err"+@i+"" })
+
+
+                        </div>
+
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.TotalAmount)
+                            <input id="TestDetiles[@i].total_Price" name="TestDetiles[@i].total_Price" type="text" class="form-control" style="border-radius: 40px;width:142px;">
+
+                        </div>
+                        @*<div class="col-lg-2">
+                            @Html.Label(NMSRes.TotalInvoiceAmount)
+                            <input id="TestDetiles[@i].Total_Price" name="TestDetiles[@i].Total_Price" disabled="disabled" type="text" class="form-control" style="border-radius: 40px;width:142px;">
+
+                        </div>*@
+                       
+                        <div class="col-md-4">
+                            <a href="#" class="list-remove btn btn-small" id="remove"><i class="icon-minus"></i> <input type="button" value="Remove" class="btn btn-danger  hvr-bounce-in" /></a>
+                        </div>
+                    </div>
+                    @*<div class="col-md-2">
+                            @Html.Label(ViewsRes.Weeks)
+                            @Html.DropDownList("TEACHINGPLANDETAILS[" + i + "].WEEK", ViewBag.Weeks as SelectList, string.Empty, new { @class = "form-control", @placeholder = CommonRes.SelectDropDown })
+                        </div>*@
+
+
+                    <hr />
+                    <hr />
+                </div>
+
+            }
+
+
+            <a href="#" id="Test" class="list-add btn btn-small"><i class="icon-plus"></i><input type="button" value="AddDetiles" class="btn btn-info  hvr-bounce-in" /> </a>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/DynamicList/jquery.dynamiclist.js"></script>
+    <script type="text/javascript">
+
+        function sum() {
+            alert("Hellsssfgfgfggfg");
+            var Amount = document.getElementById('Amount').value();
+            alert("Amount");
+            var Rate = document.getElementById('Rate').value;
+            alert("Rate");
+            var result = parseInt(txtFirstNo) + parseInt(txtSecondNo);
+            alert("result");
+            if (!isNaN(result)) {
+                document.getElementById('Total').value = result;
+            }
+        }
+
+        function getPrice(_this) {
+            var x = $('#Item_ID').val();
+            var Item_ID = $("[name = 'TestDetiles[" + num + "].Item_ID'").value;
+            var input = { Item_ID: Item_ID };//$('#Item_ID').val() 
+            $.ajax({
+                url: '/Installments/getPrice',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                    $('#unit_Price').val(data);
+
+
+                },
+                error: function () {
+                }
+            });
+
+
+
+        }
+
+
+        function calc(_this) {
+            var Quantity = $('#Quantity').val();
+            var Cost = $('#unit_Price').val();
+            var totalInvoice = $('#Total_Price').val();
+            var tax = $('#Tax_NoFor_Comp').val();
+            var Item_ID = $('#Item_ID').val();
+            var input = { Item_ID: $('#Item_ID').val(), Quantity: Quantity };
+            $.ajax({
+                url: '/Invoices/checkQuantity',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data == "OK") {
+                        if (Quantity != null && Cost != null) {
+                            var q = new Number(Quantity);
+                            var c = new Number(Cost);
+                            var tot = new Number(totalInvoice);
+                            var tx = new Number(tax);
+                            var result = q * c;
+                            tot += result;
+                            tx = 0.17 * tot;
+                            $('#total_Price').val(result);
+                            $('#Total_Price').val(tot);
+                            $('#Tax_NoFor_Comp').val(tx);
+                            $('#err').hide();
+                        }
+                    } else {
+                        $('#err').show();
+                        //   $('#id').removeAttr()
+
+                        $('#Quantity').val(" ");
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+
+    </script>
+}
+
+
+
+
+
+
+
+

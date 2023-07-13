@@ -1,0 +1,148 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Currency
+
+@{
+    ViewBag.Title = CommonRes.Edit;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+                        <h2 class="panel-title">@MenuRes.Currencies/h2>
+                    </div>
+
+                    <div class="panel-body">
+
+                        @Html.ValidationSummary(true)
+
+                        <hr />
+
+                        <div class="form-group row">
+                            @Html.HiddenFor(m => m.Curr_ID)
+
+
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name)
+
+                                @Html.TextBoxFor(model => model.Curr_Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Curr_Name)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name_AR)
+
+                                @Html.TextBoxFor(model => model.Curr_Name_AR, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Curr_Name_AR)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.CurrentCost)
+
+                                @Html.TextBoxFor(model => model.CurrentCost, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CurrentCost)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.EX_Rate)
+
+                                @Html.TextBoxFor(model => model.EX_Rate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.EX_Rate)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Last_Ex_Rare_Date)
+
+                                @Html.TextBoxFor(model => model.Last_Ex_Rare_Date, new { @type = "date", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Last_Ex_Rare_Date)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Status)
+                                @Html.DropDownListFor(m => m.Status, ViewBag.Status as SelectList, htmlAttributes: new { @Value = Model.Status })
+                                @Html.ValidationMessageFor(model => model.Status)
+                            </div>
+
+                        </div>
+                        <div>
+
+                           
+
+
+
+                        </div>
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+            var input = { name: $('#Curr_Name').val(), namear: $('#Curr_Name_AR').val(), CurrentCost: $('#CurrentCost').val(), EX_Rate: $('#EX_Rate').val(), Last_Ex_Rare_Date: $('#Last_Ex_Rare_Date').val() };
+            $.ajax({
+                url: '/Currencies/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Curr_Name').val("");
+            $('#Curr_Name_AR').val("");
+            $('#CurrentCost').val("");
+            $('#EX_Rate').val("");
+            $('#Last_Ex_Rare_Date').val("");
+        }
+    </script>
+}

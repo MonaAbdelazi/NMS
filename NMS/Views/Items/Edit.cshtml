@@ -1,0 +1,191 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Item
+
+@{
+    ViewBag.Title = CommonRes.Edit;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Title_Item</h2>
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+                            @Html.HiddenFor(m => m.Item_ID)
+
+                           
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Item_Grp_ID)
+
+                                @Html.DropDownList("Item_Grp_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Item_Grp_ID)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(MenuRes.Title_Product)
+
+                                @Html.DropDownList("Product_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Product.Product_ID)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Qunt)
+
+                                @Html.TextBoxFor(model => model.Qunt, new { @class = "form-control", @onchange = "return calc();" })
+                                @Html.ValidationMessageFor(model => model.Qunt)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.OpeningBalance)
+
+                                @Html.TextBoxFor(model => model.OpeningBalance, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.OpeningBalance)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.PriceForOnce)
+
+                                @Html.TextBoxFor(model => model.PriceForOnce, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PriceForOnce)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.CurrentCost)
+
+                                @Html.TextBoxFor(model => model.Cost, new { @class = "form-control", @onchange = "return calc();" })
+                                @Html.ValidationMessageFor(model => model.Cost)
+                            </div>
+                            
+                            @*<div class="col-lg-3">
+                                @Html.Label(NMSRes.Status)
+                                @Html.DropDownListFor(m => m.Status, ViewBag.Status as SelectList, htmlAttributes: new { @Value = Model.Status })
+                                @Html.ValidationMessageFor(model => model.Status)
+                            </div>*@
+                        </div>
+                       
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function add(_ddlDesc) {
+            var target = $('#outputTable');
+            var input = { Exp_Date: $('#Exp_Date').val(), Cost: $('#Cost').val(), Price_dozen: $('#Price_dozen').val(), PriceForOnce: $('#PriceForOnce').val(), Qunt: $('#Qunt').val(), Unit_ID: $('#Unit_ID').val(), Item_Grp_ID: $('#Item_Grp_ID').val(), Product_ID: $('#Product_ID').val(), Comp_ID: $('#Comp_ID').val()  };
+            $.ajax({
+                url: '/Items/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Exp_Date').val("");
+            $('#Cost').val("");
+            $('#Price_dozen').val("");
+            $('#PriceForOnce').val("");
+            $('#Unit_ID').val("");
+            $('#Qunt').val("");
+            $('#Item_Grp_ID').val("");
+            $('#Product_ID').val("");
+            $('#Comp_ID').val("");
+        }
+
+        function calc() {
+            var Qunt = $('#Qunt').val();
+            var Cost = $('#Cost').val();
+            if (Qunt != null && Cost != null) {
+                var q = new Number(Qunt);
+                var c = new Number(Cost);
+                var result = q * c;
+                $('#OpeningBalance').val(result);
+
+            }
+
+
+        }
+
+
+        $('#Item_Grp_ID').change(function () {
+
+            var Item_Grp_ID = $('#Item_Grp_ID').val();
+            var input = { Item_Grp_ID: $('#Item_Grp_ID').val() };
+                $.ajax({
+                    url: '/Items/getGroup',
+                    type: "POST",
+                    data: JSON.stringify(input),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data) {
+                        //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                        $('#HOLIDAYHOURS').val(data.HOLIDAYHOURS);
+
+                        $('#NOMINALHOURS').val(data.NOMINALHOURS);
+
+                    },
+                    error: function() {
+                    }
+                });
+
+
+
+
+
+        });
+
+    </script>
+}

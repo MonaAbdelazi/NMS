@@ -1,0 +1,96 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Invoice
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  
+    string lang = CommonRes.Lang;
+    string reportName = "Inst";
+    
+            };
+}
+
+<h2>تقرير الايرادات والمصروفات بالفرع</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@MenuRes.IncomeExpenses</h3>
+                </div>
+
+
+                    @Html.ValidationSummary(true)
+                    
+                    <div class="panel-body">
+
+                        <div id="locationHolders">
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name)
+
+                                @Html.DropDownList("warehouse", null, CommonRes.SelectDropDown, new { @class = "form-control",@required="true" })
+
+
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.date)
+
+                                @Html.TextBox("date", string.Empty, new { @type = "date", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="col-lg-10">
+
+        <div class="box-body">
+            <button type="submit" onclick="return GenerateReport();" class="btn btn-app">
+                <i class="fa fa-save"></i> @CommonRes.Button_Print
+            </button>
+
+            <button type="button" class="btn btn-app" onclick="window.location.href = '/CustomerSays';">
+                <i class="fa fa-remove"></i> @CommonRes.Button_Cancel
+            </button>
+        </div>
+
+    </div>
+
+                            }
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+   
+    <script type="text/javascript">
+
+
+        function GenerateReport() {
+       // var Status = $('#Status').val().toString();
+        var date = $('#date').val();
+        var warehouse = $('#warehouse').val();
+
+        ShowReport({ warehouse: warehouse, date: date }, "/InventoryReports/getIncomeExpenses/", "rptIncomeExpenses", "@CommonRes.Lang");
+
+
+    }
+
+    </script>
+   
+}
+
+
+
+
+
+ 

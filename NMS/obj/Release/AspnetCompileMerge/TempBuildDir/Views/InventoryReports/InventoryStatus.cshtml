@@ -1,0 +1,89 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Item
+
+@{
+    ViewBag.Title = "Report";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+
+}
+
+<h2>@MenuRes.Title_InventoryStatus</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="panel panel-group">
+
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+
+
+            </div>
+
+            <div class="panel-body">
+
+                <div id="locationHolders">
+                  
+                    <div class="col-lg-3">
+                        @Html.Label(MenuRes.Title_Product)
+
+                        @Html.DropDownList("Product_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Product.Product_ID)
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Warehouse_ID)
+
+                        @Html.DropDownList("WareHouse_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.ItemId)
+
+                        @Html.DropDownList("Item_ID", null, CommonRes.SelectDropDown, new { @class = "form-control", @onchange = "getPrice();" })
+                    </div>
+                 
+                    @*<div class="col-lg-3">
+                        @Html.Label(NMSRes.Status)
+
+                        @Html.DropDownList("Status", ViewBag.Statuses as SelectList, CommonRes.SelectDropDown, new { @class = "form-control" })
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="loading-progress"></div>
+        <center>
+            <input type="button" value="@CommonRes.Button_Print" onclick="GenerateReport();" class="btn btn-primary btn active" />
+            <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+        </center>
+}
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+            $("#rdnExport > .pdsa-radiobutton").on('click', function () {
+                pdsaToggleRadioButtons("#rdnExport", $(this));
+            });
+        });
+
+    function GenerateReport() {
+       // var Status = $('#Status').val().toString();
+        var Item_ID = $('#Item_ID').val();
+        var WareHouse_ID = $('#WareHouse_ID').val();
+        var Product_ID = $('#Product_ID').val();
+        
+        ShowReport({ Item_ID: Item_ID, WareHouse_ID: WareHouse_ID, Product_ID: Product_ID }, "/InventoryReports/rptInventoryStatus/", "rptInventoryStatus", "@CommonRes.Lang");
+
+
+    }
+    </script>
+
+    <sript type="text/javascript">
+
+
+
+    </sript>
+}

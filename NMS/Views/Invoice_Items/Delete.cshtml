@@ -1,0 +1,121 @@
+﻿@model NMS.Data.Invoice_Items
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Invoice_Items</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unit_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unit_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_Updated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entered_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entered_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approved_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approved_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issue_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issue_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item_NameAr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item_NameAr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice.Payment_Method)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice.Payment_Method)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,329 @@
+﻿
+
+@using NMS.Core.Resources
+@model NMS.Data.Supplier
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Supp</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Supp_Name)
+
+                                @Html.TextBoxFor(m => m.Supp_Name, null, htmlAttributes: new { @class = "form-control" })
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Supp_Name_AR)
+
+                                @Html.TextBoxFor(m => m.Supp_Name_AR, null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Supp_Name_AR)
+                                @*@id = "Name_AR",*@
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.phone)
+
+                                @Html.TextBoxFor(m => m.Phone, null, htmlAttributes: new { @class = "form-control", @onchange = "return CheckMobileNUM(this);" })
+                                @Html.ValidationMessageFor(model => model.Phone)
+
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.address)
+
+                                @Html.TextBoxFor(m => m.Address, null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Phone)
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.email)
+
+                                @Html.TextBoxFor(m => m.E_Mail, null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.E_Mail)
+
+                            </div>
+
+
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Supp_Name)
+
+                                @Html.TextBoxFor(m => m.Representative_Name, null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Supp_Name_AR)
+                                @*@id = "Name_AR",*@
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.phone)
+
+                                @Html.TextBoxFor(m => m.Representative_Phone, null, htmlAttributes: new { @class = "form-control", @onchange = "return CheckMobileNUM(this);" })
+                                @Html.ValidationMessageFor(model => model.Phone)
+
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Acc_No)
+
+                                @Html.DropDownList("acc_no", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.acc_no)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Tax_No)
+
+                                @Html.TextBoxFor(m => m.Tax, null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tax)
+                                @*@id = "Name_AR",*@
+                            </div>
+                        </div>
+
+
+                        <div>
+
+                            <center>
+                                <p>
+                                    <input type="button" value="@CommonRes.add" id="Add" class="btn btn-success hvr-bounce-in" onclick="add(this.id);" />
+                                </p>
+                            </center>
+
+
+                        </div>
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function add(_ddlDesc) {
+
+
+
+ 
+            var target = $('#outputTable');
+            var input = { Supp_Name: $('#Supp_Name').val(), Supp_Name_AR: $('#Supp_Name_AR').val(), phone: $('#Phone').val(), address: $('#Address').val(), email: $('#E_Mail').val(), Representative_Name: $('#Representative_Name').val(), Representative_phone: $('#Representative_Phone').val(), acc_no: $('#acc_no').val(), Tax: $('#Tax').val() };
+            $.ajax({
+                url: '/Supp/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Name_AR').val("");
+            $('#Name').val("");
+
+        }
+        function CheckMobileNUM(_id) {
+            var MobileNUM = $("#" + _id).value();
+            // var value2 = MobileNUM.substr(0, 1);
+            if (MobileNUM.length > 20 || MobileNUM.length < 10) {
+                $("#" + _id).val(' ');
+                ShowFeedback('@NMSRes.phone', '@Feedback.Feedback_Warning', 'Warning');
+            } else {
+                HideFeedback();
+            }
+        }
+
+
+
+    </script>
+}
+
+
+
+
+
+
+
+
+@*@using NMS.Core.Resources
+@model NMS.Data.Supplier
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+     <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Supplier</h3>
+                </div>
+
+                <div class="panel-body">
+   
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Supp_Name)
+       
+  @Html.TextBoxFor(model => model.Supp_Name, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Supp_Name)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Supp_Name_AR)
+       
+  @Html.TextBoxFor(model => model.Supp_Name_AR, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Supp_Name_AR)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Phone)
+       
+  @Html.TextBoxFor(model => model.Phone, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Phone)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Address)
+       
+  @Html.TextBoxFor(model => model.Address, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Address)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.E_Mail)
+       
+  @Html.TextBoxFor(model => model.E_Mail, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.E_Mail)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Web_Site)
+       
+  @Html.TextBoxFor(model => model.Web_Site, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Web_Site)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Representative_Name)
+       
+  @Html.TextBoxFor(model => model.Representative_Name, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Representative_Name)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Representative_Phone)
+       
+  @Html.TextBoxFor(model => model.Representative_Phone, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Representative_Phone)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Status)
+       
+  @Html.TextBoxFor(model => model.Status, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Status)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.LastUpdate)
+       
+  @Html.TextBoxFor(model => model.LastUpdate, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.LastUpdate)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Entered_By)
+       
+  @Html.TextBoxFor(model => model.Entered_By, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Entered_By)          
+        </div>
+        <div class="form-group">
+            @Html.Label(NMSRes.Country_ID, "Country_ID")
+       
+                @Html.DropDownList("Country_ID", null, CommonRes.SelectDropDown, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Country_ID)          
+        </div>
+        
+    </div>
+ </div>
+    </div>
+ </div>
+ <center>
+        <input class="btn btn-primary btn active" type="submit" value="@CommonRes.Button_Save">
+        <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+    </center>
+}
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>*@

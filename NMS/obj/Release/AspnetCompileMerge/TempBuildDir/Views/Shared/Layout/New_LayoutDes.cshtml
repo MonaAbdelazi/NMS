@@ -1,0 +1,200 @@
+﻿@using NMS.Core.Resources
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>DirectoryListing</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
+    <link rel="stylesheet" href="assets/css/gijgo.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/animated-headline.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="deep-blue-color">
+    @*@Html.Partial("TopBar")*@
+
+    <section id="main-container">
+
+
+
+        @Html.Partial("~/Views/Shared/Layout/_New_Navigation.cshtml")
+
+
+        <!--Page main section start-->
+        <section id="min-wrapper">
+            <div id="main-content">
+                @Html.Partial("~/Views/Shared/Layout/Partial/_AlertsNew.cshtml")
+
+                @RenderBody()
+            </div>
+
+            <section id="footer" class="">
+
+                <section class="wantToWork-area">
+                    <div class="container">
+                        <div class="wants-wrapper w-padding2">
+                            <div class="row justify-content-between">
+                                <div class="col-xl-8 col-lg-8 col-md-7">
+                                    <div class="wantToWork-caption wantToWork-caption2">
+                                        <img src="assets/img/logo/logo2_footer.png" alt="" class="mb-20">
+                                        <p>
+                                            Users and submit their own items. You can create different packages and by connecting with your
+                                            PayPal or Stripe account charge users for registration to your directory portal.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-5">
+                                    <div class="footer-social f-right sm-left">
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+        </section>
+
+    </section>
+
+
+
+    <!------------------------------------------------------------------------------------------->
+    <!--Layout Script start -->
+
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+    <!-- Date Picker -->
+    <script src="./assets/js/gijgo.min.js"></script>
+    <!-- Nice-select, sticky -->
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    <!-- Progress -->
+    <script src="./assets/js/jquery.barfiller.js"></script>
+
+    <!-- counter , waypoint,Hover Direction -->
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.countdown.min.js"></script>
+    <script src="./assets/js/hover-direction-snake.min.js"></script>
+
+    <!-- contact js -->
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+
+
+
+    <!--toastr -->
+
+    <link href="~/assets/css/toastr.css" rel="stylesheet" />
+    <script src="~/assets/js/toastr.js"></script>
+    <script type="text/javascript">
+
+        $("[Date='DatePicker']").datepicker({
+            // dateFormat: "dd/mm/yy",
+            format: 'dd/mm/yyyy',
+            inline: true,
+            showOtherMonths: true,
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            changeMonth: true,
+            changeYear: true,
+            showStatus: true,
+            showWeeks: true,
+            currentText: 'Now',
+            autoSize: true,
+            gotoCurrent: true,
+            showAnim: 'blind',
+            highlightWeek: true,
+            onClose: function () {
+                return true;
+            }
+        });
+        $.datepicker.setDefaults({
+            dateFormat: 'dd/mm/yy'
+        });
+        $("[Chosen = 'Chosen']").chosen({ rtl: true });
+        $("[Chosen = 'Chosen']").val();
+        $("[Chosen = 'Chosen']").chosen({ allow_single_deselect: true });
+
+    </script>
+    <script language="javascript" type="text/javascript">
+        function AjaxStart() { $.blockUI({ message: '<h2><img src="@Url.Content("~/Images/loading.gif")" width="16" height="16"/>Retrieving data, please wait...</h2>' }); }
+
+        function AjaxStop() { $.unblockUI(); }
+    </script>
+    <script language="javascript" type="text/javascript">
+        //Used to display and close the system notifications
+        $(document).ready(function () {
+            $("#NotificationBox").fadeIn(1000);
+
+            if ($("#NotificationAutoHide").val() == "true") {
+                //$("#NotificationBox").delay(3000).fadeOut(2000);
+                $("#NotificationBox").delay(5000).slideUp(1000);
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

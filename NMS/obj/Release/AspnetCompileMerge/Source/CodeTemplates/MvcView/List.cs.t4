@@ -1,0 +1,101 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<#=        "<" + ViewDataTypeName + ">" #>
+<#
+    // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
+    if(IsPartialView) {
+#>
+
+<#
+    } else if(IsLayoutPageSelected) {
+#>
+
+@{
+    ViewBag.Title = CommonRes.<#=            ViewName#>;
+<#
+        if (!String.IsNullOrEmpty(LayoutPageFile)) {
+#>
+    Layout = "<#=                LayoutPageFile#>";
+<#
+        }
+#>
+}
+
+<h2>@CommonRes.<#=            ViewName#></h2>
+
+<#
+}     else {
+#>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><#=            ViewName #></title>
+</head>
+<body>
+<#
+        PushIndent("    ");
+    }
+#>
+<div style="text-align: right;">
+     <form action="~/">
+          <button type="submit" class="btn btn-default alignPreview">
+               <span class="glyphicon glyphicon-new-window"></span>
+               @CommonRes.Button_CreateNew
+          </button>
+     </form>
+</div>
+
+
+
+
+<br />
+<# string pkName = GetPrimaryKeyName();
+     IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
+#>
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+	<#    foreach (PropertyMetadata property in properties) {
+        if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+            if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+                continue;
+            }
+        }
+        #>
+	columns.Add(model => model.<#=                GetValueExpression(property) #>).Sortable(true).SetWidth(50).Titled(NMSRes.<#=                GetValueExpression(property) #>);
+	
+    <# 
+
+   }
+#>
+      columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Edit, "Edit", new { id = o.<#=            pkName #> })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Detail, "Details", new { id = o.<#=            pkName #> })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Delete, "Delete", new { id = o.<#=            pkName #> })).SetWidth(50);
+    
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+
+<#
+    // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
+#>
+<#
+    if(!IsPartialView && !IsLayoutPageSelected) {
+        ClearIndent();
+#>
+</body>
+</html>
+<#
+    }
+#>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

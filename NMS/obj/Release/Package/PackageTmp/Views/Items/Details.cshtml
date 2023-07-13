@@ -1,0 +1,153 @@
+﻿@model NMS.Data.Item
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Item</h4>
+	<hr />
+    <dl class="dl-horizontal">
+      
+
+       
+
+      
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Qunt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qunt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningBalance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningBalance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceForOnce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceForOnce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_dozen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_dozen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Min_Limit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Min_Limit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Max_Limit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Max_Limit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exp_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exp_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entered_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entered_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Comp_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Comp_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Items_Group.Item_Grp_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Items_Group.Item_Grp_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.Unit_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit.Unit_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WareHouse.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WareHouse.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

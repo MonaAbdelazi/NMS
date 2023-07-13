@@ -1,0 +1,83 @@
+﻿@using NMS.Core.Resources
+
+
+
+<header>
+    <!-- Header Start -->
+    <div class="header-area header-transparent">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1>@CommonRes.SystemName</h1>
+             
+                    </div>
+                    <!-- Main-menu -->
+                    <div class="main-menu f-right d-none d-lg-block">
+                        <nav>
+                            <ul id="navigation">
+
+
+
+                                <li>
+                                    <a class="@(ViewContext.RouteData.Values["controller"].ToString() == "VehicleStatus" || ViewContext.RouteData.Values["controller"].ToString() == "VehicleType" ||
+            ViewContext.RouteData.Values["controller"].ToString() == "Accident" || ViewContext.RouteData.Values["controller"].ToString() == "Branch" ||
+            ViewContext.RouteData.Values["controller"].ToString() == "City" || ViewContext.RouteData.Values["controller"].ToString() == "Department" ||
+            ViewContext.RouteData.Values["controller"].ToString() == "Driver" || ViewContext.RouteData.Values["controller"].ToString() == "DriverLicense" ||
+            ViewContext.RouteData.Values["controller"].ToString() == "InsuranceCompany" || ViewContext.RouteData.Values["controller"].ToString() == "Organization" ||
+            ViewContext.RouteData.Values["controller"].ToString() == "State" || ViewContext.RouteData.Values["controller"].ToString() == "TrafficViolation" ||
+    ViewContext.RouteData.Values["controller"].ToString() == "Apply_Doc" || ViewContext.RouteData.Values["controller"].ToString() == "Apply_Doc" ? "active" : "")" href="#">
+                                        <i class="fa fa-dashboard"></i> <span>@MenuRes.Title_Settings</span>
+                                    </a>
+                                    <ul>
+                                        @*<li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "VehicleStatus" ? "active" : "")" href="~/VehicleStatus/Index">@MenuRes.Title_VehicleStatus</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "VehicleType" ? "active" : "")" href="~/VehicleType/Index">@MenuRes.Title_VehicleType</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Accident" ? "active" : "")" href="~/Accident/Index">@MenuRes.Title_Accident</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Branch" ? "active" : "")" href="~/Branch/Index">@MenuRes.Title_Branch</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "City" ? "active" : "")" href="~/City/Index">@MenuRes.Title_City</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Department" ? "active" : "")" href="~/Department/Index">@MenuRes.Title_Department</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Driver" ? "active" : "")" href="~/Driver/Index">@MenuRes.Title_Driver</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "DriverLicense" ? "active" : "")" href="~/DriverLicense/Index">@MenuRes.Title_DriverLicense</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "InsuranceCompany" ? "active" : "")" href="~/InsuranceCompany/Index">@MenuRes.Title_InsuranceCompany</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Organization" ? "active" : "")" href="~/Organization/Index">@MenuRes.Title_Organization</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "SparePart" ? "active" : "")" href="~/SparePart/Index">@MenuRes.Title_SparePart</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "State" ? "active" : "")" href="~/State/Index">@MenuRes.Title_State</a></li>
+                <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "TrafficViolation" ? "active" : "")" href="~/TrafficViolation/Index">@MenuRes.Title_TrafficViolation</a></li>*@
+                                        <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Apply_Doc" ? "active" : "")" href="~/Apply_Doc/Index">@MenuRes.Title_Document</a></li>
+                                        <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Apply" ? "active" : "")" href="~/Apply/Index">@MenuRes.Apply</a></li>
+                                        <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "Apply" ? "active" : "")" href="~/Apply/ReportIndex">@MenuRes.ReportApplyIndex</a></li>
+                                        <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == "University" ? "active" : "")" href="~/University/Index">@MenuRes.University</a></li>
+                                        <li><a class="@(ViewContext.RouteData.Values["controller"].ToString() == " Collage" ? "active" : "")" href="~/Collage/Index">@MenuRes.Collage</a></li>
+
+                                    </ul>
+                                </li>
+
+ 
+
+                            </ul>
+
+
+
+                        </nav>
+                    </div>
+                    <!-- Header-btn -->
+                    <div class="header-btns d-none d-lg-block f-right">
+                        <a href="#" class="mr-40"><i class="ti-user"></i> Log in</a>
+                        <a href="#" class="btn">Add Listing</a>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>
+
+
+
+
+ 

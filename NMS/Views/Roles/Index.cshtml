@@ -1,0 +1,39 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.AspNetRole>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Index</h2>
+
+<div style="text-align: right;">
+     <form action="~/">
+          <button type="submit" class="btn btn-default alignPreview">
+               <span class="glyphicon glyphicon-new-window"></span>
+               @CommonRes.Button_CreateNew
+          </button>
+     </form>
+</div>
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		columns.Add(model => model.Id).Sortable(true).SetWidth(50).Titled("RoleId");
+	
+    	columns.Add(model => model.Name).Sortable(true).SetWidth(50).Titled(NMSRes.Name);
+	
+          columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Edit, "Edit", new { id = o.Id })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Detail, "Details", new { id = o.Id })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Delete, "Delete", new { id = o.Id })).SetWidth(50);
+    
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

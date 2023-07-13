@@ -1,0 +1,39 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.InItemsInvoice>
+
+@{
+    ViewBag.Title = CommonRes.ApproveIndex;
+}
+
+<h2>@CommonRes.Index</h2>
+
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		columns.Add(model => model.ID).Sortable(true).SetWidth(50).Titled(NMSRes.ID);
+	
+    	columns.Add(model => model.InSirkNo).Sortable(true).SetWidth(50).Titled(NMSRes.InSirkNo);
+	
+	
+	
+    	columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+	
+    	columns.Add(model => model.lastUpdated).Sortable(true).SetWidth(50).Titled(NMSRes.LastUpdate);
+	
+    	columns.Add(model => model.Entered_By).Sortable(true).SetWidth(50).Titled(NMSRes.Entered_By);
+	
+	
+
+	
+          columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.ApproveIndex, "Approve", new { id = o.ID })).SetWidth(50);
+              
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

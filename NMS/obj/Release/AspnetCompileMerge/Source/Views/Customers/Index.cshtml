@@ -1,0 +1,55 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.Customer>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Index</h2>
+
+<div style="text-align: right;">
+     <form action="~/Customers/Create">
+          <button type="submit" class="btn btn-default alignPreview">
+               <span class="glyphicon glyphicon-new-window"></span>
+               @CommonRes.Button_CreateNew
+          </button>
+     </form>
+</div>
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		columns.Add(model => model.Cus_ID).Sortable(true).SetWidth(50).Titled(NMSRes.cusid);
+	
+    	columns.Add(model => model.Cus_Name).Sortable(true).SetWidth(50).Titled(NMSRes.Cus_Name);
+	
+    	columns.Add(model => model.Cus_Name_AR).Sortable(true).SetWidth(50).Titled(NMSRes.Cus_Name_AR);
+	
+    	columns.Add(model => model.Address).Sortable(true).SetWidth(50).Titled(NMSRes.address);
+	
+    	columns.Add(model => model.Phone).Sortable(true).SetWidth(50).Titled(NMSRes.phone);
+	
+    	columns.Add(model => model.E_Mail).Sortable(true).SetWidth(50).Titled(NMSRes.email);
+	
+    	//columns.Add(model => model.Web_Site).Sortable(true).SetWidth(50).Titled(NMSRes.Web_Site);
+	
+    	columns.Add(model => model.Entered_By).Sortable(true).SetWidth(50).Titled(NMSRes.Entered_By);
+	
+    	columns.Add(model => model.LastUpdate).Sortable(true).SetWidth(50).Titled(NMSRes.LastUpdate);
+	
+    	columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+	
+          columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Edit, "Edit", new { id = o.Cus_ID })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Detail, "Details", new { id = o.Cus_ID })).SetWidth(50);
+                columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Link_Delete, "Delete", new { id = o.Cus_ID })).SetWidth(50);
+    
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

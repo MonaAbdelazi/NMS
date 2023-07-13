@@ -1,0 +1,176 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Branch
+
+@{
+    ViewBag.Title = CommonRes.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Delete</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.branches</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+                        @Html.HiddenFor(m => m.Branch_ID)
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Branch_Name)
+
+                                @Html.TextBoxFor(m => m.Branch_Name, null, htmlAttributes: new { @class = "form-control" ,@readonly=true})
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Branch_Name_AR)
+
+                                @Html.TextBoxFor(m => m.Branch_Name_AR, null, htmlAttributes: new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.Branch_Name_AR)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Country_ID)
+
+                                @Html.DropDownList("Country_ID", null, CommonRes.SelectDropDown, new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.Country_ID)
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.City_ID)
+
+                                @Html.DropDownList("City_ID", null, CommonRes.SelectDropDown, new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.City_ID)
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Opening_Date)
+
+                                @Html.TextBoxFor(m => m.Opening_Date, null, htmlAttributes: new { @class = "form-control", @Date = "DatePicker", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.Opening_Date)
+
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Location)
+
+                                @Html.TextBoxFor(m => m.Location, null, htmlAttributes: new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.Location)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Comment)
+
+                                @Html.TextAreaFor(m => m.Comment, htmlAttributes: new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.Comment)
+                                @*@id = "Name_AR",*@
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Status)
+
+                                @Html.DropDownListFor(m => m.Status, ViewBag.Status as SelectList, htmlAttributes: new { @class = "form-control", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.Status)
+
+                            </div>
+
+
+                        </div>
+ 
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+            var input = { Branch_Name: $('#Branch_Name').val(), Branch_Name_AR: $('#Branch_Name_AR').val(), Country_ID: $('#Country_ID').val(), City_ID: $('#City_ID').val(), Opening_Date: $('#Opening_Date').val(), Location: $('#Location').val(), Comment: $('#Comment').val() };
+            $.ajax({
+                url: '/Branches/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Name_AR').val("");
+            $('#Name').val("");
+            $('#Country_ID').val("");
+            $('#City_ID').val("");
+
+        }
+    </script>
+}

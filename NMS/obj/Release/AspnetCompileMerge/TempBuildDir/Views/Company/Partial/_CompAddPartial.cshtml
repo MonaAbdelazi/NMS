@@ -1,0 +1,106 @@
+﻿@model IEnumerable<NMS.Data.Company>
+@using NMS.Core.Resources
+@using NMS
+
+
+<style type="text/css">
+    .paging-nav {
+        text-align: right;
+        padding-top: 2px;
+    }
+
+        .paging-nav a {
+            margin: auto 1px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 1px 7px;
+            background: #91b9e6;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .paging-nav .selected-page {
+            background: #187ed5;
+            font-weight: bold;
+        }
+
+    .paging-nav,
+    #tableData {
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+</style>
+<div id="outputTable">
+
+
+
+    <table id="tableData" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Comp_Name_AR)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Country_ID)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Comp_Type_ID)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Entered_By)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Logo)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.ToArray().Length; i++)
+            {
+                var items = Model.ToArray();
+                <tr>
+                    <td>
+                        @Html.Raw(i + 1)
+                    </td>
+                    <td>
+                        <input id="items[@i].Comp_Name_AR" class="form-control" value="@items[i].Comp_Name_AR" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Country_ID" class="form-control" value="@items[i].Country_ID" type="text" disabled="disabled">
+                       
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Comp_Type_ID" class="form-control" value="@items[i].Comp_Type_ID" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Entered_By" class="form-control" value="@items[i].Entered_By" type="text" disabled="disabled">
+
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Logo" class="form-control" value="@items[i].Logo" type="text" disabled="disabled">
+                        <img src="~/images/profile/@items[i].Logo" width="200" height="200">
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<script type="text/javascript">
+
+
+
+
+</script>
+
+

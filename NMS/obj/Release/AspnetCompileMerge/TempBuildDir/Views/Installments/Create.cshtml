@@ -1,0 +1,376 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Installment
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+    string lang = CommonRes.Lang;
+    string reportName = "rptInvoices";
+    var master = new List<NMS.Data.Invoice_Items> {
+                new NMS.Data.Invoice_Items()
+            };
+}
+
+<h2>@CommonRes.Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@MenuRes.Installment</h3>
+                </div>
+
+                <div class="panel-body">
+
+                    @Html.ValidationSummary(true)
+                    <div class="row">
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.cusid, "Cus_ID")
+
+                            @Html.DropDownList("Cus_ID", null, CommonRes.SelectDropDown, new { @class = "form-control", @Chosen = "Chosen" })
+                            @Html.ValidationMessageFor(model => model.Cus_ID)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.StartDate)
+
+                            @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", type = "date" })
+                           
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.EndDate)
+
+                            @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(model => model.EndDate)
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.No_Of_Inst)
+
+                            @Html.TextBoxFor(model => model.No_Of_Inst, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.No_Of_Inst)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.Amount)
+
+                            @Html.TextBoxFor(model => model.Amount, new { @class = "form-control",@id= "Amount", @onchange = "return digitGrouping(this);" })
+                            @Html.ValidationMessageFor(model => model.Amount)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.Comment)
+
+                            @Html.TextBoxFor(model => model.Comment, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Comment)
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-ti
+                    tle">
+                    @CommonRes.Details
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+
+                    @*<div class="form-group">*@
+                    <div id="add-journal-list">
+
+                        @{Html.RenderPartial("~/Views/Installments/_Partial/TestDetiles.cshtml", master);}
+                       
+                        
+                    </div>
+                </div>
+                <div class="box-tools">
+                    <a href="#" class="list-add btn btn-success btn-small" id="add-journal0"><i class="icon-plus"></i>Add</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-10">
+       
+            <div class="box-body">
+                <button type="submit" class="btn btn-app">
+                    <i class="fa fa-save"></i> @CommonRes.Button_Save
+                </button>
+
+                <button type="button" class="btn btn-app" onclick="window.location.href = '/CustomerSays';">
+                    <i class="fa fa-remove"></i> @CommonRes.Button_Cancel
+                </button>
+            </div>
+         
+    </div>
+
+                            }
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/DynamicList/jquery.dynamiclist.js"></script>
+    <script type="text/javascript">
+        //alert("Hello! I am an alert box!!");
+        $("#TestDetiles").dynamiclist({
+            withEvents: true
+        });
+
+        function getPrice(_this) {
+            var target = _this.id;
+            // var str = e.target.name;
+            var num = target.replace(/^\D+|\D+$/g, "");
+          
+         
+               
+                var Item_ID = $("[name = 'TestDetiles[" + num + "].Item_ID'").val();
+                var input = { Item_ID: Item_ID };//$('#Item_ID').val() 
+            $.ajax({
+                url: '/Installments/getPrice',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                   // var length = $("#TestDetiles").find("." + "list-item").length;
+                  //  var i = 0;
+                   // while (i < length) {
+                 //   newsum =
+                    $("[name = 'TestDetiles[" + num + "].unit_Price']").val(data);
+                    //    i += 1;
+                   // }
+
+                   // $("[name = 'TestDetiles[" + num + "].Price_Unit'").val(newsum);
+                  //  $('#Price_Unit').val(data);
+
+                     
+                },
+                error: function () {
+                }
+            });
+           
+          
+
+
+        }
+        function GenerateReport() {
+
+            ShowReport(
+                {
+
+                    Status: $('#Status').val(),
+
+
+                }, "/Installments/GetReport/", "@reportName", "@CommonRes.Lang");
+
+
+        }
+        function calc(_this) {
+            var target = _this.id;
+            // var str = e.target.name;
+            var num = target.replace(/^\D+|\D+$/g, "");
+            var Qunt = $("[name = 'TestDetiles[" + num + "].Quantity'").val();
+          //  var Cost = $('#Price_Unit').val();
+            var Cost = $("[name = 'TestDetiles[" + num + "].unit_Price'").val();
+            var totalInvoice = $("[name = 'TestDetiles[" + num + "].total_Price'").val();// $('#Total_Price').val();
+            var tax = $('#Tax_NoFor_Comp').val();
+            var Item_ID = $("[name = 'TestDetiles[" + num + "].Item_ID'").val();
+            var input = { Item_ID: Item_ID, Qunt: Qunt };
+            $.ajax({
+                url: '/Installments/checkQuantity',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data == "OK") {
+                        if (Qunt != null && Cost != null) {
+                            var q = new Number(Qunt);
+                            var c = new Number(Cost);
+                            var tot = new Number(totalInvoice);
+                            var tx = new Number(tax);
+                            var result = q * c;
+                            tot += result;
+                            tx = 0.17 * tot;
+                    
+
+                           
+                            $("[name = 'TestDetiles[" + num + "].total_Price'").val(result);
+
+                            //test loop
+
+                            var newsum = 0;
+                            var length = $("#TestDetiles").find("." + "list-item").length;
+                            var i = 0;
+                            var count = 0;
+                            var dbtCount = 0;
+                            while (i < length) {
+                                newsum = Number(newsum) + Number($("[name = 'TestDetiles[" + i + "].total_Price']").val());
+                                i += 1;
+                            }
+                            //end
+                       
+                            //
+
+                            $('#Amount').val(newsum)
+                            $("[name = 'TestDetiles[" + num + "].total_Price'").val(newsum);//tot
+                           
+                            $("[name = 'TestDetiles[" + num + "].Tax_NoFor_Comp'").val(tx);
+                            $("'#err"+num+"'").hide();
+                        }
+                    } else {
+                        $('#err').show();
+                        //   $('#id').removeAttr()
+                        
+                        $("[name = 'TestDetiles[" + num + "].Quantity'").val(" ");
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+    </script>
+<script type="text/javascript">
+
+        var message = '@message';
+    if (message) {
+        GenerateReport();
+         alert(message);
+
+    }
+    //GenerateReport();
+    // alert(message);
+
+   // }
+
+</script>
+}
+
+
+
+
+
+
+@*@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+     <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@MenuRes.Installment</h3>
+                </div>
+
+                <div class="panel-body">
+   
+        @Html.ValidationSummary(true)
+                    <div class="row">
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.cusid, "Cus_ID")
+
+                            @Html.DropDownList("Cus_ID", null, CommonRes.SelectDropDown, new {@class = "form-control", @Chosen = "Chosen" })
+                            @Html.ValidationMessageFor(model => model.Cus_ID)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.StartDate)
+
+                            @Html.TextBoxFor(model => model.StartDate, new {@class = "form-control", @Date = "DatePicker"})
+                            @Html.ValidationMessageFor(model => model.StartDate)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.EndDate)
+
+                            @Html.TextBoxFor(model => model.EndDate, new {@class = "form-control", @Date = "DatePicker" })
+                            @Html.ValidationMessageFor(model => model.EndDate)
+                        </div>
+                        </div>
+                    <div class="row">
+                        
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.No_Of_Inst)
+
+                            @Html.TextBoxFor(model => model.No_Of_Inst, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.No_Of_Inst)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.Amount)
+
+                            @Html.TextBoxFor(model => model.Amount, new {@class = "form-control",@onchange= "return digitGrouping(this);" })
+                            @Html.ValidationMessageFor(model => model.Amount)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.Label(NMSRes.Comment)
+
+                            @Html.TextBoxFor(model => model.Comment, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.Comment)
+                        </div>
+
+                    </div>
+                      
+                    </div>
+ </div>
+    </div>
+ </div>
+ <center>
+        <input class="btn btn-primary btn active" type="submit" value="@CommonRes.Button_Save">
+        <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+    </center>
+}
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function digitGrouping(id) {
+            var final = "";
+            var temp = "";
+            var vlue = $('#Amount').val();
+            var res = vlue.split(".");
+            if (res.length === 1) {
+                temp = removeCommas(vlue);
+                final = groupingExecute(temp);
+            }
+            else {
+                temp = removeCommas(res[0]);
+                final = groupingExecute(temp);
+                temp = removeCommas(res[1]);
+                final = final + "." + groupingExecute(temp);
+            }
+            //auth = auth.replace(/,/g, "");
+            $('#Amount').val(final);
+        }
+        function removeCommas(str) {
+            while (str.search(",") >= 0) {
+                str = (str + "").replace(',', '');
+            }
+            return str;
+        }
+        function groupingExecute(vlue) {
+            var auth = vlue.toString("{0:##,##.##}");
+            var offset = vlue.length % 3;
+            if (offset == 0)
+                auth = vlue.substring(0, offset) + vlue.substring(offset).replace(/([0-9]{3})(?=[0-9]+)/g, "$1,");
+            else
+                auth = vlue.substring(0, offset) + vlue.substring(offset).replace(/([0-9]{3})/g, ",$1");
+
+            return auth;
+        }
+    </script>
+}*@

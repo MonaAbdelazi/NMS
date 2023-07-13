@@ -1,0 +1,123 @@
+﻿@model NMS.Data.DailyActivity
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DailyActivity</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.Label(NMSRes.OpenningBal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.OpenningBal)
+                @Html.ValidationMessageFor(model => model.OpenningBal)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.paymentAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.paymentAmount)
+                @Html.ValidationMessageFor(model => model.paymentAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Expenses, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Expenses)
+                @Html.ValidationMessageFor(model => model.Expenses)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.SoldAmount, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SoldAmount)
+                @Html.ValidationMessageFor(model => model.SoldAmount)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.RemainedAmt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.RemainedAmt)
+                @Html.ValidationMessageFor(model => model.RemainedAmt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Entered_By, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Entered_By)
+                @Html.ValidationMessageFor(model => model.Entered_By)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.LastUpdated, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LastUpdated)
+                @Html.ValidationMessageFor(model => model.LastUpdated)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.DayDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.DayDate)
+                @Html.ValidationMessageFor(model => model.DayDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.OpenStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.OpenStatus)
+                @Html.ValidationMessageFor(model => model.OpenStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.cashierID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.cashierID)
+                @Html.ValidationMessageFor(model => model.cashierID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

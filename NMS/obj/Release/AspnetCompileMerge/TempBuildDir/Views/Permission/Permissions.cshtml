@@ -1,0 +1,154 @@
+﻿
+@model NMS.Data.AspNetUserPermission
+@using NMS.Core.Resources
+
+@{
+    ViewBag.Title = "Permissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel_User</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        @Html.Label("o => o.UserId")
+                        @Html.DropDownList("UserId", ViewBag.UserId as SelectList, string.Empty, new { @data_placeholder = "CommonRes.DropDownDefaultValue", @onchange = "ActionChange();", @tabindex = "3", @class = "form-control" })
+                        @Html.ValidationMessageFor(o => o.UserId)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel_UserPermissions</h3>
+            </div>
+            <div class="panel-body">
+           
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        @Html.Label("Controller")
+                        @Html.DropDownList("Controller", ViewBag.Controller as MultiSelectList, new { @onchange = "ControlerChange();", @class = "form-control"})
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        @Html.Label("CommonRes.Action")
+                        @Html.DropDownList("Vieww", ViewBag.Action as MultiSelectList, new { @onchange = "ActionChange();", @class = "form-control"})
+                       @* @Html.ValidationMessageFor(o => o.View)*@
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group">
+                        <br />
+                        <br />
+                        @Html.CheckBox("CanAccess") @Html.Label("CommonRes.HasAccess")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>
+        <input class="btn btn-primary btn active" type="submit" value="@CommonRes.Button_Save" id="btnSave">
+        <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+    </center>
+}
+@section Scripts {
+    <script type="text/javascript">
+
+
+
+          function ActionChange() {
+              GetCheckBoxData({ Controller: $('#Controller').val(), View: $('#Vieww').val().toString(), UserId: $('#UserId').val().toString() }, "/Permission/GetPermissionByView", "CanAccess");
+          }
+
+          function AreaChange() {
+              var _area = $('#Area').val();
+              var input = { area: _area };
+              var url = "/AspNetUsers/GetControllerByArea";
+              var target = $('#Controller');
+              $.ajax({
+                  url: url,
+                  type: "POST",
+                  traditional: true,
+                  data: JSON.stringify(input),
+                  dataType: "json",
+                  contentType: "application/json; charset=utf-8",
+                  success: function (data) {
+                      target.empty();
+
+                      $(document.createElement('option'))
+                          .attr('value', '')
+                          .text('@CommonRes.SelectDropDown')
+                          .appendTo(target);
+                      $(document.createElement('option'))
+                          .attr('value', '*')
+                          .text('*')
+                          .appendTo(target);
+                      $(data).each(function () {
+                          $(document.createElement('option'))
+                              .attr('value', this.Value)
+                              .text(this.Text)
+                              .appendTo(target);
+                      });
+                      target.removeAttr("disabled");
+                      return;
+                  },
+                  error: function () {
+                      return;
+                  }
+              });
+          }
+
+          function ControlerChange() {
+              var _controller = $('#Controller').val();
+              var input = { controller: _controller };
+              var url = "/Permission/GetActionByController";
+              var target = $('#Vieww');
+              $.ajax({
+                  url: url,
+                  type: "POST",
+                  traditional: true,
+                  data: JSON.stringify(input),
+                  dataType: "json",
+                  contentType: "application/json; charset=utf-8",
+                  success: function (data) {
+                      target.empty();
+
+                      $(document.createElement('option'))
+                          .attr('value', '')
+                          .text('@CommonRes.SelectDropDown')
+                          .appendTo(target);
+                      $(document.createElement('option'))
+                          .attr('value', '*')
+                          .text('*')
+                          .appendTo(target);
+                      $(data).each(function () {
+                          $(document.createElement('option'))
+                              .attr('value', this.Value)
+                              .text(this.Text)
+                              .appendTo(target);
+                      });
+                      target.removeAttr("disabled");
+                      return;
+                  },
+                  error: function () {
+                      return;
+                  }
+              });
+          }
+
+
+    </script>
+}
+
+
+
+

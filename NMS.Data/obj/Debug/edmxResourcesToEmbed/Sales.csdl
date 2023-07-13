@@ -1,0 +1,1501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Inventory_ManagementXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Inventory_ManagementXEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Activities" EntityType="Inventory_ManagementXModel.Activity" />
+    <EntitySet Name="Auxiliaries" EntityType="Inventory_ManagementXModel.Auxiliary" />
+    <EntitySet Name="Branches" EntityType="Inventory_ManagementXModel.Branch" />
+    <EntitySet Name="Cities" EntityType="Inventory_ManagementXModel.City" />
+    <EntitySet Name="Companies" EntityType="Inventory_ManagementXModel.Company" />
+    <EntitySet Name="Company_Type" EntityType="Inventory_ManagementXModel.Company_Type" />
+    <EntitySet Name="Countries" EntityType="Inventory_ManagementXModel.Country" />
+    <EntitySet Name="Currencies" EntityType="Inventory_ManagementXModel.Currency" />
+    <EntitySet Name="Customers" EntityType="Inventory_ManagementXModel.Customer" />
+    <EntitySet Name="Employesses" EntityType="Inventory_ManagementXModel.Employess" />
+    <EntitySet Name="GLs" EntityType="Inventory_ManagementXModel.GL" />
+    <EntitySet Name="InItemsInvoices" EntityType="Inventory_ManagementXModel.InItemsInvoice" />
+    <EntitySet Name="Installments" EntityType="Inventory_ManagementXModel.Installment" />
+    <EntitySet Name="Invoices" EntityType="Inventory_ManagementXModel.Invoice" />
+    <EntitySet Name="Items" EntityType="Inventory_ManagementXModel.Item" />
+    <EntitySet Name="Items_Group" EntityType="Inventory_ManagementXModel.Items_Group" />
+    <EntitySet Name="Products" EntityType="Inventory_ManagementXModel.Product" />
+    <EntitySet Name="sysdiagrams" EntityType="Inventory_ManagementXModel.sysdiagram" />
+    <EntitySet Name="Units" EntityType="Inventory_ManagementXModel.Unit" />
+    <EntitySet Name="WareHouses" EntityType="Inventory_ManagementXModel.WareHouse" />
+    <EntitySet Name="WareHoustTrans" EntityType="Inventory_ManagementXModel.WareHoustTran" />
+    <AssociationSet Name="FK_Companies_Activity" Association="Inventory_ManagementXModel.FK_Companies_Activity">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Auxiliary_GL" Association="Inventory_ManagementXModel.FK_Auxiliary_GL">
+      <End Role="GL" EntitySet="GLs" />
+      <End Role="Auxiliary" EntitySet="Auxiliaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branches_City" Association="Inventory_ManagementXModel.FK_Branches_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Branch" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Branches_Country" Association="Inventory_ManagementXModel.FK_Branches_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Branch" EntitySet="Branches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employess_Branches" Association="Inventory_ManagementXModel.FK_Employess_Branches">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Employess" EntitySet="Employesses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Branch" Association="Inventory_ManagementXModel.FK_Invoice_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WareHouse_Branch" Association="Inventory_ManagementXModel.FK_WareHouse_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="WareHouse" EntitySet="WareHouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cities_Country" Association="Inventory_ManagementXModel.FK_Cities_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Companies_City" Association="Inventory_ManagementXModel.FK_Companies_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_City" Association="Inventory_ManagementXModel.FK_Items_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Companies_CompType" Association="Inventory_ManagementXModel.FK_Companies_CompType">
+      <End Role="Company_Type" EntitySet="Company_Type" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Companies_Country" Association="Inventory_ManagementXModel.FK_Companies_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Companies_Curr" Association="Inventory_ManagementXModel.FK_Companies_Curr">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Comp" Association="Inventory_ManagementXModel.FK_Invoice_Comp">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_Comp" Association="Inventory_ManagementXModel.FK_Items_Comp">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_Country" Association="Inventory_ManagementXModel.FK_Items_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Installment_Cust" Association="Inventory_ManagementXModel.FK_Installment_Cust">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Installment" EntitySet="Installments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Cus" Association="Inventory_ManagementXModel.FK_Invoice_Cus">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WareHouse_Emp" Association="Inventory_ManagementXModel.FK_WareHouse_Emp">
+      <End Role="Employess" EntitySet="Employesses" />
+      <End Role="WareHouse" EntitySet="WareHouses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_InInv" Association="Inventory_ManagementXModel.FK_Items_InInv">
+      <End Role="InItemsInvoice" EntitySet="InItemsInvoices" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Unit" Association="Inventory_ManagementXModel.FK_Invoice_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Ware" Association="Inventory_ManagementXModel.FK_Invoice_Ware">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_IteGr" Association="Inventory_ManagementXModel.FK_Items_IteGr">
+      <End Role="Items_Group" EntitySet="Items_Group" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_Product" Association="Inventory_ManagementXModel.FK_Items_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_Unit" Association="Inventory_ManagementXModel.FK_Items_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Items_WareH" Association="Inventory_ManagementXModel.FK_Items_WareH">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Item_Grp" Association="Inventory_ManagementXModel.FK_Product_Item_Grp">
+      <End Role="Items_Group" EntitySet="Items_Group" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WareHoustTrans_From" Association="Inventory_ManagementXModel.FK_WareHoustTrans_From">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="WareHoustTran" EntitySet="WareHoustTrans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WareHoustTrans_To" Association="Inventory_ManagementXModel.FK_WareHoustTrans_To">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="WareHoustTran" EntitySet="WareHoustTrans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Installment_Invoice" Association="Inventory_ManagementXModel.FK_Installment_Invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Installment" EntitySet="Installments" />
+    </AssociationSet>
+    <EntitySet Name="DailyActivities" EntityType="Inventory_ManagementXModel.DailyActivity" />
+    <AssociationSet Name="FK_DailyActivities_Branch" Association="Inventory_ManagementXModel.FK_DailyActivities_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="DailyActivity" EntitySet="DailyActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DailyActivities_WareHouse" Association="Inventory_ManagementXModel.FK_DailyActivities_WareHouse">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="DailyActivity" EntitySet="DailyActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Installment_Warehous" Association="Inventory_ManagementXModel.FK_Installment_Warehous">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="Installment" EntitySet="Installments" />
+    </AssociationSet>
+    <EntitySet Name="Exps" EntityType="Inventory_ManagementXModel.Exp" />
+    <AssociationSet Name="FK_Exp_Daily" Association="Inventory_ManagementXModel.FK_Exp_Daily">
+      <End Role="DailyActivity" EntitySet="DailyActivities" />
+      <End Role="Exp" EntitySet="Exps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exp_Exp" Association="Inventory_ManagementXModel.FK_Exp_Exp">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="Exp" EntitySet="Exps" />
+    </AssociationSet>
+    <EntitySet Name="AccountManagments" EntityType="Inventory_ManagementXModel.AccountManagment" />
+    <AssociationSet Name="FK_AccountManagment_Curr" Association="Inventory_ManagementXModel.FK_AccountManagment_Curr">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="AccountManagment" EntitySet="AccountManagments" />
+    </AssociationSet>
+    <EntitySet Name="Invoice_Items" EntityType="Inventory_ManagementXModel.Invoice_Items" />
+    <AssociationSet Name="FK_Items_Invoice" Association="Inventory_ManagementXModel.FK_Items_Invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Invoice_Items" EntitySet="Invoice_Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InvoiceForItems" Association="Inventory_ManagementXModel.FK_InvoiceForItems">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Invoice_Items" EntitySet="Invoice_Items" />
+    </AssociationSet>
+    <EntitySet Name="Trees" EntityType="Inventory_ManagementXModel.Tree" />
+    <AssociationSet Name="FK_AccountManagment_Tree" Association="Inventory_ManagementXModel.FK_AccountManagment_Tree">
+      <End Role="Tree" EntitySet="Trees" />
+      <End Role="AccountManagment" EntitySet="AccountManagments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tree_Curr" Association="Inventory_ManagementXModel.FK_Tree_Curr">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="Tree" EntitySet="Trees" />
+    </AssociationSet>
+    <EntitySet Name="Payments" EntityType="Inventory_ManagementXModel.Payment" />
+    <AssociationSet Name="FK_Payment_Customers" Association="Inventory_ManagementXModel.FK_Payment_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_Installment" Association="Inventory_ManagementXModel.FK_Payment_Installment">
+      <End Role="Installment" EntitySet="Installments" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <EntitySet Name="Emp_Loans" EntityType="Inventory_ManagementXModel.Emp_Loans" />
+    <EntitySet Name="Ride" EntityType="Inventory_ManagementXModel.Ride" />
+    <AssociationSet Name="FK_Emp_Loans_Employess" Association="Inventory_ManagementXModel.FK_Emp_Loans_Employess">
+      <End Role="Employess" EntitySet="Employesses" />
+      <End Role="Emp_Loans" EntitySet="Emp_Loans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Emp_Loans_Tree" Association="Inventory_ManagementXModel.FK_Emp_Loans_Tree">
+      <End Role="Tree" EntitySet="Trees" />
+      <End Role="Emp_Loans" EntitySet="Emp_Loans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ride_emp" Association="Inventory_ManagementXModel.FK_Ride_emp">
+      <End Role="Employess" EntitySet="Employesses" />
+      <End Role="Ride" EntitySet="Ride" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ride_InItemsInvoice" Association="Inventory_ManagementXModel.FK_Ride_InItemsInvoice">
+      <End Role="InItemsInvoice" EntitySet="InItemsInvoices" />
+      <End Role="Ride" EntitySet="Ride" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ride_invoice" Association="Inventory_ManagementXModel.FK_Ride_invoice">
+      <End Role="Invoice" EntitySet="Invoices" />
+      <End Role="Ride" EntitySet="Ride" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ride_WareHouse" Association="Inventory_ManagementXModel.FK_Ride_WareHouse">
+      <End Role="WareHouse" EntitySet="WareHouses" />
+      <End Role="Ride" EntitySet="Ride" />
+    </AssociationSet>
+    <EntitySet Name="Suppliers" EntityType="Inventory_ManagementXModel.Suppliers" />
+    <AssociationSet Name="FK_Suppliers_SuppliersCountry" Association="Inventory_ManagementXModel.FK_Suppliers_SuppliersCountry">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Suppliers" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_Supp" Association="Inventory_ManagementXModel.FK_Invoice_Supp">
+      <End Role="Suppliers" EntitySet="Suppliers" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <EntitySet Name="Transactions" EntityType="Inventory_ManagementXModel.Transactions" />
+    <AssociationSet Name="FK_Transactions_Currency" Association="Inventory_ManagementXModel.FK_Transactions_Currency">
+      <End Role="Currency" EntitySet="Currencies" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_CR" Association="Inventory_ManagementXModel.FK_Transactions_CR">
+      <End Role="Tree" EntitySet="Trees" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_DrAcc" Association="Inventory_ManagementXModel.FK_Transactions_DrAcc">
+      <End Role="Tree" EntitySet="Trees" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="Activity_ID" />
+    </Key>
+    <Property Name="Activity_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Activity_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Activity_AR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Companies" Relationship="Inventory_ManagementXModel.FK_Companies_Activity" FromRole="Activity" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="Auxiliary">
+    <Key>
+      <PropertyRef Name="Aux_ID" />
+    </Key>
+    <Property Name="Aux_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GL_ID" Type="Int32" />
+    <Property Name="Aux_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aux_Name_AR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="GL" Relationship="Inventory_ManagementXModel.FK_Auxiliary_GL" FromRole="Auxiliary" ToRole="GL" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="Branch_ID" />
+    </Key>
+    <Property Name="Branch_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City_ID" Type="Int32" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <Property Name="Branch_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Branch_Name_AR" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Opening_Date" Type="DateTime" Precision="0" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="Inventory_ManagementXModel.FK_Branches_City" FromRole="Branch" ToRole="City" />
+    <NavigationProperty Name="Country" Relationship="Inventory_ManagementXModel.FK_Branches_Country" FromRole="Branch" ToRole="Country" />
+    <NavigationProperty Name="Employesses" Relationship="Inventory_ManagementXModel.FK_Employess_Branches" FromRole="Branch" ToRole="Employess" />
+    <NavigationProperty Name="Invoices" Relationship="Inventory_ManagementXModel.FK_Invoice_Branch" FromRole="Branch" ToRole="Invoice" />
+    <NavigationProperty Name="WareHouses" Relationship="Inventory_ManagementXModel.FK_WareHouse_Branch" FromRole="Branch" ToRole="WareHouse" />
+    <NavigationProperty Name="DailyActivities" Relationship="Inventory_ManagementXModel.FK_DailyActivities_Branch" FromRole="Branch" ToRole="DailyActivity" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="City_ID" />
+    </Key>
+    <Property Name="City_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name_AR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branches" Relationship="Inventory_ManagementXModel.FK_Branches_City" FromRole="City" ToRole="Branch" />
+    <NavigationProperty Name="Country" Relationship="Inventory_ManagementXModel.FK_Cities_Country" FromRole="City" ToRole="Country" />
+    <NavigationProperty Name="Companies" Relationship="Inventory_ManagementXModel.FK_Companies_City" FromRole="City" ToRole="Company" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_City" FromRole="City" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Comp_ID" />
+    </Key>
+    <Property Name="Comp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comp_Type_ID" Type="Int32" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="Comp_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Comp_Name_AR" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Activity_ID" Type="Int32" />
+    <Property Name="Commercial_No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IssueDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="Curr_ID" Type="Int32" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Activity" Relationship="Inventory_ManagementXModel.FK_Companies_Activity" FromRole="Company" ToRole="Activity" />
+    <NavigationProperty Name="City" Relationship="Inventory_ManagementXModel.FK_Companies_City" FromRole="Company" ToRole="City" />
+    <NavigationProperty Name="Company_Type" Relationship="Inventory_ManagementXModel.FK_Companies_CompType" FromRole="Company" ToRole="Company_Type" />
+    <NavigationProperty Name="Country" Relationship="Inventory_ManagementXModel.FK_Companies_Country" FromRole="Company" ToRole="Country" />
+    <NavigationProperty Name="Currency" Relationship="Inventory_ManagementXModel.FK_Companies_Curr" FromRole="Company" ToRole="Currency" />
+    <NavigationProperty Name="Invoices" Relationship="Inventory_ManagementXModel.FK_Invoice_Comp" FromRole="Company" ToRole="Invoice" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_Comp" FromRole="Company" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Company_Type">
+    <Key>
+      <PropertyRef Name="Comp_Type_ID" />
+    </Key>
+    <Property Name="Comp_Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name_AR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Precision="0" />
+    <Property Name="Entered_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Companies" Relationship="Inventory_ManagementXModel.FK_Companies_CompType" FromRole="Company_Type" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Country_ID" />
+    </Key>
+    <Property Name="Country_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name_AR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountryKey" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branches" Relationship="Inventory_ManagementXModel.FK_Branches_Country" FromRole="Country" ToRole="Branch" />
+    <NavigationProperty Name="Cities" Relationship="Inventory_ManagementXModel.FK_Cities_Country" FromRole="Country" ToRole="City" />
+    <NavigationProperty Name="Companies" Relationship="Inventory_ManagementXModel.FK_Companies_Country" FromRole="Country" ToRole="Company" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_Country" FromRole="Country" ToRole="Item" />
+    <NavigationProperty Name="Suppliers" Relationship="Inventory_ManagementXModel.FK_Suppliers_SuppliersCountry" FromRole="Country" ToRole="Suppliers" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Curr_ID" />
+    </Key>
+    <Property Name="Curr_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Curr_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Curr_Name_AR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CurrentCost" Type="Double" Nullable="false" />
+    <Property Name="EX_Rate" Type="Double" />
+    <Property Name="Last_Ex_Rare_Date" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Companies" Relationship="Inventory_ManagementXModel.FK_Companies_Curr" FromRole="Currency" ToRole="Company" />
+    <NavigationProperty Name="AccountManagments" Relationship="Inventory_ManagementXModel.FK_AccountManagment_Curr" FromRole="Currency" ToRole="AccountManagment" />
+    <NavigationProperty Name="Trees" Relationship="Inventory_ManagementXModel.FK_Tree_Curr" FromRole="Currency" ToRole="Tree" />
+    <NavigationProperty Name="Transactions" Relationship="Inventory_ManagementXModel.FK_Transactions_Currency" FromRole="Currency" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Cus_ID" />
+    </Key>
+    <Property Name="Cus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cus_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Cus_Name_AR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="E_Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Web_Site" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Installments" Relationship="Inventory_ManagementXModel.FK_Installment_Cust" FromRole="Customer" ToRole="Installment" />
+    <NavigationProperty Name="Invoices" Relationship="Inventory_ManagementXModel.FK_Invoice_Cus" FromRole="Customer" ToRole="Invoice" />
+    <NavigationProperty Name="Payments" Relationship="Inventory_ManagementXModel.FK_Payment_Customers" FromRole="Customer" ToRole="Payment" />
+    <Property Name="Tax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employess">
+    <Key>
+      <PropertyRef Name="Emp_ID" />
+    </Key>
+    <Property Name="Emp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name_AR" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Job_Tittle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <NavigationProperty Name="Branch" Relationship="Inventory_ManagementXModel.FK_Employess_Branches" FromRole="Employess" ToRole="Branch" />
+    <NavigationProperty Name="WareHouses" Relationship="Inventory_ManagementXModel.FK_WareHouse_Emp" FromRole="Employess" ToRole="WareHouse" />
+    <NavigationProperty Name="Emp_Loans" Relationship="Inventory_ManagementXModel.FK_Emp_Loans_Employess" FromRole="Employess" ToRole="Emp_Loans" />
+    <NavigationProperty Name="Ride" Relationship="Inventory_ManagementXModel.FK_Ride_emp" FromRole="Employess" ToRole="Ride" />
+    <Property Name="Expdate_IQAMA" Type="DateTime" Precision="0" />
+    <Property Name="Expdate_Pass" Type="DateTime" Precision="0" />
+    <Property Name="Passport_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IQAMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GL">
+    <Key>
+      <PropertyRef Name="GL_ID" />
+    </Key>
+    <Property Name="GL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Genreal_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Genreal_Name_AR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Auxiliaries" Relationship="Inventory_ManagementXModel.FK_Auxiliary_GL" FromRole="GL" ToRole="Auxiliary" />
+  </EntityType>
+  <EntityType Name="InItemsInvoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="EnteredDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Approved_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lastUpdated" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InSirkNo" Type="Int32" Nullable="false" />
+    <Property Name="totalQun" Type="Int32" />
+    <Property Name="TotalAmt" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_InInv" FromRole="InItemsInvoice" ToRole="Item" />
+    <NavigationProperty Name="Ride" Relationship="Inventory_ManagementXModel.FK_Ride_InItemsInvoice" FromRole="InItemsInvoice" ToRole="Ride" />
+  </EntityType>
+  <EntityType Name="Installment">
+    <Key>
+      <PropertyRef Name="Inst_ID" />
+    </Key>
+    <Property Name="Inst_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cus_ID" Type="Int32" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="No_Of_Inst" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Double" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Update" Type="DateTime" Precision="3" />
+    <Property Name="Enterd_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Inventory_ManagementXModel.FK_Installment_Cust" FromRole="Installment" ToRole="Customer" />
+    <Property Name="Invoice_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Invoice" Relationship="Inventory_ManagementXModel.FK_Installment_Invoice" FromRole="Installment" ToRole="Invoice" />
+    <Property Name="ResidualAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ResidualIns" Type="Int32" />
+    <Property Name="Warehouse_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="WareHouse" Relationship="Inventory_ManagementXModel.FK_Installment_Warehous" FromRole="Installment" ToRole="WareHouse" />
+    <Property Name="Paid" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="numPaidinst" Type="Int32" />
+    <Property Name="currntamount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="paiddate" Type="DateTime" Precision="0" />
+    <Property Name="currntinst" Type="Int32" />
+    <NavigationProperty Name="Payments" Relationship="Inventory_ManagementXModel.FK_Payment_Installment" FromRole="Installment" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Invoice_ID" />
+    </Key>
+    <Property Name="Invoice_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Isuue_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Cus_ID" Type="Int32" />
+    <Property Name="Supp_ID" Type="Int32" />
+    <Property Name="Comp_ID" Type="Int32" />
+    <Property Name="Item_ID" Type="Int32" Nullable="false" />
+    <Property Name="Unit_ID" Type="Int32" />
+    <Property Name="Qunt" Type="Int32" Nullable="false" />
+    <Property Name="Price_Unit" Type="Double" Nullable="false" />
+    <Property Name="DisCount" Type="Double" />
+    <Property Name="Branch_ID" Type="Int32" Nullable="false" />
+    <Property Name="Tax_No" Type="Int32" />
+    <Property Name="Tax_NoFor_Comp" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Payment_Method" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Curr_ID" Type="Int32" />
+    <Property Name="WareHouse_ID" Type="Int32" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Approved_By" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Total_Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="InvoiceNo" Type="Int32" />
+    <NavigationProperty Name="Branch" Relationship="Inventory_ManagementXModel.FK_Invoice_Branch" FromRole="Invoice" ToRole="Branch" />
+    <NavigationProperty Name="Company" Relationship="Inventory_ManagementXModel.FK_Invoice_Comp" FromRole="Invoice" ToRole="Company" />
+    <NavigationProperty Name="Customer" Relationship="Inventory_ManagementXModel.FK_Invoice_Cus" FromRole="Invoice" ToRole="Customer" />
+    <NavigationProperty Name="Unit" Relationship="Inventory_ManagementXModel.FK_Invoice_Unit" FromRole="Invoice" ToRole="Unit" />
+    <NavigationProperty Name="WareHouse" Relationship="Inventory_ManagementXModel.FK_Invoice_Ware" FromRole="Invoice" ToRole="WareHouse" />
+    <NavigationProperty Name="Installments" Relationship="Inventory_ManagementXModel.FK_Installment_Invoice" FromRole="Invoice" ToRole="Installment" />
+    <NavigationProperty Name="Invoice_Items" Relationship="Inventory_ManagementXModel.FK_Items_Invoice" FromRole="Invoice" ToRole="Invoice_Items" />
+    <NavigationProperty Name="Ride" Relationship="Inventory_ManagementXModel.FK_Ride_invoice" FromRole="Invoice" ToRole="Ride" />
+    <NavigationProperty Name="Suppliers" Relationship="Inventory_ManagementXModel.FK_Invoice_Supp" FromRole="Invoice" ToRole="Suppliers" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Item_ID" />
+    </Key>
+    <Property Name="Item_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Item_Grp_ID" Type="Int32" />
+    <Property Name="Unit_ID" Type="Int32" />
+    <Property Name="Qunt" Type="Int32" />
+    <Property Name="OpeningBalance" Type="Double" />
+    <Property Name="PriceForOnce" Type="Double" />
+    <Property Name="Price_dozen" Type="Double" />
+    <Property Name="Min_Limit" Type="Int32" />
+    <Property Name="Max_Limit" Type="Int32" />
+    <Property Name="Exp_Date" Type="DateTime" Precision="0" />
+    <Property Name="Comp_ID" Type="Int32" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="City_ID" Type="Int32" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Warehouse_ID" Type="Int32" />
+    <Property Name="Product_ID" Type="Int32" />
+    <Property Name="Cost" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SoldQ" Type="Int32" />
+    <Property Name="AvailableQ" Type="Int32" />
+    <Property Name="Item_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Ware_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="InItemsInvId" Type="Int32" />
+    <NavigationProperty Name="City" Relationship="Inventory_ManagementXModel.FK_Items_City" FromRole="Item" ToRole="City" />
+    <NavigationProperty Name="Company" Relationship="Inventory_ManagementXModel.FK_Items_Comp" FromRole="Item" ToRole="Company" />
+    <NavigationProperty Name="Country" Relationship="Inventory_ManagementXModel.FK_Items_Country" FromRole="Item" ToRole="Country" />
+    <NavigationProperty Name="InItemsInvoice" Relationship="Inventory_ManagementXModel.FK_Items_InInv" FromRole="Item" ToRole="InItemsInvoice" />
+    <NavigationProperty Name="Items_Group" Relationship="Inventory_ManagementXModel.FK_Items_IteGr" FromRole="Item" ToRole="Items_Group" />
+    <NavigationProperty Name="Product" Relationship="Inventory_ManagementXModel.FK_Items_Product" FromRole="Item" ToRole="Product" />
+    <NavigationProperty Name="Unit" Relationship="Inventory_ManagementXModel.FK_Items_Unit" FromRole="Item" ToRole="Unit" />
+    <NavigationProperty Name="WareHouse" Relationship="Inventory_ManagementXModel.FK_Items_WareH" FromRole="Item" ToRole="WareHouse" />
+    <NavigationProperty Name="Invoice_Items" Relationship="Inventory_ManagementXModel.FK_InvoiceForItems" FromRole="Item" ToRole="Invoice_Items" />
+  </EntityType>
+  <EntityType Name="Items_Group">
+    <Key>
+      <PropertyRef Name="Item_Grp_ID" />
+    </Key>
+    <Property Name="Item_Grp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Item_Grp_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Item_GrpName_AR" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Income_Acc" Type="Int32" />
+    <Property Name="Expenses_Acc" Type="Int32" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_IteGr" FromRole="Items_Group" ToRole="Item" />
+    <NavigationProperty Name="Products" Relationship="Inventory_ManagementXModel.FK_Product_Item_Grp" FromRole="Items_Group" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Product_ID" />
+    </Key>
+    <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_ID" Type="Int32" />
+    <Property Name="Income_Acc" Type="Int32" />
+    <Property Name="Expenses_Acc" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name_AR" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BAR_CODE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Item_Grp_ID" Type="Int32" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_Product" FromRole="Product" ToRole="Item" />
+    <NavigationProperty Name="Items_Group" Relationship="Inventory_ManagementXModel.FK_Product_Item_Grp" FromRole="Product" ToRole="Items_Group" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Unit_ID" />
+    </Key>
+    <Property Name="Unit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unit_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Unit_Name_AR" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Invoices" Relationship="Inventory_ManagementXModel.FK_Invoice_Unit" FromRole="Unit" ToRole="Invoice" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_Unit" FromRole="Unit" ToRole="Item" />
+    <Property Name="size" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WareHouse">
+    <Key>
+      <PropertyRef Name="Warehouse_ID" />
+    </Key>
+    <Property Name="Warehouse_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name_AR" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Emp_ID" Type="Int32" />
+    <Property Name="Keeper_Phone" Type="Int32" />
+    <Property Name="Size" Type="Double" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Branch_ID" Type="Int32" />
+    <NavigationProperty Name="Branch" Relationship="Inventory_ManagementXModel.FK_WareHouse_Branch" FromRole="WareHouse" ToRole="Branch" />
+    <NavigationProperty Name="Employess" Relationship="Inventory_ManagementXModel.FK_WareHouse_Emp" FromRole="WareHouse" ToRole="Employess" />
+    <NavigationProperty Name="Invoices" Relationship="Inventory_ManagementXModel.FK_Invoice_Ware" FromRole="WareHouse" ToRole="Invoice" />
+    <NavigationProperty Name="Items" Relationship="Inventory_ManagementXModel.FK_Items_WareH" FromRole="WareHouse" ToRole="Item" />
+    <NavigationProperty Name="WareHoustTrans" Relationship="Inventory_ManagementXModel.FK_WareHoustTrans_From" FromRole="WareHouse" ToRole="WareHoustTran" />
+    <NavigationProperty Name="WareHoustTrans1" Relationship="Inventory_ManagementXModel.FK_WareHoustTrans_To" FromRole="WareHouse" ToRole="WareHoustTran" />
+    <NavigationProperty Name="DailyActivities" Relationship="Inventory_ManagementXModel.FK_DailyActivities_WareHouse" FromRole="WareHouse" ToRole="DailyActivity" />
+    <NavigationProperty Name="Installments" Relationship="Inventory_ManagementXModel.FK_Installment_Warehous" FromRole="WareHouse" ToRole="Installment" />
+    <NavigationProperty Name="Exps" Relationship="Inventory_ManagementXModel.FK_Exp_Exp" FromRole="WareHouse" ToRole="Exp" />
+    <NavigationProperty Name="Ride" Relationship="Inventory_ManagementXModel.FK_Ride_WareHouse" FromRole="WareHouse" ToRole="Ride" />
+  </EntityType>
+  <EntityType Name="WareHoustTran">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="From_B_ID" Type="Int32" Nullable="false" />
+    <Property Name="Item_ID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="To_B_ID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WareHouse" Relationship="Inventory_ManagementXModel.FK_WareHoustTrans_From" FromRole="WareHoustTran" ToRole="WareHouse" />
+    <NavigationProperty Name="WareHouse1" Relationship="Inventory_ManagementXModel.FK_WareHoustTrans_To" FromRole="WareHoustTran" ToRole="WareHouse" />
+  </EntityType>
+  <Association Name="FK_Companies_Activity">
+    <End Type="Inventory_ManagementXModel.Activity" Role="Activity" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Company" Role="Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Activity_ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="Activity_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Auxiliary_GL">
+    <End Type="Inventory_ManagementXModel.GL" Role="GL" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Auxiliary" Role="Auxiliary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GL">
+        <PropertyRef Name="GL_ID" />
+      </Principal>
+      <Dependent Role="Auxiliary">
+        <PropertyRef Name="GL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branches_City">
+    <End Type="Inventory_ManagementXModel.City" Role="City" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Branch" Role="Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="City_ID" />
+      </Principal>
+      <Dependent Role="Branch">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Branches_Country">
+    <End Type="Inventory_ManagementXModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Branch" Role="Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Country_ID" />
+      </Principal>
+      <Dependent Role="Branch">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employess_Branches">
+    <End Type="Inventory_ManagementXModel.Branch" Role="Branch" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Employess" Role="Employess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Branch_ID" />
+      </Principal>
+      <Dependent Role="Employess">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Branch">
+    <End Type="Inventory_ManagementXModel.Branch" Role="Branch" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Branch_ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WareHouse_Branch">
+    <End Type="Inventory_ManagementXModel.Branch" Role="Branch" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Branch_ID" />
+      </Principal>
+      <Dependent Role="WareHouse">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cities_Country">
+    <End Type="Inventory_ManagementXModel.Country" Role="Country" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Country_ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Companies_City">
+    <End Type="Inventory_ManagementXModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Company" Role="Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="City_ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_City">
+    <End Type="Inventory_ManagementXModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="City_ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="City_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Companies_CompType">
+    <End Type="Inventory_ManagementXModel.Company_Type" Role="Company_Type" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Company" Role="Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Type">
+        <PropertyRef Name="Comp_Type_ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="Comp_Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Companies_Country">
+    <End Type="Inventory_ManagementXModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Company" Role="Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Country_ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Companies_Curr">
+    <End Type="Inventory_ManagementXModel.Currency" Role="Currency" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Company" Role="Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Curr_ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="Curr_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Comp">
+    <End Type="Inventory_ManagementXModel.Company" Role="Company" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Comp_ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Comp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_Comp">
+    <End Type="Inventory_ManagementXModel.Company" Role="Company" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Comp_ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Comp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_Country">
+    <End Type="Inventory_ManagementXModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Country_ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Installment_Cust">
+    <End Type="Inventory_ManagementXModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Installment" Role="Installment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Cus_ID" />
+      </Principal>
+      <Dependent Role="Installment">
+        <PropertyRef Name="Cus_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Cus">
+    <End Type="Inventory_ManagementXModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Cus_ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Cus_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WareHouse_Emp">
+    <End Type="Inventory_ManagementXModel.Employess" Role="Employess" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employess">
+        <PropertyRef Name="Emp_ID" />
+      </Principal>
+      <Dependent Role="WareHouse">
+        <PropertyRef Name="Emp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_InInv">
+    <End Type="Inventory_ManagementXModel.InItemsInvoice" Role="InItemsInvoice" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InItemsInvoice">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="InItemsInvId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Unit">
+    <End Type="Inventory_ManagementXModel.Unit" Role="Unit" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Unit_ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Unit_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Ware">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="WareHouse_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_IteGr">
+    <End Type="Inventory_ManagementXModel.Items_Group" Role="Items_Group" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items_Group">
+        <PropertyRef Name="Item_Grp_ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Item_Grp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_Product">
+    <End Type="Inventory_ManagementXModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Product_ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Product_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_Unit">
+    <End Type="Inventory_ManagementXModel.Unit" Role="Unit" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Unit_ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Unit_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Items_WareH">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Warehouse_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Item_Grp">
+    <End Type="Inventory_ManagementXModel.Items_Group" Role="Items_Group" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items_Group">
+        <PropertyRef Name="Item_Grp_ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Item_Grp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WareHoustTrans_From">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.WareHoustTran" Role="WareHoustTran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="WareHoustTran">
+        <PropertyRef Name="From_B_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WareHoustTrans_To">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.WareHoustTran" Role="WareHoustTran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="WareHoustTran">
+        <PropertyRef Name="To_B_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Installment_Invoice">
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Installment" Role="Installment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Invoice_ID" />
+      </Principal>
+      <Dependent Role="Installment">
+        <PropertyRef Name="Invoice_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DailyActivity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="OpenningBal" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="paymentAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Expenses" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="SoldAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="RemainedAmt" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Entered_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+    <Property Name="DayDate" Type="DateTime" Precision="0" />
+    <Property Name="OpenStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cashierID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpensesDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Branch_ID" Type="Int32" Nullable="false" />
+    <Property Name="Warehouse_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Branch" Relationship="Inventory_ManagementXModel.FK_DailyActivities_Branch" FromRole="DailyActivity" ToRole="Branch" />
+    <NavigationProperty Name="WareHouse" Relationship="Inventory_ManagementXModel.FK_DailyActivities_WareHouse" FromRole="DailyActivity" ToRole="WareHouse" />
+    <NavigationProperty Name="Exps" Relationship="Inventory_ManagementXModel.FK_Exp_Daily" FromRole="DailyActivity" ToRole="Exp" />
+  </EntityType>
+  <Association Name="FK_DailyActivities_Branch">
+    <End Type="Inventory_ManagementXModel.Branch" Role="Branch" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.DailyActivity" Role="DailyActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Branch_ID" />
+      </Principal>
+      <Dependent Role="DailyActivity">
+        <PropertyRef Name="Branch_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DailyActivities_WareHouse">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.DailyActivity" Role="DailyActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="DailyActivity">
+        <PropertyRef Name="Warehouse_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Installment_Warehous">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Installment" Role="Installment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="Installment">
+        <PropertyRef Name="Warehouse_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Exp">
+    <Key>
+      <PropertyRef Name="Expid" />
+    </Key>
+    <Property Name="Expid" Type="Int32" Nullable="false" />
+    <Property Name="Naration" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="Warehouse_ID" Type="Int32" />
+    <Property Name="dailyID" Type="Int32" />
+    <Property Name="Entered_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="DailyActivity" Relationship="Inventory_ManagementXModel.FK_Exp_Daily" FromRole="Exp" ToRole="DailyActivity" />
+    <NavigationProperty Name="WareHouse" Relationship="Inventory_ManagementXModel.FK_Exp_Exp" FromRole="Exp" ToRole="WareHouse" />
+  </EntityType>
+  <Association Name="FK_Exp_Daily">
+    <End Type="Inventory_ManagementXModel.DailyActivity" Role="DailyActivity" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Exp" Role="Exp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DailyActivity">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Exp">
+        <PropertyRef Name="dailyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exp_Exp">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Exp" Role="Exp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="Exp">
+        <PropertyRef Name="Warehouse_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AccountManagment">
+    <Key>
+      <PropertyRef Name="SystemId" />
+    </Key>
+    <Property Name="SystemId" Type="Int64" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Acc_No" Type="Int32" Nullable="false" />
+    <Property Name="Acc_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="branchId" Type="Int64" />
+    <Property Name="currencyId" Type="Int32" Nullable="false" />
+    <Property Name="TreeID" Type="Int64" Nullable="false" />
+    <Property Name="AccType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TranAmt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Currency" Relationship="Inventory_ManagementXModel.FK_AccountManagment_Curr" FromRole="AccountManagment" ToRole="Currency" />
+    <NavigationProperty Name="Tree" Relationship="Inventory_ManagementXModel.FK_AccountManagment_Tree" FromRole="AccountManagment" ToRole="Tree" />
+  </EntityType>
+  <Association Name="FK_AccountManagment_Curr">
+    <End Type="Inventory_ManagementXModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.AccountManagment" Role="AccountManagment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Curr_ID" />
+      </Principal>
+      <Dependent Role="AccountManagment">
+        <PropertyRef Name="currencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Invoice_Items">
+    <Key>
+      <PropertyRef Name="In_Item_ID" />
+    </Key>
+    <Property Name="In_Item_ID" Type="Int32" Nullable="false" />
+    <Property Name="Invoice_ID" Type="Int32" Nullable="false" />
+    <Property Name="Item_ID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="unit_Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="total_Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="last_Updated" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Entered_By" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Approved_By" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Issue_Date" Type="DateTime" Precision="0" />
+    <Property Name="Item_NameAr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WareHouse_ID" Type="Int32" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Invoice" Relationship="Inventory_ManagementXModel.FK_Items_Invoice" FromRole="Invoice_Items" ToRole="Invoice" />
+    <NavigationProperty Name="Item" Relationship="Inventory_ManagementXModel.FK_InvoiceForItems" FromRole="Invoice_Items" ToRole="Item" />
+  </EntityType>
+  <Association Name="FK_Items_Invoice">
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Invoice_Items" Role="Invoice_Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Invoice_ID" />
+      </Principal>
+      <Dependent Role="Invoice_Items">
+        <PropertyRef Name="Invoice_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InvoiceForItems">
+    <End Type="Inventory_ManagementXModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Invoice_Items" Role="Invoice_Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Item_ID" />
+      </Principal>
+      <Dependent Role="Invoice_Items">
+        <PropertyRef Name="Item_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Tree">
+    <Key>
+      <PropertyRef Name="SystemId" />
+    </Key>
+    <Property Name="Acc_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Acc_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Acc_Name_AR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Account_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="SystemId" Type="Int64" Nullable="false" />
+    <Property Name="Leave" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ParentId" Type="Int64" />
+    <Property Name="currencyId" Type="Int32" Nullable="false" />
+    <Property Name="Acc_Nature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="Int32" />
+    <NavigationProperty Name="AccountManagments" Relationship="Inventory_ManagementXModel.FK_AccountManagment_Tree" FromRole="Tree" ToRole="AccountManagment" />
+    <NavigationProperty Name="Currency" Relationship="Inventory_ManagementXModel.FK_Tree_Curr" FromRole="Tree" ToRole="Currency" />
+    <NavigationProperty Name="Emp_Loans" Relationship="Inventory_ManagementXModel.FK_Emp_Loans_Tree" FromRole="Tree" ToRole="Emp_Loans" />
+    <NavigationProperty Name="Transactions" Relationship="Inventory_ManagementXModel.FK_Transactions_CR" FromRole="Tree" ToRole="Transactions" />
+    <NavigationProperty Name="Transactions1" Relationship="Inventory_ManagementXModel.FK_Transactions_DrAcc" FromRole="Tree" ToRole="Transactions" />
+  </EntityType>
+  <Association Name="FK_AccountManagment_Tree">
+    <End Type="Inventory_ManagementXModel.Tree" Role="Tree" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.AccountManagment" Role="AccountManagment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tree">
+        <PropertyRef Name="SystemId" />
+      </Principal>
+      <Dependent Role="AccountManagment">
+        <PropertyRef Name="TreeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tree_Curr">
+    <End Type="Inventory_ManagementXModel.Currency" Role="Currency" Multiplicity="1" />
+    <End Type="Inventory_ManagementXModel.Tree" Role="Tree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Curr_ID" />
+      </Principal>
+      <Dependent Role="Tree">
+        <PropertyRef Name="currencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PayID" />
+    </Key>
+    <Property Name="PayID" Type="Int32" Nullable="false" />
+    <Property Name="currntamount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="paiddate" Type="DateTime" Precision="0" />
+    <Property Name="currntinst" Type="Int32" />
+    <Property Name="Cus_ID" Type="Int32" />
+    <Property Name="Inst_ID" Type="Int32" />
+    <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Update" Type="DateTime" Precision="3" />
+    <Property Name="Enterd_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Warehouse_ID" Type="Int32" Nullable="false" />
+    <Property Name="VendorId" Type="Int64" />
+    <NavigationProperty Name="Customer" Relationship="Inventory_ManagementXModel.FK_Payment_Customers" FromRole="Payment" ToRole="Customer" />
+    <NavigationProperty Name="Installment" Relationship="Inventory_ManagementXModel.FK_Payment_Installment" FromRole="Payment" ToRole="Installment" />
+    <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Payment_Customers">
+    <End Type="Inventory_ManagementXModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Cus_ID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="Cus_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_Installment">
+    <End Type="Inventory_ManagementXModel.Installment" Role="Installment" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Installment">
+        <PropertyRef Name="Inst_ID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="Inst_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Emp_Loans">
+    <Key>
+      <PropertyRef Name="loan_id" />
+    </Key>
+    <Property Name="loan_id" Type="Int32" Nullable="false" />
+    <Property Name="amount" Type="Double" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Emp_ID" Type="Int32" />
+    <Property Name="acc_no" Type="Int64" />
+    <Property Name="LastUpdate" Type="DateTime" Precision="0" />
+    <Property Name="Entered_By" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Employess" Relationship="Inventory_ManagementXModel.FK_Emp_Loans_Employess" FromRole="Emp_Loans" ToRole="Employess" />
+    <NavigationProperty Name="Tree" Relationship="Inventory_ManagementXModel.FK_Emp_Loans_Tree" FromRole="Emp_Loans" ToRole="Tree" />
+  </EntityType>
+  <EntityType Name="Ride">
+    <Key>
+      <PropertyRef Name="Ride_Id" />
+    </Key>
+    <Property Name="Ride_Id" Type="Int32" Nullable="false" />
+    <Property Name="count" Type="Int32" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Emp_ID" Type="Int32" />
+    <Property Name="Invoice_ID" Type="Int32" />
+    <Property Name="SirkID" Type="Int32" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="EnterdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Warehouse_ID" Type="Int32" />
+    <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employess" Relationship="Inventory_ManagementXModel.FK_Ride_emp" FromRole="Ride" ToRole="Employess" />
+    <NavigationProperty Name="InItemsInvoice" Relationship="Inventory_ManagementXModel.FK_Ride_InItemsInvoice" FromRole="Ride" ToRole="InItemsInvoice" />
+    <NavigationProperty Name="Invoice" Relationship="Inventory_ManagementXModel.FK_Ride_invoice" FromRole="Ride" ToRole="Invoice" />
+    <NavigationProperty Name="WareHouse" Relationship="Inventory_ManagementXModel.FK_Ride_WareHouse" FromRole="Ride" ToRole="WareHouse" />
+  </EntityType>
+  <Association Name="FK_Emp_Loans_Employess">
+    <End Type="Inventory_ManagementXModel.Employess" Role="Employess" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Emp_Loans" Role="Emp_Loans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employess">
+        <PropertyRef Name="Emp_ID" />
+      </Principal>
+      <Dependent Role="Emp_Loans">
+        <PropertyRef Name="Emp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Emp_Loans_Tree">
+    <End Type="Inventory_ManagementXModel.Tree" Role="Tree" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Emp_Loans" Role="Emp_Loans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tree">
+        <PropertyRef Name="SystemId" />
+      </Principal>
+      <Dependent Role="Emp_Loans">
+        <PropertyRef Name="acc_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ride_emp">
+    <End Type="Inventory_ManagementXModel.Employess" Role="Employess" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Ride" Role="Ride" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employess">
+        <PropertyRef Name="Emp_ID" />
+      </Principal>
+      <Dependent Role="Ride">
+        <PropertyRef Name="Emp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ride_InItemsInvoice">
+    <End Type="Inventory_ManagementXModel.InItemsInvoice" Role="InItemsInvoice" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Ride" Role="Ride" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InItemsInvoice">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ride">
+        <PropertyRef Name="SirkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ride_invoice">
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Ride" Role="Ride" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="Invoice_ID" />
+      </Principal>
+      <Dependent Role="Ride">
+        <PropertyRef Name="Invoice_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ride_WareHouse">
+    <End Type="Inventory_ManagementXModel.WareHouse" Role="WareHouse" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Ride" Role="Ride" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WareHouse">
+        <PropertyRef Name="Warehouse_ID" />
+      </Principal>
+      <Dependent Role="Ride">
+        <PropertyRef Name="Warehouse_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Suppliers">
+    <Key>
+      <PropertyRef Name="Supp_ID" />
+    </Key>
+    <Property Name="Supp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Supp_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Supp_Name_AR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="E_Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Web_Site" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Representative_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Representative_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country_ID" Type="Int32" />
+    <Property Name="acc_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Countries" Relationship="Inventory_ManagementXModel.FK_Suppliers_SuppliersCountry" FromRole="Suppliers" ToRole="Country" />
+    <NavigationProperty Name="Invoice" Relationship="Inventory_ManagementXModel.FK_Invoice_Supp" FromRole="Suppliers" ToRole="Invoice" />
+  </EntityType>
+  <Association Name="FK_Suppliers_SuppliersCountry">
+    <End Type="Inventory_ManagementXModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Suppliers" Role="Suppliers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Country_ID" />
+      </Principal>
+      <Dependent Role="Suppliers">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_Supp">
+    <End Type="Inventory_ManagementXModel.Suppliers" Role="Suppliers" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Suppliers">
+        <PropertyRef Name="Supp_ID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="Supp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="SystemId" />
+    </Key>
+    <Property Name="SystemId" Type="Int64" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Entered_By" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Dr_Acc" Type="Int64" />
+    <Property Name="Cr_Acc" Type="Int64" />
+    <Property Name="Dr_Amt" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Cr_Amt" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="CurrencyId" Type="Int32" />
+    <Property Name="transactionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TranReference" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Label" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Currencies" Relationship="Inventory_ManagementXModel.FK_Transactions_Currency" FromRole="Transactions" ToRole="Currency" />
+    <NavigationProperty Name="Tree" Relationship="Inventory_ManagementXModel.FK_Transactions_CR" FromRole="Transactions" ToRole="Tree" />
+    <NavigationProperty Name="Tree1" Relationship="Inventory_ManagementXModel.FK_Transactions_DrAcc" FromRole="Transactions" ToRole="Tree" />
+  </EntityType>
+  <Association Name="FK_Transactions_Currency">
+    <End Type="Inventory_ManagementXModel.Currency" Role="Currency" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Transactions" Role="Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Curr_ID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="CurrencyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_CR">
+    <End Type="Inventory_ManagementXModel.Tree" Role="Tree" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Transactions" Role="Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tree">
+        <PropertyRef Name="SystemId" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Cr_Acc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_DrAcc">
+    <End Type="Inventory_ManagementXModel.Tree" Role="Tree" Multiplicity="0..1" />
+    <End Type="Inventory_ManagementXModel.Transactions" Role="Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tree">
+        <PropertyRef Name="SystemId" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="Dr_Acc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

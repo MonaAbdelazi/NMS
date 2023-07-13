@@ -1,0 +1,96 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.DailyActivity
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-light-blue">
+                    <div class="panel-heading">
+
+
+                        <h3 class="panel-title">DailyActivity</h3>
+                    </div>
+
+                    <div class="panel-body">
+                        @Html.ValidationSummary(true)
+                        <hr />
+
+                        <div class="form-group row">
+                            @Html.HiddenFor(model=>model.ID)
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.OpeningBalance)
+
+                                @Html.TextBox("OpeningBalance", ViewBag.OpeningBalance as string, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.OpenningBal)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.TotalSoldAmount)
+                                @Html.TextBoxFor(model => model.SoldAmount, new { @class = "form-control", @disabled = "disabled" })
+
+
+                              
+                                @Html.ValidationMessageFor(model => model.SoldAmount)
+                            </div>
+                            
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.ExpensesAmount)
+
+                                @Html.TextBoxFor(model => model.Expenses, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.RemainedAmt)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label("دفعيات")
+
+                                @Html.TextBoxFor(model => model.paymentAmount, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.RemainedAmt)
+                            </div>
+
+                            @*<div class="col-lg-3">
+                                @Html.Label(NMSRes.RemainedAmount)
+
+                                @Html.TextBoxFor(model => model.RemainedAmt, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.RemainedAmt)
+                            </div>*@
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <center>
+            <input class="btn btn-primary btn active" type="submit" value="@CommonRes.Button_Save">
+            <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+        </center>
+    </form>
+
+}
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    function calc() {
+        var SoldAmount =new Number( $('#SoldAmount').val());
+        var Expenses = new Number( $('#Expenses').val());
+        var OpenningBal = new Number(  $('#OpenningBal').val());
+            var RemainedAmt = OpenningBal+SoldAmount-Expenses;
+            $('#RemainedAmt').val(RemainedAmt);
+            }
+    </script>
+}

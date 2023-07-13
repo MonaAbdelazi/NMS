@@ -1,0 +1,298 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Invoice
+@using NMS.Data;
+
+@{
+    ViewBag.Title = CommonRes.Edit;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+    string lang = CommonRes.Lang;
+    string reportName = "rptInvoices";
+    var db = new Inventory_ManagementXEntities();
+
+}
+
+<h2>@CommonRes.Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Title_Invoices</h2>
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Curr_ID)
+
+                                @Html.DropDownList("Curr_ID", null, Model.Curr_ID.ToString(), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Curr_ID)
+                            </div>
+                               <div class="col-lg-3">
+                                @Html.Label(NMSRes.ItemId)
+
+                                @Html.DropDownList("Item_ID", null, CommonRes.SelectDropDown, new { @class = "form-control", @onchange = "getPrice();" })
+                            </div>
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Qunt)
+
+                                @Html.TextBox("Qunt", string.Empty, new { @class = "form-control", @onchange = "calc();" })
+                                @Html.Label("Not Availble Quantity", new { @class = "label-danger", @hidden = "hidden", @id = "err" })
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.PriceForOnce)
+
+                                @Html.TextBox("Price_Unit", string.Empty, new { @class = "form-control", @onchange = "calc();", @disabled = "disabled" })
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.TotalAmount)
+
+                                @Html.TextBox("totalAmount", Model.Total_Price, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DisCount)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.TotalInvoiceAmount)
+
+                                @Html.TextBoxFor(model => model.Total_Price, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Total_Price)
+                            </div>
+
+                        </div>
+                        <div>
+
+                            <center>
+                                <p>
+                                    <input type="button" value="@CommonRes.add" id="Add" class="btn btn-success hvr-bounce-in" onclick="add(this.id);" />
+                                </p>
+                            </center>
+
+
+
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                @{Html.RenderPartial("Partial/_ItemTEditPartial", Model.Invoice_Items.ToList());}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+                        <center>
+                            @*<input class="btn btn-primary hvr-bounce-in" type="submit" value="Button_Print" onclick="GenerateReport()">*@
+                        </center>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+        function calc(_this) {
+            var Qunt = $('#Qunt').val();
+            var Cost = $('#Price_Unit').val();
+            var totalInvoice = $('#Total_Price').val();
+            var tax = $('#Tax_NoFor_Comp').val();
+            var Item_ID = $('#Item_ID').val();
+            var input = { Item_ID: $('#Item_ID').val(), Qunt: Qunt };
+            $.ajax({
+                url: '/Invoices/checkQuantity',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data == "OK") {
+                        if (Qunt != null && Cost != null) {
+                            var q = new Number(Qunt);
+                            var c = new Number(Cost);
+                            var tot = new Number(totalInvoice);
+                            var tx = new Number(tax);
+                            var result = q * c;
+                            tot += result;
+                            tx = 0.17 * tot;
+                            $('#totalAmount').val(result);
+                            $('#Total_Price').val(tot);
+                            $('#Tax_NoFor_Comp').val(tx);
+                            $('#err').hide();
+                        }
+                    } else {
+                        $('#err').show();
+                        //   $('#id').removeAttr()
+                        var triggeredControlID = _this.name;
+                        var dd = $(_this).val();
+                        var name = "items[i].Qunt";
+                        name = name.replace("[i]", "[" + triggeredControlID + "]");
+                        var target = document.getElementById(name);
+                        $(target).val(dd);
+                        _this.val(" ");
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+            var input = { Item_ID: $('#Item_ID').val(), Qunt: $('#Qunt').val(), Price_Unit: $('#Price_Unit').val(), totalAmount: $('#totalAmount').val() };
+            $.ajax({
+                url: '/Invoices/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#totalAmount').val("");
+            $('#Item_ID').val("");
+            $('#Qunt').val("");
+            $('#Price_Unit').val("");
+        }
+
+        function getPrice() {
+            var Item_ID = $('#Item_ID').val();
+            var input = { Item_ID: $('#Item_ID').val() };
+            $.ajax({
+                url: '/Invoices/getPrice',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                    $('#Price_Unit').val(data);
+
+
+                },
+                error: function () {
+                }
+            });
+
+
+
+        }
+
+
+      
+        function GenerateReport() {
+
+            ShowReport(
+                {
+
+                    Status: $('#Status').val(),
+
+
+                }, "/Invoices/GetReport/", "@reportName", "@CommonRes.Lang");
+
+
+        }
+        function GenerateReportss() {
+            var input = { Export: "PDF" };
+
+            $.ajax({
+                url: '/Invoices/GetInvoiceReport/',
+                data: JSON.stringify(input),
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                success: function (data) {
+
+                    if (data == true) {
+                        window.open("/ReportView/ViewReport?strReportName=" + "rptInvoiceData", 'mywindow', 'fullscreen=yes, scrollbars=auto');
+                    } else {
+                       // if (lan == "ar") {
+                            ShowFeedback("لا توجد بيانات لعرضها", "خطأ", "Error");
+                        //} else {
+                          //  ShowFeedback("No Data To show", "Error", "Error");
+                        //}
+                    }
+
+                }
+            });
+            //ShowReport({ Export: "PDF" }, "/Invoices/GetInvoiceReport/", "rptInvoiceData", "@CommonRes.Lang");
+
+
+        }
+        $('#Item_Grp_ID').change(function () {
+
+            var Item_Grp_ID = $('#Item_Grp_ID').val();
+            var input = { Item_Grp_ID: $('#Item_Grp_ID').val() };
+                $.ajax({
+                    url: '/Items/getGroup',
+                    type: "POST",
+                    data: JSON.stringify(input),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data) {
+                        //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                        $('#HOLIDAYHOURS').val(data.HOLIDAYHOURS);
+
+                        $('#NOMINALHOURS').val(data.NOMINALHOURS);
+
+                    },
+                    error: function() {
+                    }
+                });
+
+
+
+
+
+        });
+
+    </script>
+    <script type="text/javascript">
+
+        var message = '@message';
+    if (message) {
+        GenerateReport();
+         alert(message);
+
+    }
+    //GenerateReport();
+    // alert(message);
+
+   // }
+
+    </script>
+}

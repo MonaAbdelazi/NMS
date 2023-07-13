@@ -1,0 +1,236 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Emp_Loans
+
+@{
+    ViewBag.Title = CommonRes.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Delete</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Employess</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name)
+                                @Html.DropDownList("Emp_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly" })
+
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Amount)
+
+                                @Html.TextBoxFor(m => m.amount, null, htmlAttributes: new { @id = "amount", @class = "form-control" ,@readonly="readonly" })
+                                @Html.ValidationMessageFor(model => model.amount)
+                                @*@id = "Job_Tittle",*@
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+
+                                @Html.Label("date")
+
+                                @Html.TextBoxFor(m => m.date, null, htmlAttributes: new { @id = "date", @class = "form-control" ,@readonly="readonly", @Date = "DatePicker" })
+                                @Html.ValidationMessageFor(model => model.date)
+
+                            </div>
+
+                            <div class="col-lg-3">
+
+                                @Html.Label("Acc")
+
+                                @Html.DropDownList("acc_no", null, CommonRes.SelectDropDown, new { @id = "acc_no", @class = "form-control" ,@readonly="readonly" })
+
+
+                                @Html.ValidationMessageFor(model => model.date)
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div>
+
+
+
+                        </div>
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+
+            var input = { Amount: $('#amount').val(), Emp_ID: $('#Emp_ID').val(), date: $('#date').val(), acc_no: $('#acc_no').val() };
+            $.ajax({
+                url: '/EmpLoans/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Name_AR').val("");
+            $('#Name').val("");
+            $('#CountryKey').val("");
+
+        }
+    </script>
+}
+
+
+
+
+
+
+@*@using NMS.Core.Resources
+    @model NMS.Data.Emp_Loans
+
+    @{
+        ViewBag.Title = CommonRes.Create;
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>@CommonRes.Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+         <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Emp_Loans</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @Html.Label(NMSRes.loan_id)
+
+      @Html.TextBoxFor(model => model.loan_id, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.loan_id)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.amount)
+
+      @Html.TextBoxFor(model => model.amount, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.amount)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.date)
+
+      @Html.TextBoxFor(model => model.date, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.date)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.status)
+
+      @Html.TextBoxFor(model => model.status, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.status)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Emp_ID, "Emp_ID")
+
+                    @Html.DropDownList("Emp_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.Emp_ID)
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.acc_no, "acc_no")
+
+                    @Html.DropDownList("acc_no", null, CommonRes.SelectDropDown, new { @class = "form-control" ,@readonly="readonly"})
+                    @Html.ValidationMessageFor(model => model.acc_no)
+            </div>
+
+        </div>
+     </div>
+        </div>
+     </div>
+     <center>
+            <input class="btn btn-primary btn active" type="submit" value="@CommonRes.Button_Save">
+            <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+        </center>
+    }
+
+    <div>
+        @Html.ActionLink(CommonRes.BackToList, "Index")
+    </div>*@

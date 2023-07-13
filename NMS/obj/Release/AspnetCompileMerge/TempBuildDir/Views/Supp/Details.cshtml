@@ -1,0 +1,149 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Supplier
+
+@{
+    ViewBag.Title = CommonRes.Details;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Details</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Supplier</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Supp_ID)
+        <div class="col-lg-3">
+            @Html.Label(NMSRes.Supp_Name)
+
+
+            @Html.TextBoxFor(model => model.Supp_Name, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Supp_Name)
+        </div>
+    </div>
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.Supp_Name_AR)
+
+
+        @Html.TextBoxFor(model => model.Supp_Name_AR, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Supp_Name_AR)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.phone)
+
+        @Html.TextBoxFor(model => model.Phone, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.address)
+
+        @Html.TextBoxFor(model => model.Address, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.email)
+
+        @Html.TextBoxFor(model => model.E_Mail, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.E_Mail)
+    </div>
+
+
+    <
+    <div class="col-lg-3">
+        @Html.Label("موقع الكتروني")
+
+        @Html.TextBoxFor(model => model.Web_Site, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Web_Site)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.Representative_Name)
+
+        @Html.TextBoxFor(model => model.Representative_Name, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Representative_Name)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.Representative_Phone)
+
+        @Html.TextBoxFor(model => model.Representative_Phone, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Representative_Phone)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.Status)
+
+        @Html.DropDownListFor(model => model.Status, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Status)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.LastUpdate)
+
+        @Html.TextBoxFor(model => model.LastUpdate, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.LastUpdate)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.Entered_By)
+
+        @Html.TextBoxFor(model => model.Entered_By, null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Entered_By)
+    </div>
+
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.Country_ID)
+
+
+        @Html.DropDownListFor(m => m.Country_ID, ViewBag.Country_ID as SelectList, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Country_ID)
+    </div>
+
+
+    <div class="col-lg-3">
+        @Html.Label(NMSRes.Acc_Name)
+
+        @Html.DropDownListFor(m => m.acc_no, ViewBag.acc_no as SelectList, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(model => model.Country_ID)
+    </div>
+
+
+   <div id="outputTable">
+
+                        </div>
+
+                      
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

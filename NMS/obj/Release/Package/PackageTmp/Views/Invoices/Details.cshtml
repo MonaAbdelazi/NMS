@@ -1,0 +1,163 @@
+﻿@model NMS.Data.Invoice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Invoice</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Isuue_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Isuue_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qunt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qunt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_Unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_Unit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_NoFor_Comp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_NoFor_Comp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment_Method)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment_Method)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entered_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entered_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch.Branch_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch.Branch_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.Comp_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Comp_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency.Curr_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency.Curr_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Cus_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Cus_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item.Item_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item.Item_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier.Supp_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.Supp_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.Unit_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit.Unit_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WareHouse.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WareHouse.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Invoice_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

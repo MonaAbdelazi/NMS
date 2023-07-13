@@ -1,0 +1,145 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Installment
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <form>
+        @Html.HiddenFor(model => model.Inst_ID)
+        @Html.HiddenFor(model => model.Invoice_ID)
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Title_Item</h2>
+                    </div>
+
+
+                    <div class="panel-body">
+                       
+
+                          
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Cus_Name, new { @class = "control-label col-md-2" })
+
+
+                                @Html.DropDownList("Cus_ID", null, String.Empty, new { @class = "form-control" ,@disabled="disabled"})
+                                @Html.ValidationMessageFor(model => model.Cus_ID)
+                            </div>
+                            <div class="col-lg-3">
+                              @Html.Label(NMSRes.StartDate, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", @Date = "Date", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.StartDate)
+                            </div>
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.EndDate, new { @class = "control-label col-md-2" })
+
+                                @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control", @Date = "Date", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.EndDate)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.TotNo_Of_Inst, new { @class = "control-label col-md-2" })
+
+                                @Html.TextBoxFor(model => model.No_Of_Inst, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.No_Of_Inst)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.TotAmount, new { @class = "control-label col-md-2" })
+
+                                @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Amount)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Comment, new { @class = "control-label col-md-2" })
+
+                                @Html.TextBoxFor(model => model.Comment, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Comment)
+                            </div>
+
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.Amount, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBoxFor(model => model.currntamount, new {@id= "ResidualAmt", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ResidualAmt)
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.RemainingIns, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBoxFor(model => model.ResidualIns, new { @id= "ResidualIns", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ResidualIns)
+                        </div>
+
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.RemainingAmt, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBox("ResidualAmt", string.Empty,new { @id = "ResidualAmt", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ResidualIns)
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.CurrNoIns, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBoxFor(model => model.currntinst, new { @id = "currntinst", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ResidualIns)
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.Paid, new { @class = "control-label col-md-2" })
+
+                            @Html.TextBoxFor(model => model.Paid, new { @id = "Paid", @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ResidualIns)
+                        </div>
+
+                        </div>
+                        <div>
+                            <center>
+                                <p>
+                                    <input type="button" value="@CommonRes.add" id="Add" class="btn btn-success hvr-bounce-in" onclick="add(this.id);" />
+                                </p>
+                            </center>
+                        </div>
+                     
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+       
+
+    </form>
+
+
+
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

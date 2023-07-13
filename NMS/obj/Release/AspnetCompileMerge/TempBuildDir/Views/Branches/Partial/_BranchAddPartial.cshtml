@@ -1,0 +1,118 @@
+﻿
+@model IEnumerable<NMS.Data.Branch>
+@using NMS.Core.Resources
+@using NMS
+
+
+<style type="text/css">
+    .paging-nav {
+        text-align: right;
+        padding-top: 2px;
+    }
+
+        .paging-nav a {
+            margin: auto 1px;
+            text-decoration: none;
+            display: inline-block;
+            padding: 1px 7px;
+            background: #91b9e6;
+            color: white;
+            border-radius: 3px;
+        }
+
+        .paging-nav .selected-page {
+            background: #187ed5;
+            font-weight: bold;
+        }
+
+    .paging-nav,
+    #tableData {
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+</style>
+<div id="outputTable">
+
+
+
+    <table id="tableData" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Branch_Name_AR)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Branch_Name)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Country_ID)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.City_ID)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Opening_Date)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Location)
+                </th>
+                <th>
+                    @Html.DisplayName(NMSRes.Comment)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.ToArray().Length; i++)
+            {
+                var items = Model.ToArray();
+                <tr>
+                    <td>
+                        @Html.Raw(i + 1)
+                    </td>
+                    <td>
+                        <input id="items[@i].Name" class="form-control" value="@items[i].Branch_Name" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Name_AR" class="form-control" value="@items[i].Branch_Name_AR" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Country_ID" class="form-control" value="@items[i].Country_ID" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].City_ID" class="form-control" value="@items[i].City_ID" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Opening_Date" class="form-control" value="@items[i].Opening_Date" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Location" class="form-control" value="@items[i].Location" type="text" disabled="disabled">
+
+                    </td>
+                    <td>
+                        <input id="items[@i].Comment" class="form-control" value="@items[i].Comment" type="text" disabled="disabled">
+
+                    </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<script type="text/javascript">
+
+
+
+
+</script>
+
+
+

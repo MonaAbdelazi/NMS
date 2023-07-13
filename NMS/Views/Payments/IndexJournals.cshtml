@@ -1,0 +1,55 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.Transactions>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Index</h2>
+
+<div style="text-align: right;">
+     <form action="~/Payments/Journals">
+          <button type="submit" class="btn btn-default alignPreview">
+               <span class="glyphicon glyphicon-new-window"></span>
+               @CommonRes.Button_CreateNew
+          </button>
+     </form>
+</div>
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+    columns.Add(model => model.SystemId).Sortable(true).SetWidth(50).Titled(NMSRes.ID);
+
+
+
+    columns.Add(model => model.Label).Sortable(true).SetWidth(50).Titled("Label");
+
+
+
+    columns.Add(model => model.Cr_Acc).Sortable(true).SetWidth(50).Titled("Cr Account");
+
+    columns.Add(model => model.Cr_Amt).Sortable(true).SetWidth(50).Titled("Cr Amount");
+
+    columns.Add(model => model.Dr_Acc).Sortable(true).SetWidth(50).Titled("Dr Account");
+    columns.Add(model => model.Dr_Amt).Sortable(true).SetWidth(50).Titled("Dr Amount");
+
+
+    columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+
+
+
+
+
+
+
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

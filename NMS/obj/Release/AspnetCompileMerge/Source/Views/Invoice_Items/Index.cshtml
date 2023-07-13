@@ -1,0 +1,57 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.Invoice_Items>
+
+@{
+    ViewBag.Title = CommonRes.Index;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Index</h2>
+
+ 
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+    //columns.Add(model => model.In_Item_ID).Sortable(true).SetWidth(50).Titled(NMSRes.In_Item_ID);
+
+    columns.Add(model => model.Invoice_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Invoice_ID);
+
+    columns.Add(model => model.Item_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Item_ID);
+
+    columns.Add(model => model.Quantity).Sortable(true).SetWidth(50).Titled(NMSRes.Quantity);
+
+    columns.Add(model => model.unit_Price).Sortable(true).SetWidth(50).Titled(NMSRes.unit_Price);
+
+    columns.Add(model => model.total_Price).Sortable(true).SetWidth(50).Titled(NMSRes.total_Price);
+
+    columns.Add(model => model.last_Updated).Sortable(true).SetWidth(50).Titled(NMSRes.LastUpdate);
+
+    columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+
+    columns.Add(model => model.Entered_By).Sortable(true).SetWidth(50).Titled(NMSRes.Entered_By);
+
+    columns.Add(model => model.Approved_By).Sortable(true).SetWidth(50).Titled(NMSRes.Approved_By);
+
+    columns.Add(model => model.Issue_Date).Sortable(true).SetWidth(50).Titled(NMSRes.Isuue_Date);
+
+    columns.Add(model => model.Item_NameAr).Sortable(true).SetWidth(50).Titled(NMSRes.itemname);
+
+    columns.Add(model => model.comment).Sortable(true).SetWidth(50).Titled(NMSRes.Comment);
+
+    //columns.Add(model => model.Invoice.Payment_Method).Sortable(true).SetWidth(50).Titled(NMSRes.Invoice.Payment_Method);
+
+    //columns.Add(model => model.Item.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Item.Status);
+
+    columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink("استبدل", "Edit", new { id = o.In_Item_ID })).SetWidth(50);
+   
+
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+

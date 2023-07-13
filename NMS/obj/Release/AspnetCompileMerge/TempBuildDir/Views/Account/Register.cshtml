@@ -1,0 +1,249 @@
+﻿@model NMS.Models.RegisterViewModel
+@using NMS.Core.Resources
+
+
+@{
+    ViewBag.Title = "Register";
+
+    //Layout =  "~/Views/Shared/_LoginReg_Layout.cshtml";
+
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <hr />
+    @Html.ValidationSummary()
+
+    <div class="panel panel-primary">
+
+        <div class="panel-heading" style="text-align:center">
+
+            <a data-toggle="collapse" style="color:white" href="#collapse1">
+                <h4>@MenuRes.Title_RegisterUser</h4>
+            </a>
+
+        </div>
+
+
+        <div class="panel-body">
+
+
+
+
+
+
+
+            @*<div class="form-group">
+                    @Html.LabelFor(m => m.ENG_NO, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.ENG_NO, new { @class = "form-control", @id = "Eng_no", @onchange = "GetMemDataa();CheckIfExist();" })
+                        @Html.Label(VMS.Core.Resources.Messages.DoesnotExisit, new { @id = "errMsgAr2", @hidden = "hidden", @style = "color:red" })
+                        @Html.Label(VMS.Core.Resources.Messages.thisnameallredyexist, new { @id = "errMsgAr5", @hidden = "hidden", @style = "color:red" })
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ENG_Name, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.ENG_Name, new { @class = "form-control", @readonly = "readonly", @id = "Eng_name" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PHONE_NO, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.PHONE_NO, new { @class = "form-control", @id = "PHONE_NO", @onchange = "SendCode();" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CODE, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(m => m.CODE, new { @class = "form-control", @id = "Code", @onchange = "checkCODE();" })
+                        @Html.Label(VMS.Core.Resources.Messages.TheCodeWasWrong, new { @id = "errMsgAr", @hidden = "hidden", @style = "color:red" })
+                    </div>
+                </div>*@
+            <div class="form-group">
+                @Html.Label(NMSRes.UserName, new { @class = "col-md-2 control-label" })
+               <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Warehouse_ID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(m => m.Warhouse_ID, ViewBag.Warhouse_ID as SelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Branch_Name, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(m => m.Branch_ID, ViewBag.Branch_ID as SelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(NMSRes.Role, new { @class = "col-md-2 control-label" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(m => m.Roles, ViewBag.Roles as SelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-primary" value="Register" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+                function checkCODE() {
+
+
+                    var _CODE = $('#Code').val();
+                    var _Phone = $('#PHONE_NO').val();
+                    var input = { code: _CODE, Mobile: _Phone };
+
+
+                    //var output;
+                    $.ajax({
+
+                        url: '/Account/CheckSentCode',
+                        type: "POST",
+                        data: JSON.stringify(input),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+
+                        success: function (data) {
+
+                            if (data == "Exist") {
+                                $('#errMsgAr').show();
+                            } else {
+                                $('#errMsgAr').hide();
+                            }
+
+                        },
+
+                        error: function () {
+                        }
+                    });
+                }
+
+                function SendCode() {
+
+
+                    var _Phone = $('#PHONE_NO').val();
+
+                    var input = { Mobileno: _Phone };
+
+
+                    //var output;
+                    $.ajax({
+
+                        url: '/Account/SendSms',
+                        type: "POST",
+                        data: JSON.stringify(input),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+
+                        success: function (data) {
+
+                            if (data == "Exist") {
+                                $('#errMsgAr').show();
+                            } else {
+                                $('#errMsgAr').hide();
+                            }
+
+                        },
+
+                        error: function () {
+                        }
+                    });
+                }
+                //
+
+
+
+                function GetMemDataa() {
+
+                    var _Eng_no = $('#Eng_no').val();
+
+
+
+                    var input = { memno: _Eng_no };
+                    $.ajax({
+
+
+                        url: '/Account/GetMemData',
+                        type: "POST",
+                        data: JSON.stringify(input),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            if (data === "NotExist") {
+                                $('#errMsgAr2').show();
+                            }
+                            else {
+                                $('#Eng_name').val(data);
+                            }
+                        },
+                        error: function () {
+                            return;
+                        }
+                    });
+                }
+                //
+                function CheckIfExist() {
+
+                    var _Eng_no = $('#Eng_no').val();
+
+
+
+                    var input = { memno: _Eng_no };
+                    $.ajax({
+
+
+                        url: '/Account/CheckifApplied',
+                        type: "POST",
+                        data: JSON.stringify(input),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            if (data === "Exist") {
+                                $('#errMsgAr5').show();
+                            }
+                            else {
+                                $('#errMsgAr5').hide();
+
+                            }
+                        },
+                        error: function () {
+                            return;
+                        }
+                    });
+                }
+    </script>
+}
+

@@ -1,0 +1,75 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.Invoice>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+    string lang = CommonRes.Lang;
+    string reportName = "rptInvoices";
+}
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+    columns.Add(model => model.Invoice_ID).Sortable(true).SetWidth(50).Titled(NMSRes.ID);
+
+    columns.Add(model => model.Isuue_Date).Sortable(true).SetWidth(50).Titled(NMSRes.Isuue_Date);
+
+    columns.Add(model => model.InvoiceNo).Sortable(true).SetWidth(50).Titled(NMSRes.InSirkNo);
+
+    columns.Add(model => model.Cus_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Cus_Name);
+
+
+    columns.Add(model => model.Total_Price).Sortable(true).SetWidth(50).Titled(NMSRes.TotalAmount);
+
+    columns.Add(model => model.DisCount).Sortable(true).SetWidth(50).Titled(NMSRes.DisCount);
+
+
+
+
+
+    columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+
+    columns.Add(model => model.LastUpdate).Sortable(true).SetWidth(50).Titled(NMSRes.LastUpdate);
+
+    columns.Add(model => model.Entered_By).Sortable(true).SetWidth(50).Titled(NMSRes.Entered_By);
+
+
+
+
+    columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.Button_Print,"Print", new { id = o.Invoice_ID })).SetWidth(50);
+
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+
+<script type="text/javascript">
+
+        var message = '@message';
+    if (message) {
+        GenerateReport();
+        alert(message);
+
+    }
+    //GenerateReport();
+
+   // }
+    function GenerateReport() {
+
+        ShowReport(
+            {
+
+                Status: $('#Status').val(),
+
+
+            }, "/InventoryReports/PrintInvoice/", "@reportName", "@CommonRes.Lang");
+
+
+    }
+</script>
+}

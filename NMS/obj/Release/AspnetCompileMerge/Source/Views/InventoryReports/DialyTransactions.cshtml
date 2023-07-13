@@ -1,0 +1,85 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Item
+
+@{
+    ViewBag.Title = "Report";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+
+}
+
+<h2>@MenuRes.Title_DialyTransactions</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="panel panel-group">
+
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+
+
+            </div>
+
+            <div class="panel-body">
+
+                <div id="locationHolders">
+                  
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Name)
+
+                        @Html.DropDownList("User_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.date)
+
+                        @Html.TextBox("date",string.Empty, new { @type = "date", @class = "form-control" })
+                    </div>
+
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Warehouse_ID)
+                        @Html.DropDownList("WareHouses_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+
+
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="loading-progress"></div>
+        <center>
+            <input type="button" value="@CommonRes.Button_Print" onclick="GenerateReport();" class="btn btn-primary btn active" />
+            <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+        </center>
+}
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+            $("#rdnExport > .pdsa-radiobutton").on('click', function () {
+                pdsaToggleRadioButtons("#rdnExport", $(this));
+            });
+        });
+
+    function GenerateReport() {
+       // var Status = $('#Status').val().toString();
+        var date = $('#date').val();
+        var User_ID = $('#User_ID').val();
+        var WareHouses_ID = $('#WareHouses_ID').val();
+        
+        ShowReport({ User_ID: User_ID, date: date, WareHouses_ID: WareHouses_ID }, "/InventoryReports/rptDialyTransaction/", "rptDialyTransaction", "@CommonRes.Lang");
+
+
+    }
+    </script>
+
+    <sript type="text/javascript">
+
+
+
+    </sript>
+}

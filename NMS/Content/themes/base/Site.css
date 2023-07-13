@@ -1,0 +1,367 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+
+@import url("GridView.css");
+
+body {
+    background: #333333;
+    font-size: .80em;
+    font-family: Tahoma;
+    margin: 0px;
+    padding: 0px;
+    color: #696969;
+    background-image: url('/Content/Images/random_grey_variations.png');
+}
+
+a:link, a:visited {
+    color: #034af3;
+}
+
+a:hover {
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active {
+    color: #034af3;
+}
+
+p {
+    margin-bottom: 10px;
+    line-height: 1.6em;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #666666;
+    font-variant: small-caps;
+    text-transform: none;
+    font-weight: 200;
+    margin-bottom: 0px;
+}
+
+h1 {
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2 {
+    margin-top: 0px;
+}
+
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+.page {
+    width: 960px;
+    background-color: #fff;
+    margin: 20px auto 0px auto;
+    border: 1px solid #496077;
+    direction: rtl;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -web-kit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    box-shadow: 0 0 10px #fff;
+    -moz-box-shadow: 0 0 10px #fff;
+    -webkit-box-shadow: 0 0 10px #fff;
+}
+
+.header {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    background: #999;
+    width: 100%;
+
+/* IE10 Consumer Preview */ 
+background-image: -ms-linear-gradient(right, #FFFFFF 0%, #007BB5 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(right, #FFFFFF 0%, #007BB5 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(right, #FFFFFF 0%, #007BB5 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, right top, left top, color-stop(0, #FFFFFF), color-stop(1, #007BB5));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(right, #FFFFFF 0%, #007BB5 100%);
+
+/* W3C Markup, IE10 Release Preview */ 
+background-image: linear-gradient(to left, #FFFFFF 0%, #007BB5 100%);
+}
+
+    .header h1 {
+        font-weight: 700;
+        margin: 0px;
+        padding: 0px 0px 0px 20px;
+        color: #f9f9f9;
+        border: none;
+        line-height: 2em;
+        font-size: 2em;
+    }
+
+    .header .logo {
+    background-image: url('/content/images/logo_trans.png');
+    width: 180px;
+    height: 100px;
+    background-repeat: no-repeat;
+}
+
+#sidebar {
+    width: 240px;
+    float: right;
+    margin: 10px;
+}
+
+#mainArea {
+    width: 640px;
+}
+
+.main {
+    padding: 0px 12px;
+    margin: 12px 8px 8px 8px;
+    min-height: 420px;
+    float: left;
+    width: 900px;
+}
+
+.leftCol {
+    padding: 6px 0px;
+    width: 200px;
+    min-height: 200px;
+}
+
+.footer {
+    color: #4e5766;
+    padding: 8px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+}
+
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+div.hideSkiplink {
+    background-color: #696969;
+    float: left;
+    width: 100%;
+}
+
+div.menu {
+    padding: 4px 0px 4px 8px;
+}
+
+    div.menu ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        width: auto;
+    }
+
+        div.menu ul li a, div.menu ul li a:visited {
+    background-color: #787878;
+    border: 1px solid #4D4D4D;
+    color: #dde4ec;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+            div.menu ul li a:hover {
+                background-color: #bfcbd6;
+                color: #465c71;
+                text-decoration: none;
+            }
+
+            div.menu ul li a:active {
+                background-color: #465c71;
+                color: #cfdbe6;
+                text-decoration: none;
+            }
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset {
+    margin: 1em 0px;
+    padding: 1em;
+    background: url("/Content/Images/fieldsetbg.gif");
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -web-kit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+}
+
+fieldset p {
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label {
+    display: block;
+}
+
+fieldset label.inline {
+    display: inline;
+}
+
+legend {
+    margin: 0.5em 0px;
+    padding: 0.5em 1em 0.5em 1em;
+    color: #fff;
+    background: #007BB5;
+    font-size: 90%;
+    text-align: right;
+    border: 1px solid #999;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -web-kit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    box-shadow: 0 0 4px #999;
+    -moz-box-shadow: 0 0 4px #999;
+    -webkit-box-shadow: 0 0 4px #999;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -web-kit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+}
+
+input:focus {
+        border: solid 1px #598C28;
+        color: #434343;
+        box-shadow: 0 0 4px #7FC666;
+        -moz-box-shadow: 0 0 4px #7FC666;
+        -webkit-box-shadow: 0 0 4px #7FC666;
+    }
+
+    input.textEntry {
+        width: 320px;
+        border: 1px solid #ccc;
+    }
+
+    input.passwordEntry {
+        width: 320px;
+        border: 1px solid #ccc;
+    }
+
+div.accountInfo {
+    width: 42%;
+}
+
+/* MISC  
+----------------------------------------------------------*/
+
+.clear {
+    clear: both;
+}
+
+.title {
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+}
+
+.loginDisplay {
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    color: White;
+}
+
+    .loginDisplay a:link {
+        color: white;
+    }
+
+    .loginDisplay a:visited {
+        color: white;
+    }
+
+    .loginDisplay a:hover {
+        color: white;
+    }
+
+.failureNotification {
+    font-size: 1.2em;
+    color: Red;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.submitButton {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.button {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #007BB5), color-stop(1, #75D2FF) );
+    background: -moz-linear-gradient( center top, #007BB5 5%, #75D2FF 100% );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#007BB5', endColorstr='#75D2FF');
+    background-color: #007BB5;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #84bbf3;
+    display: inline-block;
+    color: #fff;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 1px 1px 8px #528ecc;
+}
+
+    .button:hover {
+        background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #75D2FF), color-stop(1, #007BB5) );
+        background: -moz-linear-gradient( center top, #75D2FF 5%, #007BB5 100% );
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#75D2FF', endColorstr='#007BB5');
+        background-color: #75D2FF;
+    }
+
+    .button:active {
+        position: relative;
+        top: 1px;
+    }

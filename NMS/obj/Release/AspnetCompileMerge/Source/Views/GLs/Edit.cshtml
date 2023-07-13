@@ -1,0 +1,76 @@
+﻿@model NMS.Data.GL
+@using NMS.Core.Resources
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>GL</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.GL_ID)
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Genreal_Name)
+                @Html.ValidationMessageFor(model => model.Genreal_Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Name_AR, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Genreal_Name_AR)
+                @Html.ValidationMessageFor(model => model.Genreal_Name_AR)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Status, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.LastUpdate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LastUpdate)
+                @Html.ValidationMessageFor(model => model.LastUpdate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(NMSRes.Entered_By, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Entered_By)
+                @Html.ValidationMessageFor(model => model.Entered_By)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

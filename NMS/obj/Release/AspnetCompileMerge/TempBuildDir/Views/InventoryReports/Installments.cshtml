@@ -1,0 +1,71 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Installment
+
+@{
+    ViewBag.Title = "Report";
+    var message = TempData["AlertMessage"] ?? string.Empty;
+
+}
+
+<h2>@MenuRes.Installment</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="panel panel-group">
+
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+
+
+            </div>
+
+            <div class="panel-body">
+
+                <div id="locationHolders">
+
+                    <div class="col-lg-3">
+                        @Html.Label(NMSRes.Cus_Name_AR, "Cus_ID")
+
+                        @Html.DropDownList("Cus_ID", null, CommonRes.SelectDropDown, new { @Chosen = "Chosen", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Cus_ID)
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="loading-progress"></div>
+        <center>
+            <input type="button" value="@CommonRes.Button_Print" onclick="GenerateReport();" class="btn btn-primary btn active" />
+            <input class="btn btn-default" type="reset" value="@CommonRes.Button_Cancel">
+        </center>
+}
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+            $("#rdnExport > .pdsa-radiobutton").on('click', function () {
+                pdsaToggleRadioButtons("#rdnExport", $(this));
+            });
+        });
+
+    function GenerateReport() {
+       // var Status = $('#Status').val().toString();
+        var Cus_ID = $('#Cus_ID').val();
+      
+        ShowReport({ Cus_ID: Cus_ID}, "/InventoryReports/rptnstallments/", "rptInstallments", "@CommonRes.Lang");
+
+
+    }
+    </script>
+
+    <sript type="text/javascript">
+
+
+
+    </sript>
+}

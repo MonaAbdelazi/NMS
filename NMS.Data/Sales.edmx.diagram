@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e82866c13b0f4ea4829e266792716ae7" Name="Diagram1" ZoomLevel="66">
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Activity" Width="1.5" PointX="3" PointY="26.875" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Auxiliary" Width="1.5" PointX="8.25" PointY="23.875" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Branch" Width="1.5" PointX="8.25" PointY="13.625" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.City" Width="1.5" PointX="3" PointY="12.875" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Company" Width="1.5" PointX="5.25" PointY="13.125" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Company_Type" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Country" Width="1.5" PointX="0.75" PointY="15.125" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Currency" Width="1.5" PointX="3" PointY="17.25" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Customer" Width="1.5" PointX="15.75" PointY="7.625" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Employess" Width="1.5" PointX="10.375" PointY="13.875" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.GL" Width="1.5" PointX="6" PointY="23.875" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.InItemsInvoice" Width="1.5" PointX="12.75" PointY="19.5" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Installment" Width="1.5" PointX="18" PointY="7.75" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Invoice" Width="1.5" PointX="18" PointY="15" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Item" Width="1.5" PointX="15" PointY="12" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Items_Group" Width="1.5" PointX="12.75" PointY="23.5" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Product" Width="1.5" PointX="12.75" PointY="7.625" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Unit" Width="1.5" PointX="12.75" PointY="28" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.WareHouse" Width="1.5" PointX="12.75" PointY="13.5" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.WareHoustTran" Width="1.5" PointX="15" PointY="22.375" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Companies_Activity" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Auxiliary_GL" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Branches_City" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Branches_Country" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Employess_Branches" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Invoice_Branch" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_WareHouse_Branch" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Cities_Country" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Companies_City" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_City" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Companies_CompType" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Companies_Country" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Companies_Curr" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Invoice_Comp" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_Comp" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_Country" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Installment_Cust" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Invoice_Cus" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_WareHouse_Emp" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_InInv" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Invoice_Unit" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Invoice_Ware" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_IteGr" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_Product" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_Unit" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_WareH" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Product_Item_Grp" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_WareHoustTrans_From" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_WareHoustTrans_To" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Installment_Invoice" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.DailyActivity" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_DailyActivities_Branch" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_DailyActivities_WareHouse" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Installment_Warehous" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Exp" Width="1.5" PointX="15" PointY="3.375" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Exp_Daily" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Exp_Exp" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.AccountManagment" Width="1.5" PointX="17.75" PointY="22.75" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_AccountManagment_Curr" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Invoice_Items" Width="1.5" PointX="20.25" PointY="14.75" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Items_Invoice" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_InvoiceForItems" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Tree" Width="1.5" PointX="5.25" PointY="27.875" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_AccountManagment_Tree" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Tree_Curr" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Payment" Width="1.5" PointX="20.25" PointY="8.5" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Payment_Customers" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Payment_Installment" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Emp_Loans" Width="1.5" PointX="15.625" PointY="28.5" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Ride" Width="1.5" PointX="23.25" PointY="15.875" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Emp_Loans_Employess" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Emp_Loans_Tree" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Ride_emp" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Ride_InItemsInvoice" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Ride_invoice" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Ride_WareHouse" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Suppliers" Width="1.5" PointX="3" PointY="21.625" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Suppliers_SuppliersCountry" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Invoice_Supp" />
+        <EntityTypeShape EntityType="Inventory_ManagementXModel.Transactions" Width="1.5" PointX="10.5" PointY="23" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Transactions_Currency" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Transactions_CR" />
+        <AssociationConnector Association="Inventory_ManagementXModel.FK_Transactions_DrAcc" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

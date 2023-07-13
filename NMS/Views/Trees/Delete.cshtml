@@ -1,0 +1,206 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Tree
+
+@{
+    ViewBag.Title = CommonRes.Delete;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Delete</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Chart</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Acc_Name)
+
+                                @Html.TextBoxFor(m => m.Acc_Name, null, htmlAttributes: new { @class = "form-control" ,@disabled= "disabled" })
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Acc_Name_AR)
+
+                                @Html.TextBoxFor(m => m.Acc_Name_AR, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Acc_Name_AR)
+                                @*@id = "Name_AR",*@
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Acc_No)
+
+                                @Html.TextBoxFor(m => m.Acc_No, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Acc_No)
+                                @*@id = "Name_AR",*@
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Cat)
+
+                                @Html.DropDownList("Cats", ViewBag.Cats as SelectList, CommonRes.SelectDropDown, new { @class = "form-control", @disabled = "disabled", @onchange = "catSelected();" })
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.Type)
+
+                                @Html.DropDownList("Types", ViewBag.Types as SelectList, CommonRes.SelectDropDown, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Account_Type)
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.ParentId)
+
+                                @Html.DropDownList("ParentIds", ViewBag.ParentIds as SelectList, CommonRes.SelectDropDown, new { @class = "form-control", @disabled = "disabled", @onchange = "checkLevel();" })
+                                @Html.ValidationMessageFor(model => model.ParentId)
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.LeaveAccount)
+
+                                @Html.CheckBox("Leave", new { @class = "form-control", @disabled = "disabled" })
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.currency)
+
+                                @Html.DropDownListFor(m => m.currencyId, ViewBag.currencyIds as SelectList, CommonRes.SelectDropDown, new { @class = "form-control", @disabled = "disabled" })
+
+                            </div>
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.AccountNature)
+
+                                @Html.DropDownList("Acc_Nature", ViewBag.Acc_Natures as SelectList, CommonRes.SelectDropDown, new { @class = "form-control", @disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Acc_Nature)
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function catSelected() {
+
+
+            GetDropDownData({ Category: $('#Category').val() }, "/Trees/catSelected", "Account_Type", " ", true);
+            GetDropDownData({ Category: $('#Category').val() }, "/Trees/catPSelected", "ParentId", " ", true);
+
+        }
+        function checkLevel(_ddlDesc) {
+
+            var target = $('#Leave');
+            var input = { ParentId: $('#ParentId').val()};
+            $.ajax({
+                url: '/Trees/checkLevel',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data == "OK") {
+                        target.attr("disabled", false);
+                    }
+                    else {
+                        target.attr("disabled", true);
+
+                    }
+                },
+                error: function () {
+                }
+            });
+        }
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+            var input = { GL_ID: $('#GL_ID').val(), Type: $('#Type').val(), Cat: $('#Cat').val(), Aux_ID: $('#Aux_ID').val(), Acc_Name_AR: $('#Acc_Name_AR').val(), Acc_Name: $('#Acc_Name').val() };
+            $.ajax({
+                url: '/Trees/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#GL_ID').val("");
+            $('#Type').val("");
+            $('#Cat').val("");
+            $('#Aux_ID').val("");
+            $('#Acc_Name_AR').val("");
+            $('#Acc_Name').val("");
+        }
+    </script>
+}

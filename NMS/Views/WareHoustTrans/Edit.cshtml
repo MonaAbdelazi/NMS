@@ -1,0 +1,121 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.WareHoustTran
+
+@{
+    ViewBag.Title = CommonRes.Edit;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">@MenuRes.WareHoseTransfer</h2>
+                </div>
+
+                <div class="panel-body">
+
+                    @Html.ValidationSummary(true)
+                    <hr />
+
+                    <div class="form-group row">
+
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.From_B_ID)
+
+                            @Html.DropDownList("From_B_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.From_B_ID)
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.ItemId)
+
+                            @Html.TextBoxFor(model => model.Item_ID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Item_ID)
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.Qunt)
+
+                            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Quantity)
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.To_B_ID)
+
+                            @Html.DropDownList("To_B_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.To_B_ID)
+                        </div>
+                        <div class="col-lg-3">
+                            @Html.Label(NMSRes.Status)
+                            @Html.DropDownListFor(m => m.Status, ViewBag.Status as SelectList, htmlAttributes: new { @Value = Model.Status })
+                            @Html.ValidationMessageFor(model => model.Status)
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+        
+
+
+    </div>
+
+
+
+    <div id="outputTable">
+
+    </div>
+    <div class="form-group">
+
+        <center class="mgtp">
+
+            <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+            &nbsp;
+            @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+        </center>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+            var input = { To_B_ID: $('#To_B_ID').val(), Quantity: $('#Quantity').val(), Item_ID: $('#Item_ID').val(), From_B_ID: $('#From_B_ID').val() };
+            $.ajax({
+                url: '/WareHouseTrans/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Item_ID').val("");
+            $('#Quantity').val("");
+
+        }
+    </script>
+}
+

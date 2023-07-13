@@ -1,0 +1,182 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Product
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+                        <h2 class="panel-title">@MenuRes.Title_Product</h2>
+                    </div>
+
+                    <div class="panel-body">
+
+                        @Html.ValidationSummary(true)
+                        <hr />
+
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Item_Grp_ID)
+
+                                @Html.DropDownList("Item_Grp_ID", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Items_Group.Item_Grp_ID)
+                            </div>
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name)
+
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name_AR)
+
+                                @Html.TextBoxFor(model => model.Name_AR, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name_AR)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.BarCode)
+
+                                @Html.TextBoxFor(model => model.BAR_CODE, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.BAR_CODE)
+                            </div>
+                            @*<div class="col-lg-3">
+                                @Html.Label(NMSRes.Income_Acc)
+
+                                @Html.DropDownList("Tree", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tree)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Expenses_Acc)
+
+                                @Html.DropDownList("Tree1", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tree1)
+                            </div>*@
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Comment)
+
+                                @Html.TextBoxFor(model => model.Comment, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Comment)
+                            </div>
+                           
+
+                        </div>
+                        <div>
+                            <center>
+                                <p>
+                                    <input type="button" value="@CommonRes.add" id="Add" class="btn btn-success hvr-bounce-in" onclick="add(this.id);" />
+                                </p>
+                            </center>
+                        </div>
+
+                        <div id="outputTable">
+                        </div>
+
+                        <div class="form-group">
+                            <center class="mgtp">
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+                            </center>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+}
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        function add(_ddlDesc) {
+            var target = $('#outputTable');
+            var input = { name: $('#Name').val(), namear: $('#Name_AR').val(), BAR_CODE: $('#BAR_CODE').val(), Comment: $('#Comment').val(), Tree: $('#Tree').val(), Tree1: $('#Tree1').val(),Item_Grp_ID:$('#Item_Grp_ID').val() };
+            $.ajax({
+                url: '/Products/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Name').val("");
+            $('#Name_AR').val("");
+            $('#BAR_CODE').val("");
+            $('#Tree').val("");
+            $('#Tree1').val("");
+            $('#Comment').val("");
+
+        }
+        //$('#Item_Grp_ID').change(function () {
+
+        //    var Item_Grp_ID = $('#Item_Grp_ID').val();
+        //    var input = { Item_Grp_ID: $('#Item_Grp_ID').val() };
+        //    $.ajax({
+        //        url: '/Products/getGroup',
+        //        type: "POST",
+        //        data: JSON.stringify(input),
+        //        dataType: "json",
+        //        contentType: "application/json; charset=utf-8",
+        //        success: function (data) {
+        //            //target.html(data);  HOLIDAYHOURS NOMINALHOURS
+                   
+        //            //$('#Tree').val(data.Tree.Acc_No);
+        //            //$('#Tree1').val(data.Tree1.Acc_No);
+        //            if (data="Suc")
+        //                $("#Tree").attr('disabled', true);
+        //            else
+        //                $("#Tree").attr('disabled', false);
+
+        //            if (data = "Suc")
+        //                $("#Tree1").attr('disabled', true);
+        //            else
+        //                $("#Tree1").attr('disabled', false);
+
+        //        },
+        //        error: function () {
+        //            if (data = "Suc")
+        //                $("#Tree").attr('disabled', true);
+        //            else
+        //                $("#Tree").attr('disabled', false);
+
+        //            if (data = "Suc")
+        //                $("#Tree1").attr('disabled', true);
+        //            else
+        //                $("#Tree1").attr('disabled', false);
+        //        }
+        //    });
+
+
+
+
+
+   //     });
+    </script>
+}

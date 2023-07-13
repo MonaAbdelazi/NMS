@@ -1,0 +1,182 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Exp
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel panel-light-blue">
+
+
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">المصروفات</h2>
+
+                    </div>
+
+
+                    <div class="panel-body">
+                        <hr />
+
+                        <div class="form-group row">
+
+
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Expenses)
+
+                                @Html.TextBoxFor(m => m.Naration, null, htmlAttributes: new { @class = "form-control" })
+
+                                @*@id= "Name",*@
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.ExpensesAmount)
+
+                                @Html.TextBoxFor(m => m.Amount, null, htmlAttributes: new { @class = "form-control", @onchange = "return check();" })
+                                @Html.Label("المصروف اكبر من المتاح", new { @class = "label-danger", @hidden = "hidden", @id = "err" })
+
+
+                                @Html.ValidationMessageFor(model => model.Amount)
+                               
+                            </div>
+
+
+                            <div class="col-lg-3">
+
+                                @Html.Label(NMSRes.TotalInvoiceAmount)
+
+                                @Html.TextBoxFor(m => m.Total, null, htmlAttributes: new { @class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.Total)
+                                @*@id = "Name_AR",*@
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <center>
+                                <p>
+                                    <input type="button" value="@CommonRes.add" id="Add" class="btn btn-success hvr-bounce-in" onclick="add(this.id);" />
+                                </p>
+                            </center>
+
+
+                        </div>
+
+
+
+                        <div id="outputTable">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <center class="mgtp">
+
+                                <input type="submit" onclick="return enable();" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+
+                            </center>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+}
+
+
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function enable() {
+
+            $('#Total').prop("disabled", false);//.trigger("liszt:updated")
+
+        }
+        function check() {
+            var input = { Amount: $('#Amount').val() };
+            $.ajax({
+                url: '/Exp/check',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data == "false") {
+                        $('#err').show();
+                        $('#Amount').val("");
+                        $('#save').prop("disabled", true);
+                    }
+                    else {
+                        $('#err').hide();
+                        $('#save').prop("disabled", false);
+
+                    }
+
+
+                },
+                error: function () {
+                }
+            });
+
+
+
+        }
+        function add(_ddlDesc) {
+
+            var target = $('#outputTable');
+            var input = { Amount: $('#Amount').val(), Naration: $('#Naration').val() };
+            $.ajax({
+                url: '/Exp/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var total = $('#Amount').val();
+                    var tot = new Number(total);
+                    var result =0;
+                    tot += result;
+                    $('#Total').val(tot);
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            //$('#Amount').val("");
+            //$('#Naration').val("");
+           
+
+        }
+    </script>
+}

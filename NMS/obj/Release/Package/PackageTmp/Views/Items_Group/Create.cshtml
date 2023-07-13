@@ -1,0 +1,110 @@
+﻿@using NMS.Core.Resources
+@model NMS.Data.Items_Group
+
+@{
+    ViewBag.Title = CommonRes.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@CommonRes.Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-light-blue">
+                    <div class="panel-heading">
+
+                        <h2 class="panel-title">@MenuRes.Title_Item_Group</h2>
+                    </div>
+                    <div class="panel-body">
+                        @Html.ValidationSummary(true)
+                        <hr />
+
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name)
+                                @Html.TextBoxFor(model => model.Item_Grp_Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Item_Grp_Name)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Name_AR)
+                                @Html.TextBoxFor(model => model.Item_GrpName_AR, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Item_GrpName_AR)
+                            </div>
+                            @*<div class="col-lg-3">
+                                @Html.Label(NMSRes.Income_Acc)
+
+                                @Html.DropDownList("Tree", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tree)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Expenses_Acc)
+
+                                @Html.DropDownList("Tree1", null, CommonRes.SelectDropDown, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tree1)
+                            </div>*@
+                            <div class="col-lg-3">
+                                @Html.Label(NMSRes.Comment)
+                                @Html.TextBoxFor(model => model.Comment, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Comment)
+                            </div>
+                        </div>
+                        <div>
+                            <center>
+                                <p>
+                                    <input type="button" value="@CommonRes.add" id="Add" class="btn btn-success hvr-bounce-in" onclick="add(this.id);" />
+                                </p>
+                            </center>
+                        </div>
+
+                        <div id="outputTable">
+                        </div>
+
+                        <div class="form-group">
+                            <center class="mgtp">
+                                <input type="submit" value="@CommonRes.Button_Save" class="btn btn-primary hvr-bounce-in" />
+                                &nbsp;
+                                @Html.ActionLink(CommonRes.BackToList, "Index", null, new { @class = "btn btn-warning hvr-bounce-in" })
+                            </center>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+}
+<div>
+    @Html.ActionLink(CommonRes.BackToList, "Index")
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        function add(_ddlDesc) {
+            var target = $('#outputTable');
+            var input = { name: $('#Item_Grp_Name').val(), namear: $('#Item_GrpName_AR').val(), Comment: $('#Comment').val() };
+            $.ajax({
+                url: '/items_Group/Add',
+                type: "POST",
+                data: JSON.stringify(input),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    target.html(data);
+
+                },
+                error: function () {
+                }
+            });
+
+            $('#Item_Grp_Name').val("");
+            $('#Item_GrpName_AR').val("");
+            $('#Comment').val("");
+
+        }
+    </script>
+}

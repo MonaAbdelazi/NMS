@@ -1,0 +1,48 @@
+USE [Managmentv]
+GO
+
+/****** Object:  Table [dbo].[Suppliers]    Script Date: 03/09/2021 5:35:15 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Suppliers](
+	[Supp_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Supp_Name] [nvarchar](max) NULL,
+	[Supp_Name_AR] [nvarchar](max) NULL,
+	[Phone] [nvarchar](50) NULL,
+	[Address] [nvarchar](max) NULL,
+	[E_Mail] [nvarchar](50) NULL,
+	[Web_Site] [nvarchar](50) NULL,
+	[Representative_Name] [nvarchar](max) NULL,
+	[Representative_Phone] [varchar](50) NULL,
+	[Status] [nchar](10) NOT NULL,
+	[LastUpdate] [date] NOT NULL,
+	[Entered_By] [nvarchar](50) NOT NULL,
+	[Country_ID] [int] NULL,
+	[acc_no] [nvarchar](50) NULL,
+	[Tax] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Suppliers] PRIMARY KEY CLUSTERED 
+(
+	[Supp_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[Suppliers]  WITH CHECK ADD  CONSTRAINT [FK_Suppliers_SuppliersCountry] FOREIGN KEY([Country_ID])
+REFERENCES [dbo].[Countries] ([Country_ID])
+GO
+
+ALTER TABLE [dbo].[Suppliers] CHECK CONSTRAINT [FK_Suppliers_SuppliersCountry]
+GO
+
+

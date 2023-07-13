@@ -1,0 +1,54 @@
+﻿
+@using NMS.Core.Resources
+@using NMS.Data
+@using GridMvc.Html
+@model IEnumerable<NMS.Data.Invoice>
+
+@{
+    ViewBag.Title = CommonRes.ApproveIndex;
+}
+
+<h2>@CommonRes.Index</h2>
+
+
+
+
+
+<br />
+@Html.Grid(Model).Named("ordersGrid").Columns(columns =>
+{
+		columns.Add(model => model.InvoiceNo).Sortable(true).SetWidth(50).Titled(NMSRes.ID);
+	
+    	columns.Add(model => model.Isuue_Date).Sortable(true).SetWidth(50).Titled(NMSRes.Isuue_Date);
+	
+    	columns.Add(model => model.Comp_ID).Sortable(true).SetWidth(50).Titled(NMSRes.company);
+	
+	
+    	columns.Add(model => model.Unit_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Unit_ID);
+	
+	
+    	columns.Add(model => model.Total_Price).Sortable(true).SetWidth(50).Titled(NMSRes.PriceForOnce);
+	
+    	columns.Add(model => model.DisCount).Sortable(true).SetWidth(50).Titled(NMSRes.DisCount);
+	
+    	columns.Add(model => model.Branch_ID).Sortable(true).SetWidth(50).Titled(NMSRes.Branch_ID);
+	
+    	columns.Add(model => model.Tax_No).Sortable(true).SetWidth(50).Titled(NMSRes.Tax_No);
+	
+    	
+	
+    	columns.Add(model => model.Status).Sortable(true).SetWidth(50).Titled(NMSRes.Status);
+	
+    	columns.Add(model => model.LastUpdate).Sortable(true).SetWidth(50).Titled(NMSRes.LastUpdate);
+	
+    	columns.Add(model => model.Entered_By).Sortable(true).SetWidth(50).Titled(NMSRes.Entered_By);
+	
+    	columns.Add(model => model.Branch.Branch_Name).Sortable(true).SetWidth(50).Titled(NMSRes.Branch_Name);
+	
+
+	
+          columns.Add().Encoded(false).Sanitized(false).RenderValueAs(o => Html.ActionLink(CommonRes.ApproveIndex, "Approve", new { id = o.Invoice_ID })).SetWidth(50);
+              
+}).WithPaging(10).Filterable().SetLanguage(CommonRes.Lang)
+
+
